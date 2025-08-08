@@ -146,3 +146,9 @@ Azure шаблони мають додаткові деталі, щоб допо
 ## Наступні кроки
 
 Надсилайте ваші запитання, коментарі та занепокоєння на tmtextsupport@microsoft.com. Завантажте Threat Modeling Tool, щоб почати.
+
+
+
+- Threat Modeling Web Applications, https://learn.microsoft.com/en-us/previous-versions/msp-n-p/ff648006(v=pandp.10)
+- Threat Modeling Tool feature overview, https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-feature-overview?source=recommendations
+- Microsoft Threat Modeling Tool threats, https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats?source=recommendations
