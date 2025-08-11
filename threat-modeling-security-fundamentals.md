@@ -812,3 +812,30 @@ Visio забезпечує функціональність перетягува
 - Забезпечення відповідності стандартам безпеки
 
 Цей курс забезпечує міцну основу для роботи в сфері безпеки та допомагає розвинути системне мислення щодо захисту інформаційних систем.
+
+
+
+
+# ПОСИЛАННЯ
+
+
+
+- Application Security Fundamentals for the Absolute Beginners, https://ua.udemy.com/course/security-architecture-and-design-review-with-threat-modeling/
+- Security Architecture & Review with Threat Modeling-Hands On, https://ua.udemy.com/course/security-architecture-and-design-review-with-threat-modeling/
+- Web Security: Common Vulnerabilities And Their Mitigation, https://ua.udemy.com/course/application-security-fundamentals-including-hands-on-demos/
+- 
+
+
+
+
+
+------------------------------------
+
+- The Art of Threat Modeling - A Step-by-Step Approach Building Resilient Architectures through Effective Threat Modeling, https://www.udemy.com/course/the-art-of-threat-modeling-a-step-by-step-approach/?utm_source=adwords&utm_medium=udemyads&utm_campaign=Search_DSA_Beta_Prof_la.EN_cc.ROW-English&campaigntype=Search&portfolio=ROW-English&language=EN&product=Course&test=&audience=DSA&topic=&priority=Beta&utm_content=deal4584&utm_term=_._ag_162511579564_._ad_696197165424_._kw__._de_c_._dm__._pl__._ti_dsa-1677053911888_._li_9061017_._pd__._&matchtype=&gad_source=1&gad_campaignid=21168154305&gbraid=0AAAAADROdO2JH_bD_GDjGqA-Pfl9ni-Dc&gclid=Cj0KCQjwqebEBhD9ARIsAFZMbfyGtYJzWtY1Wsq6bmwuJdkqGKwTAqXBizXPjs3wkXOLWNIIBTUFheYaAmUkEALw_wcB&couponCode=PMNVD2525
+- Threat Modeling using STRIDE masterclass - 2025, https://www.udemy.com/course/threat-modeling-using-stride-masterclass/?couponCode=PMNVD2525
+- Building an Application Security Program from Scratch, https://www.udemy.com/course/building-an-application-security-program-from-scratch/?couponCode=PMNVD2525
+- 
+
+
+
+
