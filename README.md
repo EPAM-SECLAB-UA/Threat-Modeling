@@ -9,6 +9,10 @@
 
 - MITRE ATT&CK Framework Essentials, https://ua.udemy.com/course/mitre-attck-framework-essentials/
 - Threat Intelligence, https://ua.udemy.com/course/threat-intelligence/
+- Fundamentals of Threat Intelligence for Every Cybersecurity Professional, https://medium.com/@Architekt.exe/fundamentals-of-threat-intelligence-for-every-cybersecurity-professional-7a3acb2ef349
+- Performing Threat Hunting With A Scientific Approach, https://medium.com/@Architekt.exe/performing-threat-hunting-with-a-scientific-approach-532ff94c793a
+- Developing a Successful Intelligence-Driven Hypothesis For Threat Hunting, https://medium.com/@Architekt.exe/developing-a-successful-intelligence-driven-hypothesis-for-threat-hunting-657f241b4460
+- 
 
 
 # Threat-Modeling
