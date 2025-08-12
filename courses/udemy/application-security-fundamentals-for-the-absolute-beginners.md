@@ -5630,3 +5630,281 @@ graph TD
 Дякуємо за увагу! До зустрічі на наступній лекції!
 
 
+
+# 47 Лекція: Запуск та аналіз результатів End-to-End DevSecOps Pipeline
+
+## Вступ
+
+Вітаємо експертів з безпеки! Ласкаво просимо на цю нову лекцію.
+
+У цій лекції ми збираємося запустити наш повний end-to-end DevSecOps pipeline для Java проекту в GitLab.
+
+## Запуск Pipeline
+
+### Підготовка до коміту
+
+**Файл:** `.gitlab-ci.yml` з повним кодом DevSecOps pipeline
+
+**Commit процес:**
+1. **Commit message:** "Added end-to-end DevSecOps pipeline changes in GitLab-ci.yml file for Java project"
+2. **Target branch:** Commit безпосередньо до master branch
+3. **Verification:** GitLab перевіряє конфігурацію та підтверджує її валідність
+
+### Моніторинг Pipeline
+
+**Навігація в GitLab:**
+1. Перейти до **CI/CD**
+2. Вибрати **Pipelines**
+3. Переглянути поточний запущений pipeline
+
+**Структура Pipeline:**
+- **Stage 1:** Run SAST scan using SonarCloud
+- **Stage 2:** Run SCA scan using Snyk  
+- **Stage 3:** Run DAST scan using ZAP
+
+## Детальний аналіз результатів
+
+### Stage 1: SAST Job (SonarCloud Analysis)
+
+**Статус виконання:** ✅ **Successfully Completed**
+
+**Результати SonarCloud аналізу:**
+- **Час виконання:** 2 хвилини тому
+- **Code Smells:** 55 виявлених проблем
+- **Security Hotspots:** 19 потенційних проблем безпеки
+- **Bugs:** 10 виявлених помилок
+- **Security Vulnerabilities:** 1 вразливість безпеки
+- **Unit Test Coverage:** 5% (низьке покриття тестами)
+
+**Доступ до результатів:**
+- SonarCloud надає URL для детального перегляду результатів
+- Можливість переглянути кожну проблему окремо
+- Рекомендації щодо виправлення
+
+**Типи виявлених проблем:**
+```
+Code Quality Issues:
+├── Code Smells (55) - Проблеми якості коду
+├── Bugs (10) - Логічні помилки
+└── Security Issues
+    ├── Security Hotspots (19) - Потенційні проблеми
+    └── Vulnerabilities (1) - Підтверджені вразливості
+```
+
+### Stage 2: SCA Job (Snyk Analysis)
+
+**Статус виконання:** ✅ **Job Succeeded**
+
+**Конфігурація Snyk:**
+- **Organization:** security-guru
+- **Scanned File:** pom.xml
+- **Analysis Type:** Third-party library vulnerabilities
+
+**Результати SCA сканування:**
+- Ідентифіковані проблеми безпеки у сторонніх бібліотеках
+- Детальний аналіз залежностей Maven проекту
+- Рекомендації щодо оновлення вразливих компонентів
+
+**Приклади типових знайдених проблем:**
+- Застарілі версії бібліотек з відомими CVE
+- Компоненти з high/critical severity вразливостями
+- License compliance issues
+- Transitive dependencies vulnerabilities
+
+### Stage 3: DAST Job (OWASP ZAP Analysis)
+
+**Статус виконання:** ✅ **Job Successful**
+
+**Конфігурація ZAP сканування:**
+- **Target URL:** www.example.com
+- **Scan Type:** Active scanning з traditional spider
+- **Completion:** 100% завершено
+- **Output:** zap_report.html
+
+**Результати DAST аналізу:**
+- **Medium Severity:** 1 проблема
+- **Low Severity:** 2 проблеми
+- **Timestamp:** Зафіксований час сканування
+
+**Структура ZAP звіту:**
+```
+ZAP Security Report
+├── Scan Summary
+│   ├── Target: www.example.com
+│   ├── Timestamp: [scan execution time]
+│   └── Completion: 100%
+├── Vulnerabilities Found
+│   ├── Medium (1 issue)
+│   └── Low (2 issues)
+└── Detailed Analysis
+    ├── Issue Description
+    ├── Remediation Solution
+    ├── CVE References
+    └── Additional References
+```
+
+## Управління артефактами
+
+### Завантаження результатів
+
+**Process:**
+1. **Artifacts Available:** На правій панелі з'являється повідомлення про доступність артефактів
+2. **Download Button:** Клік на кнопку завантаження
+3. **Archive File:** Завантажується `artifacts.zip`
+
+**Вміст архіву:**
+- `zap_report.html` - Детальний звіт DAST сканування
+- Timestamp та metadata інформація
+- Structured результати у HTML форматі
+
+### Аналіз ZAP звіту
+
+**Структура HTML звіту:**
+- **Header Section:** Інформація про цільовий URL та час сканування
+- **Summary Section:** Загальна статистика знайдених проблем
+- **Detailed Findings:** Детальний опис кожної вразливості
+
+**Інформація по кожній проблемі:**
+- **Description:** Детальний опис вразливості
+- **Solution:** Рекомендації щодо усунення
+- **CVE ID:** Ідентифікатори в базах вразливостей
+- **References:** Додаткові джерела інформації
+
+## Pipeline Architecture Overview
+
+### Послідовність виконання
+
+```mermaid
+graph LR
+    A[Code Commit] --> B[SAST - SonarCloud]
+    B --> C[SCA - Snyk]  
+    C --> D[DAST - OWASP ZAP]
+    D --> E[Artifacts & Reports]
+```
+
+**Timing та ефективність:**
+- **Total Pipeline Time:** ~5-7 хвилин
+- **SAST Duration:** ~2 хвилини
+- **SCA Duration:** ~1-2 хвилини  
+- **DAST Duration:** ~2-3 хвилини
+
+### Integration Points
+
+**Успішна інтеграція:**
+- ✅ **GitLab CI/CD** - автоматичний тригер
+- ✅ **SonarCloud** - якість коду та безпека
+- ✅ **Snyk** - аналіз компонентів
+- ✅ **OWASP ZAP** - динамічне тестування
+- ✅ **Artifacts** - збереження результатів
+
+## Практичні рекомендації
+
+### Аналіз результатів
+
+**Пріоритизація проблем:**
+1. **Critical/High Severity** - негайне виправлення
+2. **Medium Severity** - планування у наступному спринті
+3. **Low Severity** - backlog для майбутніх релізів
+
+**False Positive Management:**
+- Перегляд SAST та DAST результатів на предмет хибних спрацьовувань
+- Whitelist legitimних patterns
+- Налаштування baseline для проекту
+
+### Remediation Workflow
+
+**Процес виправлення:**
+```
+1. Issue Identification (Pipeline Results)
+   ↓
+2. False Positive Analysis
+   ↓  
+3. Risk Assessment & Prioritization
+   ↓
+4. Assignment to Development Team
+   ↓
+5. Code Fixes & Validation
+   ↓
+6. Re-run Pipeline
+   ↓
+7. Verification & Sign-off
+```
+
+## Enterprise-Level Considerations
+
+### Metrics та KPI
+
+**Pipeline Success Metrics:**
+- **Execution Time:** Моніторинг швидкості pipeline
+- **Success Rate:** Відсоток успішних запусків
+- **Issue Detection:** Кількість та типи знайдених проблем
+- **MTTR:** Mean Time To Resolution для критичних проблем
+
+### Continuous Improvement
+
+**Optimization можливості:**
+- **Parallel Execution:** Запуск SAST та SCA паралельно
+- **Incremental Scanning:** Аналіз лише змінених компонентів
+- **Smart Triggering:** Conditional pipeline execution
+- **Result Caching:** Кешування результатів для unchanged dependencies
+
+### Compliance та Reporting
+
+**Звітність для стейкхолдерів:**
+- **Executive Dashboard:** High-level security metrics
+- **Development Teams:** Actionable technical details  
+- **Compliance Officers:** Audit trails та documentation
+- **Security Teams:** Trend analysis та risk assessment
+
+## Інтеграція з корпоративними системами
+
+### JIRA Integration (Next Steps)
+
+**Automated Issue Creation:**
+- High/Critical severity проблеми → Automatic JIRA tickets
+- Assignment до development teams
+- SLA tracking та escalation
+
+### Security Dashboard
+
+**Centralized Monitoring:**
+- Real-time pipeline status
+- Security trends across projects
+- Compliance status tracking
+- Risk heat maps
+
+## Висновок
+
+**Успішно реалізований End-to-End DevSecOps Pipeline:**
+
+**Досягнення:**
+- ✅ **Повна автоматизація** security testing
+- ✅ **Три типи сканування** в одному pipeline
+- ✅ **Structured reporting** з artifacts
+- ✅ **Enterprise-ready** architecture
+
+**Результати:**
+- **55 code smells** + **1 security vulnerability** (SAST)
+- **Multiple dependency issues** (SCA)  
+- **3 web application vulnerabilities** (DAST)
+- **Automated artifact generation** для подальшого аналізу
+
+**Business Value:**
+- **Швидкість:** Автоматизація що займала години, тепер хвилини
+- **Покриття:** Comprehensive security analysis
+- **Якість:** Consistent та reliable результати
+- **Масштабованість:** Ready для enterprise deployment
+
+**Цей приклад демонструє real-life enterprise environment**, де такі DevSecOps pipeline є standard practice для забезпечення безпеки додатків.
+
+## Наступні кроки
+
+**Рекомендації для подальшого розвитку:**
+1. **Інтеграція з JIRA** для automated issue tracking
+2. **Dashboard створення** для executive reporting
+3. **Policy настройка** для різних типів проектів
+4. **Advanced scanning rules** та custom policies
+
+**Цей pipeline готовий для production використання** та може служити template для інших Java проектів в організації.
+
+Дякуємо за увагу! До зустрічі на наступній лекції!
