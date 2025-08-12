@@ -1,5 +1,441 @@
 
 
+# Моделювання загроз для Django додатку
+
+## Вступ
+
+Моделювання загроз для Django додатку - це систематичний процес ідентифікації, аналізу та мітигації потенційних загроз безпеки в веб-додатках, побудованих на Django framework.
+
+## Крок 1: Аналіз архітектури Django додатку
+
+### Типова архітектура Django додатку
+
+```
+Користувач → Load Balancer → Web Server (Nginx/Apache) → Django Application → Database
+                ↓
+            Static Files (CDN/S3)
+                ↓
+        Cache (Redis/Memcached) → Background Tasks (Celery)
+```
+
+### Основні компоненти для аналізу
+
+**1. Фронтенд компоненти:**
+- Веб-браузер користувача
+- JavaScript код
+- HTML templates
+- CSS та статичні файли
+
+**2. Django application layer:**
+- Views (контролери)
+- Models (моделі даних)
+- Forms (форми)
+- Middleware
+- Authentication система
+- Session management
+- URL routing
+
+**3. Backend компоненти:**
+- База даних (PostgreSQL/MySQL/SQLite)
+- Cache системи (Redis/Memcached)
+- File storage (локальний/S3/GCS)
+- Background task queue (Celery)
+
+**4. Інфраструктурні компоненти:**
+- Web server (Nginx/Apache)
+- Application server (Gunicorn/uWSGI)
+- Load balancer
+- Firewall
+- SSL/TLS termination
+
+## Крок 2: Створення діаграми потоку даних (DFD)
+
+### Визначення меж довіри (Trust Boundaries)
+
+**Internet Boundary:**
+- Користувачі
+- Зовнішні API
+- CDN
+- Load Balancer
+
+**DMZ (Demilitarized Zone):**
+- Web Server
+- SSL termination
+
+**Internal Network:**
+- Django Application
+- Database
+- Cache
+- Background workers
+
+**Admin Network:**
+- Admin панель Django
+- Database admin tools
+- Monitoring systems
+
+### Потоки даних
+
+**1. Аутентифікація:**
+```
+Користувач → Django Auth → Session Store → Database
+```
+
+**2. CRUD операції:**
+```
+Користувач → Form → Django View → Model → Database
+```
+
+**3. Static файли:**
+```
+Користувач → CDN/Static Server → Static Files
+```
+
+**4. API запити:**
+```
+Зовнішній клієнт → Django REST API → Serializers → Models → Database
+```
+
+## Крок 3: Ідентифікація загроз за методологією STRIDE
+
+### S - Spoofing (Підміна)
+
+**Загрози:**
+- Підміна користувача через слабкі паролі
+- Session hijacking
+- CSRF атаки
+- JWT token forgery
+
+**Django-специфічні ризики:**
+- Слабкий SECRET_KEY
+- Неправильна конфігурація authentication backends
+- Відсутність CSRF protection
+
+### T - Tampering (Підміна даних)
+
+**Загрози:**
+- SQL injection через Django ORM
+- Parameter tampering в формах
+- Модифікація cookies/sessions
+- File upload vulnerabilities
+
+**Django-специфічні ризики:**
+- Небезпечні QuerySet операції
+- Неправильна валідація форм
+- Відсутність integrity checks
+
+### R - Repudiation (Відмова від дій)
+
+**Загрози:**
+- Відсутність логування критичних операцій
+- Неможливість відстеження змін
+- Слабкий audit trail
+
+**Django-специфічні ризики:**
+- Відсутність django-audit-log
+- Неправильна конфігурація logging
+- Відсутність user activity tracking
+
+### I - Information Disclosure (Розкриття інформації)
+
+**Загрози:**
+- Debug інформація в production
+- Експозиція чутливих даних в logs
+- Directory traversal
+- Неправильні права доступу до файлів
+
+**Django-специфічні ризики:**
+- DEBUG = True в production
+- Експозиція SECRET_KEY
+- Sensitive data в exception pages
+- Неправильні queryset permissions
+
+### D - Denial of Service (Відмова в обслуговуванні)
+
+**Загрози:**
+- Resource exhaustion
+- Slow loris attacks
+- Database connection exhaustion
+- Memory leaks
+
+**Django-специфічні ризики:**
+- Неефективні QuerySets
+- Відсутність rate limiting
+- Large file uploads без обмежень
+- N+1 query problems
+
+### E - Elevation of Privilege (Підвищення привілеїв)
+
+**Загрози:**
+- Privilege escalation
+- Authorization bypass
+- Admin panel vulnerabilities
+- Insecure direct object references
+
+**Django-специфічні ризики:**
+- Неправильні permissions checks
+- Небезпечні admin configurations
+- Improper use of user.is_superuser
+- Missing authorization decorators
+
+## Крок 4: Специфічні загрози для Django
+
+### Django ORM загрози
+
+**1. SQL Injection через raw queries:**
+```python
+# НЕБЕЗПЕЧНО
+User.objects.raw("SELECT * FROM users WHERE name = '%s'" % user_input)
+
+# БЕЗПЕЧНО
+User.objects.raw("SELECT * FROM users WHERE name = %s", [user_input])
+```
+
+**2. Mass Assignment:**
+```python
+# НЕБЕЗПЕЧНО
+user = User(**request.POST)
+
+# БЕЗПЕЧНО - використання форм з обмеженими полями
+form = UserForm(request.POST)
+```
+
+### Template загрози
+
+**1. XSS через неекраповані дані:**
+```django
+<!-- НЕБЕЗПЕЧНО -->
+{{ user_input|safe }}
+
+<!-- БЕЗПЕЧНО -->
+{{ user_input }}
+```
+
+**2. Template injection:**
+```python
+# НЕБЕЗПЕЧНО
+Template(user_input).render(context)
+```
+
+### Middleware загрози
+
+**1. Неправильна послідовність middleware:**
+```python
+# Правильна послідовність в settings.py
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # ... інші middleware
+]
+```
+
+## Крок 5: Інструменти для моделювання загроз Django
+
+### 1. Microsoft Threat Modeling Tool
+- Створити DFD з Django компонентами
+- Використати вбудовані шаблони для веб-додатків
+- Додати Django-специфічні компоненти
+
+### 2. OWASP Threat Dragon
+- Безкоштовний web-based інструмент
+- Підтримка STRIDE методології
+- Можливість експорту результатів
+
+### 3. Iris Risk (як показано в попередніх лекціях)
+- Професійний SaaS інструмент
+- Автоматична генерація загроз
+- Інтеграція з issue tracking системами
+
+### 4. PyTM (Python Threat Model)
+- Код-орієнтований підхід
+- Автоматизація через код
+- Інтеграція в CI/CD pipeline
+
+## Крок 6: Контрзаходи для Django
+
+### Security Settings
+
+```python
+# settings.py для production
+DEBUG = False
+ALLOWED_HOSTS = ['yourdomain.com']
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
+# Security headers
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# HTTPS
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# CSP
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'")
+```
+
+### Authentication & Authorization
+
+```python
+# Використання strong password validators
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {'min_length': 12}
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+# Rate limiting for authentication
+from django_ratelimit.decorators import ratelimit
+
+@ratelimit(key='ip', rate='5/m', method='POST')
+def login_view(request):
+    # Login logic
+    pass
+```
+
+### Input Validation
+
+```python
+from django import forms
+from django.core.validators import RegexValidator
+
+class UserForm(forms.ModelForm):
+    phone = forms.CharField(
+        validators=[RegexValidator(r'^\+?1?\d{9,15}$')]
+    )
+    
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Email already exists")
+        return email
+```
+
+### Logging & Monitoring
+
+```python
+# settings.py
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'security_file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': 'security.log',
+        },
+    },
+    'loggers': {
+        'django.security': {
+            'handlers': ['security_file'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+    },
+}
+```
+
+## Крок 7: Автоматизація та CI/CD інтеграція
+
+### Security testing в pipeline
+
+```yaml
+# .github/workflows/security.yml
+name: Security Checks
+on: [push, pull_request]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run Bandit Security Scan
+      run: |
+        pip install bandit
+        bandit -r . -f json -o bandit-report.json
+    
+    - name: Run Safety Check
+      run: |
+        pip install safety
+        safety check --json
+    
+    - name: Django Security Check
+      run: |
+        python manage.py check --deploy
+```
+
+### Регулярний аудит залежностей
+
+```bash
+# Щомісячна перевірка
+pip-audit
+safety check
+django-admin check --deploy
+```
+
+## Крок 8: Документування та звітність
+
+### Структура звіту з моделювання загроз
+
+**1. Executive Summary**
+- Загальний огляд ризиків
+- Критичні загрози
+- Рекомендації високого рівня
+
+**2. Architecture Overview**
+- Діаграма системи
+- Межі довіри
+- Потоки даних
+
+**3. Threat Analysis**
+- STRIDE аналіз по компонентах
+- Django-специфічні загрози
+- Ризик-рейтинг
+
+**4. Mitigation Strategies**
+- Контрзаходи за пріоритетом
+- Timeline впровадження
+- Відповідальні особи
+
+**5. Testing & Validation**
+- Security test cases
+- Автоматизовані перевірки
+- Manual testing procedures
+
+## Висновок
+
+Моделювання загроз для Django додатку - це ітеративний процес, який повинен:
+
+1. **Регулярно оновлюватися** при змінах в архітектурі
+2. **Інтегруватися в SDLC** з самого початку розробки
+3. **Включати автоматизовані перевірки** в CI/CD pipeline
+4. **Враховувати Django-специфічні особливості** та best practices
+5. **Документуватися та відстежуватися** для забезпечення compliance
+
+**Результат:** Безпечний Django додаток з документованими та мітигованими ризиками, що відповідає сучасним стандартам кібербезпеки.
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 - Enhancing Security in Your Django REST Framework API: Must-Implement Features, https://medium.com/@massanjal4/enhancing-security-in-your-django-rest-framework-api-must-implement-features-d90424e1cbdf
 - What Is Django Middleware? Explained With Real Code Examples, https://medium.com/@husseinnaeemsec/django-middleware-explained-a-beginner-friendly-guide-6a52697b3962
 - Why Django is the Best Framework for Backend Development, https://medium.com/@husseinnaeemsec/why-django-is-the-best-framework-for-backend-development-52ca49422709
@@ -11,13 +447,23 @@
 # JWT
 - JWT Vulnerabilities in Pentesting: Exploitation Techniques & Security Best Practices, https://medium.com/system-weakness/free-link-in-the-first-comment-d6d0cb759590
 - Bypass JWT auth with OWASP ZAP, https://medium.com/@digistam/bypass-jwt-auth-with-owasp-zap-d65739f8e387
+- JWT attacks, https://medium.com/@zodiacHacker/jwt-attacks-78e873db604b
+- JWT Vulnerabilities and Exploits, https://medium.com/@demianchuk.sergii/jwt-vulnerabilities-and-exploits-c44f52cc5067
+
+
+
+# PENETRATION TESTING
+- HTTP Request Smuggling In Bug Bounty Hunting, https://medium.com/@zodiacHacker/http-request-smuggling-in-bug-bounty-hunting-abf0e4e75b73
 - 
 
 
-# 
+# SSRF
 
 - SSRF explained, https://medium.com/@digistam/ssrf-explained-7d832c33775a
 - Understanding Cloud Metadata & SSRF: Exposure, Danger & Exploitation, https://medium.com/@zoningxtr/%EF%B8%8F-understanding-cloud-metadata-ssrf-exposure-danger-exploitation-8ac0db7eb030
+- Server-side request forgery (SSRF), https://medium.com/@zodiacHacker/server-side-request-forgery-ssrf-e8438a1b0f58
+- Business Logic Vulnerabilities or Application Logic Vulnerabilities or simply “logic flaws”, https://medium.com/@zodiacHacker/business-logic-vulnerabilities-or-application-logic-vulnerabilities-or-simply-logic-flaws-d88d7c3fd5a1
+- Prototype Pollution, https://medium.com/@zodiacHacker/prototype-pollution-b7eb6998149b
 - 
 
 
