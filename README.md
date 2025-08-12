@@ -1,4 +1,10 @@
 
+
+
+- https://ua.udemy.com/course/security-architecture-and-design-review-with-threat-modeling/?utm_source=adwords&utm_medium=udemyads&utm_campaign=Search_DSA_Beta_Prof_la.EN_cc.ROW-English&campaigntype=Search&portfolio=ROW-English&language=EN&product=Course&test=&audience=DSA&topic=&priority=Beta&utm_content=deal4584&utm_term=_._ag_162511579564_._ad_696197165424_._kw__._de_c_._dm__._pl__._ti_dsa-1677053911888_._li_9061017_._pd__._&matchtype=&gad_source=1&gad_campaignid=21168154305&gbraid=0AAAAADROdO2SLeXZHIIaYxW7u6UU5wWfV&gclid=Cj0KCQjwzOvEBhDVARIsADHfJJR_wjVkaJR38Km9bCXCBgVKiA7x_tbhxDIcpfj2MKP3L94E1_tgNoAaAomZEALw_wcB&couponCode=2021PM25
+
+
+
 # Threat-Modeling
 
 # Threat Modeling as a Basis for Security Requirements
