@@ -5319,6 +5319,314 @@ stages:
 
 ------------------------------------------------------------------------------------------------
 
+# 46 Лекція: Практична реалізація End-to-End DevSecOps Pipeline для Java проекту
 
+## Вступ
+
+Вітаємо експертів з безпеки! Ласкаво просимо на цю нову лекцію.
+
+У цій лекції ми збираємося реалізувати повний end-to-end DevSecOps pipeline для Java проекту з використанням GitLab.
+
+**Цей повний DevSecOps Pipeline включатиме:**
+- Static Application Security Testing (SAST)
+- Dynamic Application Security Testing (DAST)
+- Кроки, описані у файлі `.gitlab-ci.yml`
+
+## Кроки реалізації Pipeline
+
+### Крок 1: Оновлення pom.xml з плагінами SonarCloud та Snyk
+
+### Крок 2: Додавання pipeline змінних з security токенами
+
+### Крок 3: Оновлення файлу `.gitlab-ci.yml` зі скриптами для SAST та DAST
+
+## Детальна реалізація
+
+### Крок 1: Налаштування pom.xml
+
+**Репозиторій:** DevSecOps GitLab Java Vulnerable Application
+
+#### Зміна 1: Додавання JUnit dependency
+
+**Призначення:** Отримання code coverage для SonarCloud Dashboard
+
+```xml
+<!-- JUnit dependency для unit test code coverage -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+</dependency>
+```
+
+#### Зміна 2: Додавання Jacoco plugin
+
+**Призначення:** Генерація unit test code coverage для SonarCloud
+
+```xml
+<!-- Jacoco Maven Plugin -->
+<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.7</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>report</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+**Особливості:**
+- Execution goal: `report`
+- Звіт генерується у **XML форматі**
+
+#### Зміна 3: Додавання Snyk plugin
+
+**Призначення:** Software Composition Analysis scan
+
+```xml
+<!-- Snyk Maven Plugin -->
+<plugin>
+    <groupId>io.snyk</groupId>
+    <artifactId>snyk-maven-plugin</artifactId>
+    <version>2.2.0.0</version>
+    <configuration>
+        <org>security-guru</org>
+    </configuration>
+</plugin>
+```
+
+**Налаштування:**
+- Організація: `security-guru` (створена в Snyk)
+
+### Крок 2: Налаштування Pipeline Variables
+
+#### Доступ до Variables в GitLab
+
+**Навігація:**
+1. Відкрити **меню проекту**
+2. Прокрутити до **Settings**
+3. Перейти до **CI/CD**
+4. Розгорнути секцію **Variables**
+
+#### Визначені змінні
+
+**1. SNYK_TOKEN:**
+- **Key:** `SNYK_TOKEN`
+- **Value:** Токен, скопійований з Snyk Dashboard
+
+**2. SONAR_TOKEN:**
+- **Key:** `SONAR_TOKEN`
+- **Value:** Токен, скопійований з SonarCloud Dashboard
+
+> **Примітка:** Якщо ви не бачили, як генерувати токени, перегляньте лекції про Snyk Integration та Sonar Integration.
+
+### Крок 3: Налаштування .gitlab-ci.yml
+
+#### Структура Pipeline
+
+**Три основні етапи (stages):**
+1. **SAST** - Run SAST scan using SonarCloud
+2. **SCA** - Run SCA scan using Snyk  
+3. **DAST** - Run DAST scan using ZAP
+
+#### Job 1: SAST з SonarCloud
+
+```yaml
+sast_job:
+  stage: sast
+  image: maven:3.8.1-openjdk-11
+  script: |
+    mvn verify
+    mvn package
+    mvn sonar:sonar
+      -Dsonar.host.url=https://sonarcloud.io
+      -Dsonar.organization=gitlab-devsecops-integration
+      -Dsonar.projectKey=gitlab-devsecops-integration
+      -Dsonar.login=$SONAR_TOKEN
+```
+
+**Конфігурація SonarCloud:**
+- **Host URL:** `https://sonarcloud.io`
+- **Organization:** `gitlab-devsecops-integration`
+- **Project Key:** `gitlab-devsecops-integration`
+- **Token:** `$SONAR_TOKEN` (pipeline variable)
+
+**Етапи виконання:**
+1. **mvn verify** - запуск JUnit тестів
+2. **mvn package** - компіляція та пакування коду
+3. **mvn sonar:sonar** - аналіз SonarCloud
+
+**Синтаксис Pipeline Variables:**
+- Для використання pipeline змінної: `$VARIABLE_NAME`
+- Приклад: `$SONAR_TOKEN`
+
+#### Job 2: SCA з Snyk
+
+```yaml
+sca_job:
+  stage: sca
+  image: maven:3.8.1-openjdk-11
+  script: |
+    export SNYK_TOKEN=$SNYK_TOKEN
+    mvn snyk:test -f
+```
+
+**Особливості реалізації:**
+- **Environment Variable:** Створення `SNYK_TOKEN` на GitLab Runner
+- **Export Command:** Linux команда для створення змінних середовища
+- **Maven Goal:** `snyk:test` для запуску аналізу
+- **Flag `-f`:** Запобігання build failures при виявленні проблем
+
+> **Важливо:** Flag `-f` використовується лише для демонстрації. У реальному житті не рекомендується.
+
+#### Job 3: DAST з OWASP ZAP
+
+```yaml
+dast_job:
+  stage: dast
+  image: maven:3.8.1-openjdk-11
+  script: |
+    apt-get update
+    apt-get install -y wget
+    wget https://github.com/zaproxy/zaproxy/releases/download/v2.17.1/ZAP_2.17.1_Linux.tar.gz
+    mkdir zap
+    tar -xzf ZAP_2.17.1_Linux.tar.gz -C zap --strip-components=1
+    cd zap
+    ./zap.sh -cmd -quickurl http://www.example.com -quickprogress -quickout zap_report.html
+  artifacts:
+    paths:
+      - zap/zap_report.html
+```
+
+**Детальні кроки:**
+
+**1. Оновлення пакетів:**
+```bash
+apt-get update
+```
+
+**2. Встановлення wget:**
+```bash
+apt-get install -y wget
+```
+
+**3. Завантаження OWASP ZAP:**
+```bash
+wget https://github.com/zaproxy/zaproxy/releases/download/v2.17.1/ZAP_2.17.1_Linux.tar.gz
+```
+
+**4. Створення директорії:**
+```bash
+mkdir zap
+```
+
+**5. Розпакування:**
+```bash
+tar -xzf ZAP_2.17.1_Linux.tar.gz -C zap --strip-components=1
+```
+
+**6. Запуск ZAP сканування:**
+```bash
+./zap.sh -cmd -quickurl http://www.example.com -quickprogress -quickout zap_report.html
+```
+
+**Параметри ZAP:**
+- **-cmd:** Command line режим
+- **-quickurl:** URL для сканування
+- **-quickprogress:** Показ прогресу в логах
+- **-quickout:** Збереження результатів у файл
+
+> **Важливо:** `www.example.com` використовується лише для демонстрації. Для інших додатків потрібен письмовий дозвіл.
+
+**Artifacts:**
+- Збереження `zap_report.html` як артефакт
+- Доступ до звіту після завершення pipeline
+
+## Технічні особливості
+
+### YAML Синтаксис
+
+**Pipe Symbol (`|`):**
+- Використовується для багаторядкового коду з переносами рядків
+- YAML символ для multiple lines
+
+**Pipeline Variables:**
+- Синтаксис: `$VARIABLE_NAME`
+- Приклад: `$SONAR_TOKEN`, `$SNYK_TOKEN`
+
+### GitLab Runner Environment
+
+**Base Image:** `maven:3.8.1-openjdk-11`
+- Встановлені Maven та OpenJDK 11
+- Готовий для Java проектів
+
+### Security Considerations
+
+**Token Management:**
+- Токени зберігаються як pipeline variables
+- Безпечна передача через environment variables
+- Маскування токенів у логах
+
+## Структура повного Pipeline
+
+```mermaid
+graph TD
+    A[Code Commit] --> B[SAST - SonarCloud]
+    B --> C[SCA - Snyk]
+    C --> D[DAST - OWASP ZAP]
+    D --> E[Artifacts & Reports]
+```
+
+**Послідовність виконання:**
+1. **Trigger:** Code commit до репозиторію
+2. **Stage 1:** SAST аналіз з SonarCloud
+3. **Stage 2:** SCA аналіз з Snyk
+4. **Stage 3:** DAST аналіз з OWASP ZAP
+5. **Output:** Збереження артефактів та звітів
+
+## Best Practices
+
+### Security
+- Використання pipeline variables для токенів
+- Маскування sensitive data в логах
+- Secure передача credentials
+
+### Performance
+- Parallel execution stages (за потреби)
+- Artifact caching
+- Optimized Docker images
+
+### Maintenance
+- Version pinning для всіх інструментів
+- Regular updates токенів
+- Monitoring pipeline performance
+
+## Висновок
+
+**Ми успішно реалізували:**
+- **Повний DevSecOps pipeline** для Java проекту
+- **Інтеграцію трьох типів** security scanning
+- **Автоматизацію всього процесу** в GitLab CI/CD
+
+**Ключові компоненти:**
+- **pom.xml конфігурація** з необхідними плагінами
+- **Pipeline variables** для secure token management
+- **GitLab CI/CD** з трьома stages security testing
+
+## Що далі?
+
+У наступній лекції ми:
+- **Запустимо цей pipeline**
+- **Переглянемо результати** end-to-end DevSecOps pipeline
+- **Проаналізуємо звіти** з кожного етапу
+- **Оцінимо ефективність** процесу
+
+**Готуйтеся до практичного запуску та аналізу результатів!**
+
+Дякуємо за увагу! До зустрічі на наступній лекції!
 
 
