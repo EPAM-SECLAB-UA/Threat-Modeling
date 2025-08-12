@@ -1,5 +1,26 @@
 
 
+- Enhancing Security in Your Django REST Framework API: Must-Implement Features, https://medium.com/@massanjal4/enhancing-security-in-your-django-rest-framework-api-must-implement-features-d90424e1cbdf
+- What Is Django Middleware? Explained With Real Code Examples, https://medium.com/@husseinnaeemsec/django-middleware-explained-a-beginner-friendly-guide-6a52697b3962
+- Why Django is the Best Framework for Backend Development, https://medium.com/@husseinnaeemsec/why-django-is-the-best-framework-for-backend-development-52ca49422709
+- The Ultimate Django Security Checklist for Bug Bounty Hunters, https://medium.com/infosecmatrix/ultimate-django-vulnerability-checklist-ceb7f428c45f
+- The Ultimate Guide to API Security Testing — Cheat sheet 2025 — Part1, https://medium.com/@t4144t/the-ultimate-guide-to-api-security-testing-cheat-sheet-2025-edition-b64fd3d158dd
+- 
+
+
+# JWT
+- JWT Vulnerabilities in Pentesting: Exploitation Techniques & Security Best Practices, https://medium.com/system-weakness/free-link-in-the-first-comment-d6d0cb759590
+- Bypass JWT auth with OWASP ZAP, https://medium.com/@digistam/bypass-jwt-auth-with-owasp-zap-d65739f8e387
+- 
+
+
+# 
+
+- SSRF explained, https://medium.com/@digistam/ssrf-explained-7d832c33775a
+- Understanding Cloud Metadata & SSRF: Exposure, Danger & Exploitation, https://medium.com/@zoningxtr/%EF%B8%8F-understanding-cloud-metadata-ssrf-exposure-danger-exploitation-8ac0db7eb030
+- 
+
+
 
  # Secure Programming: Implementing OWASP Standards in a Django and FastAPI Application
  https://medium.com/@adrialnathanael/secure-programming-implementing-owasp-standards-in-a-django-and-fastapi-application-c5119678806b
