@@ -5,6 +5,12 @@
 
 
 
+# Threat Intelligence
+
+- MITRE ATT&CK Framework Essentials, https://ua.udemy.com/course/mitre-attck-framework-essentials/
+- Threat Intelligence, https://ua.udemy.com/course/threat-intelligence/
+
+
 # Threat-Modeling
 
 # Threat Modeling as a Basis for Security Requirements
