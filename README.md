@@ -13,14 +13,17 @@
 
 # Threat-Modeling
 
+- The Art of Threat Modeling - A Step-by-Step Approach, https://ua.udemy.com/course/the-art-of-threat-modeling-a-step-by-step-approach/
+- Threat Modeling using STRIDE masterclass - 2025, https://ua.udemy.com/course/threat-modeling-using-stride-masterclass/
+- OWASP Top 10: Comprehensive Web Application Security, https://ua.udemy.com/course/the-utlimate-guide-to-web-hacking-owasp-top-techniques/
+- 
+
+
 # Threat Modeling as a Basis for Security Requirements
 https://www.researchgate.net/publication/228634178_Threat_Modeling_as_a_Basis_for_Security_Requirements
 https://people.cs.pitt.edu/~adamlee/pubs/2005/sreis-05.pdf
 
 - Threat Modeling Guide for Software Teams, https://martinfowler.com/articles/agile-threat-modelling.html
-
-
-
 
 
 # Threat Modeling and Its Tools
