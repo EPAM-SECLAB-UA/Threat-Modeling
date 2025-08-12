@@ -6101,3 +6101,67 @@ Highly skilled Application Security Engineer with [X] years of experience in sec
 
 ## References
 Available upon request
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# 50 **Bonus Lecture**
+
+**Thanks for enrolling in this course with us. We hope that you have enjoyed this course.**
+
+Unlock Your Full Potential by **learning Gen AI** **with Security** and Elevate your skills by utilizing the:
+* FREE resources on our Youtube Channel
+* Our Best Seller, Highest Rated, DevSecOps, Generative AI, Security and Practice Tests courses on Udemy at Discounted Prices
+
+---
+
+## **FREE Resources**
+
+### **LinkedIn Group**
+
+### **Youtube Channel - Raghu The Security Expert**
+
+---
+
+## **"Best Seller/Highest rated GenAI/DevSecOps/Practice Tests & Security Courses" at Discounted prices**
+
+### **Generative AI for Software Testing and QA Professionals**
+
+### **Ollama - Mastering Generative AI and Beyond**
+
+### **Generative AI for DevOps Engineers**
+
+### **DevSecOps for the Absolute Engineers - Beginner to Advanced (Hands On Demos)**
+
+### **DevSecOps with Jenkins, Kubernetes, Terraform & AWS**
+
+### **DevSecOps with AWS & AWS Security Services**
+
+### **Application Security Fundamentals with Hands-On Demos**
+
+### **DevSecOps with GitHub Actions**
+
+### **DevSecOps with GCP**
+
+### **DevSecOps with Azure DevOps**
+
+### **DevSecOps with GitLab**
+
+### **DevSecOps with Azure Cloud, GitOps and GitHub Actions**
+
+### **OWASP TOP 10 PRACTICAL with JUICE SHOP (2023)**
+
+### **Container Security & CSPM with AQUA**
+
+### **DevSecOps with TeamCity**
+
+### **Security Architecture & Review with Threat Modeling - Hands On**
+
+### **SonarCloud with AWS, Azure, GCP & More**
+
+### **OWASP TOP 10 Mobile 2023 with Hands-on Demos**
+
+### **GCP Security Engineer Professional Practice Tests**
+
+### **SC-200 Microsoft Security Operations Analyst Associate Tests**
+
+### **Practice Tests: Snowflake SnowPro Advanced Architect Exam**
