@@ -16,6 +16,14 @@
 - The Art of Threat Modeling - A Step-by-Step Approach, https://ua.udemy.com/course/the-art-of-threat-modeling-a-step-by-step-approach/
 - Threat Modeling using STRIDE masterclass - 2025, https://ua.udemy.com/course/threat-modeling-using-stride-masterclass/
 - OWASP Top 10: Comprehensive Web Application Security, https://ua.udemy.com/course/the-utlimate-guide-to-web-hacking-owasp-top-techniques/
+- OWASP: Threats Fundamentals, https://ua.udemy.com/course/owasp-threats-fundamentals/
+- 
+
+
+
+#  PENETRATION TESTING -AZURE
+
+- Cloud Penetration Testing with Azure - Master Initial Access, https://ua.udemy.com/course/cloud-penetration-testing-with-azure/
 - 
 
 
