@@ -4821,6 +4821,7 @@ DAST → Container Scanning → Compliance Monitoring → Runtime Protection
 
 ![](https://github.com/EPAM-SECLAB-UA/Threat-Modeling/blob/main/images/DevSecOps_1.png)
 
+![](https://github.com/EPAM-SECLAB-UA/Threat-Modeling/blob/main/images/DevSecOps_2.png)
 
 
 
