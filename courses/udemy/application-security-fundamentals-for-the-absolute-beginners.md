@@ -2958,7 +2958,7 @@ SonarQube надає звіт про вразливості безпеки, а �
 
 -----------------------------------------------------------------
 
-# Статичне тестування безпеки додатків (SAST) - Огляд та інструменти
+# 10  Статичне тестування безпеки додатків (SAST) - Огляд та інструменти
 
 ## Вступ
 
@@ -3248,6 +3248,461 @@ SAST може допомогти нам ідентифікувати та вип
 SAST - це rapidly evolving область, тому важливо постійно оновлювати знання про нові інструменти, техніки та best practices.
 
 Дякуємо за увагу та до зустрічі на наступній лекції!
+
+
+# Вступ до DevSecOps
+
+## Огляд лекції
+
+У цьому розділі ми розглянемо фундаментальні аспекти DevSecOps з фокусом на статичне тестування безпеки додатків. Ця лекція покриває два ключові питання, які є основою для розуміння сучасних практик безпеки в процесі розробки програмного забезпечення.
+
+## Ключові питання лекції
+
+### 1. Що таке статичне тестування безпеки додатків (SAST)?
+
+**Static Application Security Testing (SAST)** - це критично важлива компонента DevSecOps pipeline, яка забезпечує безпеку додатків на ранніх етапах розробки.
+
+**Основні характеристики SAST:**
+- **Аналіз статичного коду** без його виконання
+- **Інтеграція в CI/CD** pipeline для автоматизації
+- **Раннє виявлення** вразливостей на етапі розробки
+- **Shift-left підхід** до безпеки
+
+**Місце SAST у DevSecOps:**
+В контексті DevSecOps, SAST є невід'ємною частиною automated security testing, що дозволяє командам розробки отримувати швидкий feedback про security issues безпосередньо в процесі кодування.
+
+### 2. Які комерційні та відкриті інструменти використовуються для SAST?
+
+Розуміння доступних інструментів є критично важливим для DevSecOps інженерів, оскільки вибір правильного tooling впливає на ефективність всього security workflow.
+
+**Комерційні vs Open Source:**
+- **Enterprise рішення** для великих організацій з складними вимогами
+- **Community tools** для стартапів та mid-size компаній
+- **Hybrid підходи** для оптимального balance між features та cost
+
+## DevSecOps контекст
+
+### Інтеграція безпеки в DevOps
+
+**Традиційний підхід:**
+```
+Development → Operations → Security (пізно)
+```
+
+**DevSecOps підхід:**
+```
+Development + Security + Operations (одночасно)
+```
+
+**Переваги інтеграції SAST у DevSecOps:**
+- **Automated scanning** як частина build process
+- **Continuous security feedback** для розробників
+- **Reduced time-to-market** через раннє виявлення issues
+- **Improved security posture** без impact на velocity
+
+### Культурні зміни
+
+**Shift-Left Security:**
+DevSecOps вимагає культурного зсуву, де безпека стає shared responsibility всіх учасників команди, а не тільки security team.
+
+**Developer Empowerment:**
+SAST інструменти дозволяють розробникам самостійно виявляти та виправляти security issues, не чекаючи на security review.
+
+## Практичне значення для DevSecOps інженерів
+
+### Ключові навички
+
+**Tool Integration:**
+- Налаштування SAST інструментів у CI/CD pipelines
+- Configuration management для різних environments
+- Customization rules під специфіку проектів
+
+**Results Analysis:**
+- Інтерпретація SAST звітів
+- False positive analysis та tuning
+- Prioritization security findings
+
+**Developer Support:**
+- Навчання команд роботі з SAST tools
+- Створення guidelines та best practices
+- Troubleshooting та technical support
+
+### Автоматизація та масштабування
+
+**Pipeline Integration:**
+```yaml
+# Приклад CI/CD інтеграції
+stages:
+  - build
+  - sast-scan
+  - test
+  - deploy
+
+sast-scan:
+  stage: sast-scan
+  script:
+    - run-sast-tool
+  artifacts:
+    reports:
+      sast: results.json
+```
+
+**Quality Gates:**
+Встановлення automated quality gates на основі SAST результатів для забезпечення того, що код з критичними вразливостями не потрапляє у production.
+
+## Бізнес-цінність
+
+### ROI Security Automation
+
+**Економічні переваги:**
+- **Зменшення costs** виправлення вразливостей
+- **Faster time-to-market** через automated processes
+- **Reduced compliance risks** та associated penalties
+- **Improved customer trust** через demonstrable security
+
+### Metrics та KPIs
+
+**Ключові метрики для DevSecOps:**
+- **Time to detect** security issues
+- **Mean time to remediation** (MTTR)
+- **Security debt** trends
+- **Developer productivity** impact
+
+## Виклики та рішення
+
+### Типові проблеми
+
+**Tool Fatigue:**
+Overwhelming кількість alerts може призвести до security fatigue у developers.
+
+**False Positives:**
+Високий рівень false positives може зменшити довіру до automated tools.
+
+**Performance Impact:**
+SAST scanning може впливати на швидкість CI/CD pipelines.
+
+### Best Practices
+
+**Gradual Implementation:**
+- Почати з pilot projects
+- Поступово розширювати coverage
+- Continuously tune та optimize
+
+**Education та Training:**
+- Regular security awareness sessions
+- Hands-on workshops з SAST tools
+- Documentation та knowledge sharing
+
+## Подальші кроки навчання
+
+### Прогресія навичок
+
+**Beginner Level:**
+- Основи SAST концепцій
+- Простий tool setup та configuration
+- Basic results interpretation
+
+**Intermediate Level:**
+- Advanced tool configuration
+- Custom rules development
+- Pipeline optimization
+
+**Advanced Level:**
+- Multi-tool orchestration
+- Enterprise-scale deployments
+- Security metrics та analytics
+
+### Практичне застосування
+
+У наступних лекціях ми детально розглянемо:
+- **Hands-on демонстрації** популярних SAST tools
+- **Step-by-step інтеграція** у CI/CD pipelines
+- **Real-world case studies** та best practices
+- **Troubleshooting** common issues
+
+## Висновок
+
+Розуміння SAST та його місця в DevSecOps ecosystem є фундаментальним для сучасних security professionals. Ця лекція закладає основу для глибшого вивчення практичних аспектів implementation та optimization SAST у real-world environments.
+
+**Ключові висновки:**
+- SAST є критичною компонентою DevSecOps strategy
+- Правильний вибір tools залежить від organizational needs
+- Successful implementation вимагає technical expertise та cultural change
+- Continuous learning та adaptation є необхідними для success
+
+Готуйтеся до практичних демонстрацій та hands-on experience у наступних лекціях!
+
+
+
+# SAST та його інструменти - Детальний огляд
+
+## Що таке SAST?
+
+### Визначення та основні характеристики
+
+**SAST (Static Application Security Testing)** - це тип тестування безпеки, який включає аналіз вихідного коду програмного додатку для ідентифікації вразливостей безпеки. SAST зазвичай виконується під час фази розробки додатку, до його розгортання у виробничому середовищі.
+
+**Ключові особливості SAST:**
+- **Статичний аналіз** - код аналізується без його виконання
+- **Раннє виявлення** - проблеми виявляються на етапі розробки
+- **Превентивний підхід** - запобігання потрапляння вразливостей у production
+- **Інтеграція в SDLC** - частина життєвого циклу розробки програмного забезпечення
+
+### Цілі та призначення SAST інструментів
+
+**Основні завдання SAST tools:**
+
+**Аналіз відомих вразливостей:**
+SAST інструменти розроблені для аналізу вихідного коду на предмет відомих вразливостей та слабких місць безпеки.
+
+**Виявлення проблемних областей коду:**
+Вони також можуть ідентифікувати області коду, які можуть бути схильні до проблем безпеки, такі як:
+- Код, який важко підтримувати
+- Код, який важко зрозуміти
+- Складні або заплутані алгоритми
+- Неоптимізовані структури даних
+
+**Превентивні заходи:**
+- Раннє виявлення potential security issues
+- Зменшення security debt
+- Підвищення code quality загалом
+- Навчання розробників secure coding practices
+
+## Принцип роботи SAST інструментів
+
+### Методологія сканування
+
+**Pattern-based Analysis:**
+SAST інструменти зазвичай працюють шляхом сканування вихідного коду додатку та пошуку паттернів або специфічних вразливостей.
+
+**Процес аналізу включає:**
+1. **Parsing** вихідного коду
+2. **Створення AST** (Abstract Syntax Tree)
+3. **Control Flow Analysis** - аналіз потоку виконання
+4. **Data Flow Analysis** - відстеження потоків даних
+5. **Pattern Matching** - пошук відомих vulnerability patterns
+
+### Практичне застосування результатів
+
+**Використання результатів SAST сканування:**
+Результати SAST сканування можуть бути використані для ідентифікації та виправлення вразливостей до розгортання додатку, що може допомогти покращити загальну безпеку додатку.
+
+**Переваги раннього виявлення:**
+- **Менша вартість виправлення** - виправлення на етапі розробки у 10-100 разів дешевше
+- **Зменшення ризиків** - запобігання security incidents у production
+- **Швидший time-to-market** - уникнення затримок через security issues
+- **Покращення репутації** - демонстрація proactive security approach
+
+## Комерційні SAST інструменти
+
+### Провідні enterprise рішення
+
+**Checkmarx**
+- **Позиціонування:** Leading enterprise SAST platform
+- **Особливості:** Comprehensive language support, advanced analytics
+- **Інтеграція:** Extensive CI/CD та IDE integrations
+- **Цільова аудиторія:** Large enterprises з complex security requirements
+
+**Microfocus Fortify Source Code Analysis**
+- **Повна назва:** Microfocus Fortify Source Code Analysis
+- **Особливості:** Deep static analysis, extensive vulnerability database
+- **Аналітика:** Advanced reporting та trend analysis
+- **Customization:** Flexible rule configuration
+
+**Microfocus Fortify On Demand**
+- **Delivery Model:** Software-as-a-Service (SaaS)
+- **Переваги:** No infrastructure management, scalable scanning
+- **Особливості:** Cloud-native approach, rapid deployment
+- **Цільова аудиторія:** Organizations preferring cloud-first solutions
+
+**Veracode**
+- **Platform Type:** Cloud-based application security platform
+- **Особливості:** Comprehensive application security testing suite
+- **Інтеграція:** Strong API support for automation
+- **Підхід:** Platform-as-a-Service for application security
+
+**SonarQube Enterprise**
+- **Позиціонування:** Code quality та security platform
+- **Особливості:** Combined quality та security analysis
+- **Deployment:** On-premise та cloud options
+- **Community:** Strong developer community та ecosystem
+
+**SonarCloud**
+- **Delivery:** Cloud-native version of SonarQube
+- **Особливості:** Integrated with major Git platforms
+- **Pricing:** Usage-based pricing model
+- **Target:** Teams preferring cloud solutions
+
+### Інтеграція з CI/CD платформами
+
+**Universal CI/CD Support:**
+Всі ці інструменти можуть бути інтегровані в CI/CD платформи, забезпечуючи automated security testing як частину development pipeline.
+
+**Популярні інтеграції:**
+- **Jenkins** - через plugins та API calls
+- **GitLab CI/CD** - native integrations та custom scripts
+- **Azure DevOps** - marketplace extensions
+- **GitHub Actions** - community та official actions
+- **Bamboo** - add-ons та custom tasks
+
+## IDE плагіни для комерційних SAST інструментів
+
+### Real-time security feedback
+
+**Checkmarx IDE Plugins**
+- **Підтримувані IDE:** IntelliJ IDEA, Eclipse, Visual Studio
+- **Особливості:** Real-time vulnerability detection
+- **Workflow:** Seamless integration з development process
+
+**Veracode IDE Integrations**
+- **Функціональність:** Static analysis та dependency scanning
+- **Feedback:** Instant security feedback під час coding
+- **Reporting:** Integration з central Veracode platform
+
+**Microfocus IDE Extensions**
+- **Coverage:** Multiple IDE platforms
+- **Features:** On-the-fly code analysis
+- **Integration:** Connected з enterprise Fortify instance
+
+**Переваги IDE інтеграції:**
+- **Immediate feedback** під час написання коду
+- **Reduced context switching** between tools
+- **Educational value** для developers
+- **Early detection** до commit stage
+
+## Безкоштовні та відкриті SAST інструменти
+
+### Community та Open Source рішення
+
+**SonarQube Community Edition**
+- **Licensing:** Open source під LGPL license
+- **Функціональність:** Basic SAST capabilities
+- **Обмеження:** Limited language support порівняно з commercial version
+- **Deployment:** Self-hosted installation
+
+**SonarCloud Free Tier**
+- **Доступність:** Безкоштовно для public repositories
+- **Особливості:** Cloud-hosted, no infrastructure management
+- **Обмеження:** Limited private repository support
+- **Integration:** Native Git platform integrations
+
+**Snyk Open Source**
+- **Focus:** Dependency vulnerability scanning
+- **Community Edition:** Limited scans per month
+- **Особливості:** Real-time vulnerability database
+- **Approach:** Developer-first security platform
+
+### Безкоштовні IDE плагіни
+
+**SonarLint**
+- **Постачальник:** SonarSource (makers of SonarQube)
+- **Підтримувані IDE:** 
+  - IntelliJ IDEA та JetBrains suite
+  - Eclipse та Eclipse-based IDEs
+  - Visual Studio Code
+  - Visual Studio
+
+**Функціональність SonarLint:**
+- **Real-time analysis** під час typing
+- **Rule explanations** з examples та fixes
+- **Connected mode** з SonarQube/SonarCloud instances
+- **Multi-language support** для popular programming languages
+
+**Snyk IDE Plugins**
+- **Coverage:** Major IDEs та editors
+- **Features:** 
+  - Vulnerability scanning для dependencies
+  - Infrastructure as Code security scanning
+  - Real-time security advice
+- **Integration:** Connected з Snyk cloud platform
+
+## Порівняння Commercial vs Open Source
+
+### Функціональні відмінності
+
+**Commercial Tools Advantages:**
+- **Advanced analytics** та reporting capabilities
+- **Enterprise support** та professional services
+- **Comprehensive language support** включаючи legacy languages
+- **Advanced integration** features
+- **Compliance reporting** для regulatory requirements
+
+**Open Source Benefits:**
+- **Cost-effective** для small та medium projects
+- **Community-driven innovation** та rapid updates
+- **Transparency** в rules та methodologies
+- **Customization flexibility** через open source nature
+- **No vendor lock-in** concerns
+
+### Вибір підходящого рішення
+
+**Фактори для прийняття рішення:**
+
+**Organizational Size:**
+- **Startups/Small teams:** Open source solutions
+- **Medium enterprises:** Hybrid approach
+- **Large corporations:** Commercial platforms з enterprise support
+
+**Compliance Requirements:**
+- **Regulated industries:** Commercial tools з compliance features
+- **Standard development:** Community tools можуть бути sufficient
+
+**Budget Considerations:**
+- **Limited budget:** Start з open source, migrate при scaling
+- **Enterprise budget:** Invest у commercial solutions для advanced features
+
+## Майбутня еволюція SAST
+
+### Тренди та інновації
+
+**AI/ML Integration:**
+- **Smart pattern recognition** для complex vulnerabilities
+- **Reduced false positives** через machine learning
+- **Predictive analysis** для potential security risks
+
+**Developer Experience:**
+- **Improved IDE integration** з better UX
+- **Contextual recommendations** based на code context
+- **Automated fix suggestions** для common vulnerabilities
+
+**Cloud-Native Approaches:**
+- **Serverless scanning** для rapid scalability
+- **Container-aware analysis** для modern applications
+- **Microservices security** specialized tools
+
+## Висновок та рекомендації
+
+### Ключові takeaways
+
+**SAST як fundamental practice:**
+SAST є невід'ємною частиною modern application security strategy, providing early detection та prevention security vulnerabilities.
+
+**Tool selection strategy:**
+- **Start small** з community tools для learning
+- **Evaluate commercial options** при scaling
+- **Consider hybrid approaches** для optimal cost-benefit balance
+
+**Integration importance:**
+Успішне SAST implementation залежить від proper integration у development workflows та CI/CD pipelines.
+
+### Наступні кроки
+
+**Для початківців:**
+1. Спробуйте SonarLint у вашому IDE
+2. Експериментуйте з SonarQube Community Edition
+3. Вивчайте OWASP Top 10 vulnerabilities
+
+**Для досвідчених teams:**
+1. Evaluate commercial solutions для вашого use case
+2. Implement automated SAST у CI/CD pipelines
+3. Develop custom rules для organization-specific patterns
+
+**Continuous improvement:**
+- Regular tool evaluation та updates
+- Training programs для development teams
+- Metrics tracking та process optimization
+
+SAST інструменти є потужними allies у боротьбі за application security, але їх ефективність залежить від proper implementation, configuration, та integration у overall development process.
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
