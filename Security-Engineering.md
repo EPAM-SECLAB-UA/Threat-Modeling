@@ -61,7 +61,7 @@ graph TD
     style B fill:#e8f5e8
     style C fill:#fff3e0
     style D fill:#fce4ec
-
+```
 
 **Figure 1.1:** Security Engineering Analysis Framework
 
@@ -90,7 +90,7 @@ graph TD
 - Всі чотири компоненти взаємопов'язані
 - Зміна в одному компоненті впливає на інші
 - Успішна безпека потребує балансу всіх елементів
-```
+
 
 
 
