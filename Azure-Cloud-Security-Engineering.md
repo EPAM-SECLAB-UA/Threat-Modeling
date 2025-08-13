@@ -2,251 +2,417 @@
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Робочий день Azure Cloud Security Engineer
 
-## 🌅 Ранкова рутина (08:00 - 09:30)
+# Робочий день Cloud Security Engineer
 
-### 📊 Security Dashboard Review
+## 🌅 Початок дня (08:00 - 09:00)
+
+### ☕ Ранковий ритуал
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                 РАНКОВИЙ ОГЛЯД                          │
+│                SECURITY MORNING ROUTINE                 │
 ├─────────────────────────────────────────────────────────┤
-│ ✅ Azure Security Center - загальний статус             │
-│ ✅ Azure Sentinel - нічні алерти та інциденти           │
-│ ✅ Log Analytics - критичні події за ніч               │
-│ ✅ Compliance Dashboard - статус відповідності          │
-│ ✅ Cost Management - витрати на безпеку                 │
-│ ✅ Threat Intelligence - нові загрози                   │
+│ 📧 Security alerts overnight                            │
+│ 📊 Threat intelligence briefing                         │
+│ 🔍 Incident queue review                                │
+│ 📈 Security metrics dashboard                           │
+│ ☁️ Multi-cloud environment status                       │
 └─────────────────────────────────────────────────────────┘
 ```
 
-**Типові ранкові перевірки:**
-- Перегляд Security Score та рекомендацій
-- Аналіз алертів з Azure Defender
-- Моніторинг статусу Key Vault операцій
-- Перевірка політик доступу та змін у RBAC
-- Огляд логів автентифікації Azure AD
+**Priority checks:**
+- **SIEM dashboard** - критичні алерти з ночі
+- **Vulnerability scanners** - нові CVE
+- **Cloud Security Posture** - configuration drift
+- **Cost anomalies** - несподівані витрати
+- **Compliance status** - policy violations
 
-### 📧 Communication & Alerts
-- **Email triage** - критичні сповіщення безпеки
-- **Slack/Teams** - координація з командою
-- **Incident queue** - пріоритизація задач
-- **Vendor notifications** - оновлення безпеки
+## 🚨 Incident Response & Monitoring (09:00 - 11:00)
 
-## 🔧 Операційна діяльність (09:30 - 12:00)
+### 🔍 Active Investigation
+**Типовий сценарій: Підозріла активність в AWS S3**
 
-### 🚨 Incident Response & Investigation
 ```
-Типовий інцидент: Підозріла активність в Azure AD
-├── 1. Initial Triage (15 хв)
-│   ├── Класифікація серйозності
-│   ├── Збір початкових даних
-│   └── Ескалація при необхідності
-├── 2. Investigation (45 хв)
-│   ├── KQL запити в Log Analytics
-│   ├── Аналіз timeline подій
-│   ├── Correlation з іншими алертами
-│   └── Threat hunting в Sentinel
-├── 3. Containment (30 хв)
-│   ├── Блокування скомпрометованих акаунтів
-│   ├── Ізоляція ресурсів
-│   └── Активація playbooks
-└── 4. Documentation (15 хв)
-    ├── Оновлення тікету
-    ├── Створення IOCs
-    └── Lessons learned
+Timeline: Suspicious S3 Bucket Access
+├── 08:45 - CloudTrail alert: Unusual API calls
+├── 09:00 - Investigation start
+│   ├── CloudWatch Logs analysis
+│   ├── IAM access patterns review
+│   ├── VPC Flow Logs correlation
+│   └── GuardDuty findings review
+├── 09:30 - Threat hunting
+│   ├── Athena queries for historical data
+│   ├── Cross-region activity check
+│   ├── User behavior analytics
+│   └── External threat intel lookup
+├── 10:15 - Containment actions
+│   ├── Suspect IAM role disabled
+│   ├── S3 bucket access restricted
+│   ├── Network ACL updates
+│   └── Security group modifications
+└── 10:45 - Documentation & reporting
+    ├── Incident ticket update
+    ├── Timeline creation
+    ├── IOCs documented
+    └── Stakeholder notification
 ```
 
-### 🔍 Proactive Security Tasks
-- **Vulnerability Assessment** review
-- **Policy compliance** перевірки
-- **Access review** - PIM та умовний доступ
-- **Network Security Groups** аудит
-- **Storage Account** конфігурації
+### 🛡️ Proactive Security Tasks
+- **Security Group audit** across environments
+- **Certificate expiration** monitoring
+- **Backup verification** checks
+- **Patch management** status review
 
-## 🏗️ Проектна робота (12:00 - 15:00)
+## 💻 Multi-Cloud Operations (11:00 - 13:00)
 
-### 📋 Architecture & Implementation
-**Поточні проекти можуть включати:**
+### ☁️ Cloud Platform Management
 
-#### Zero Trust Implementation
+#### AWS Environment
 ```
 ┌─────────────────────────────────────────────────────────┐
-│              ZERO TRUST ROADMAP                         │
+│                    AWS SECURITY TASKS                   │
 ├─────────────────────────────────────────────────────────┤
-│ Phase 1: Identity (поточна) ─────────────── 75% ✅      │
-│ ├── Conditional Access policies                         │
-│ ├── PIM configuration                                   │
-│ └── MFA enforcement                                     │
-│                                                         │
-│ Phase 2: Network (наступна) ────────────── 30% 🔄      │
-│ ├── Micro-segmentation                                  │
-│ ├── Private endpoints                                   │
-│ └── Network security groups                             │
-│                                                         │
-│ Phase 3: Data (планується) ───────────── 10% 📋       │
-│ ├── Data classification                                 │
-│ ├── Encryption at rest                                  │
-│ └── DLP policies                                        │
+│ ✅ GuardDuty findings review                            │
+│ ✅ SecurityHub compliance check                         │
+│ ✅ Config Rules evaluation                              │
+│ ✅ WAF logs analysis                                    │
+│ ✅ CloudFormation drift detection                       │
+│ ✅ Trusted Advisor recommendations                      │
 └─────────────────────────────────────────────────────────┘
 ```
 
-#### Infrastructure as Code (IaC)
-- **ARM/Bicep templates** для security configurations
-- **Azure Policy** definitions та assignments
-- **GitHub Actions** для automated deployments
-- **Terraform** modules для repeatable security patterns
-
-### 👥 Collaboration & Meetings
-**Типовий meeting schedule:**
-- **Stand-up** з security командою (15 хв)
-- **Architecture review** з engineering teams (45 хв)
-- **Compliance sync** з legal/audit team (30 хв)
-- **Vendor calls** - security tools та updates (30 хв)
-
-## 🛡️ Compliance & Governance (15:00 - 17:00)
-
-### 📊 Reporting & Metrics
-**Щотижневі звіти:**
+#### Azure Environment
 ```
-Security Metrics Dashboard:
-├── Incidents resolved: 12/15 (80% SLA met)
-├── Vulnerabilities patched: 45/52 (87%)
-├── Compliance score: 892/1000 (89.2%)
-├── Security training: 156/180 users (87%)
-└── Policy violations: 3 (down from 8)
+┌─────────────────────────────────────────────────────────┐
+│                   AZURE SECURITY TASKS                  │
+├─────────────────────────────────────────────────────────┤
+│ ✅ Security Center secure score                         │
+│ ✅ Sentinel analytics rules tuning                      │
+│ ✅ Key Vault access review                              │
+│ ✅ Network Security Groups audit                        │
+│ ✅ Azure Policy compliance                              │
+│ ✅ Conditional Access evaluation                        │
+└─────────────────────────────────────────────────────────┘
 ```
 
-### 🔐 Policy Management
-- **Azure Policy** reviews та updates
-- **Conditional Access** fine-tuning
-- **RBAC** optimization
-- **Compliance assessment** preparation
+#### Google Cloud Platform
+```
+┌─────────────────────────────────────────────────────────┐
+│                    GCP SECURITY TASKS                   │
+├─────────────────────────────────────────────────────────┤
+│ ✅ Security Command Center review                       │
+│ ✅ Cloud Armor policy updates                           │
+│ ✅ IAM recommender suggestions                          │
+│ ✅ VPC Flow Logs analysis                               │
+│ ✅ Cloud KMS key rotation                               │
+│ ✅ Organization policy compliance                       │
+└─────────────────────────────────────────────────────────┘
+```
 
-### 📋 Documentation Tasks
-- **Runbook** updates
-- **Security procedures** documentation
-- **Architecture decision records** (ADRs)
+### 🔧 Cross-Cloud Security Orchestration
+- **CSPM tools** (Prisma Cloud, Dome9) configuration
+- **Identity federation** management
+- **Cross-cloud networking** security
+- **Unified logging** pipeline maintenance
+
+## 🍽️ Lunch Break (13:00 - 14:00)
+
+*Час для відновлення та неформального спілкування з командою*
+
+## 🏗️ Engineering & Architecture (14:00 - 16:30)
+
+### 📋 Project Work: Zero Trust Implementation
+
+#### Current Sprint Tasks
+```
+EPIC: Zero Trust Architecture Implementation
+├── STORY: Identity Verification Enhancement
+│   ├── [ ] Multi-cloud SSO integration
+│   ├── [x] Privileged access review automation
+│   ├── [ ] Risk-based authentication policies
+│   └── [ ] Identity governance workflows
+├── STORY: Network Micro-segmentation  
+│   ├── [x] East-west traffic analysis
+│   ├── [ ] Firewall rule optimization
+│   ├── [ ] Network policy automation
+│   └── [ ] Zero Trust network access (ZTNA)
+└── STORY: Data Protection Enhancement
+    ├── [ ] Cloud data classification
+    ├── [ ] Encryption key management
+    ├── [ ] DLP policy implementation
+    └── [ ] Data access governance
+```
+
+### 🤖 Infrastructure as Code Development
+
+**Today's IaC work:**
+```terraform
+# Terraform module: security-baseline
+resource "aws_config_configuration_recorder" "security_recorder" {
+  name     = "security-compliance-recorder"
+  role_arn = aws_iam_role.config_role.arn
+
+  recording_group {
+    all_supported                 = true
+    include_global_resource_types = true
+  }
+}
+
+# Security group baseline
+resource "aws_security_group" "web_tier" {
+  name_prefix = "web-tier-"
+  vpc_id      = var.vpc_id
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["10.0.0.0/8"]
+  }
+
+  tags = merge(var.common_tags, {
+    Name = "web-tier-sg"
+    SecurityLevel = "restricted"
+  })
+}
+```
+
+### 👥 Collaboration Sessions
+- **Architecture review** з development teams
+- **Security requirements** gathering
+- **Threat modeling** workshop
+- **Code review** для security automation
+
+## 🔐 Compliance & Governance (16:30 - 17:30)
+
+### 📊 Compliance Reporting
+
+**Weekly Security Metrics:**
+```
+┌─────────────────────────────────────────────────────────┐
+│                SECURITY SCORECARD                       │
+├─────────────────────────────────────────────────────────┤
+│ Cloud Security Posture:                                 │
+│ ├── AWS: 87% ████████████████▒▒▒ (target: 90%)        │
+│ ├── Azure: 92% ████████████████████▒ (target: 90%)    │
+│ └── GCP: 84% ██████████████▒▒▒▒▒▒ (target: 90%)       │
+│                                                         │
+│ Vulnerability Management:                               │
+│ ├── Critical: 0 ✅                                     │
+│ ├── High: 3 ⚠️ (SLA: 7 days)                          │
+│ ├── Medium: 24 📋 (SLA: 30 days)                       │
+│ └── Low: 156 📝 (SLA: 90 days)                         │
+│                                                         │
+│ Incident Response:                                      │
+│ ├── MTTR: 2.3 hours ✅ (target: <4h)                  │
+│ ├── MTTD: 8 minutes ✅ (target: <15m)                 │
+│ └── Open incidents: 2 📋                               │
+│                                                         │
+│ Compliance:                                             │
+│ ├── SOC 2: 94% ████████████████████▒ (audit ready)    │
+│ ├── ISO 27001: 91% ███████████████████▒▒ (in progress) │
+│ └── PCI DSS: 98% ████████████████████▓ (compliant)    │
+└─────────────────────────────────────────────────────────┘
+```
+
+### 📋 Audit Preparation
+- **Evidence collection** for external audits
+- **Control testing** documentation
 - **Risk assessment** updates
+- **Policy review** sessions
 
-## 🎓 Continuous Learning (17:00 - 18:00)
+## 🎓 Learning & Development (17:30 - 18:30)
 
-### 📚 Professional Development
-**Щоденне навчання (30-60 хв):**
-- Microsoft Learn modules
-- Security blogs та threat intelligence
-- Hands-on labs в Azure
-- Community participation (GitHub, Reddit, Discord)
+### 📚 Continuous Education
 
-**Поточні цілі:**
-- **Azure Security Engineer Associate** підготовка
-- **CISSP** study materials
-- **Kubernetes security** deep dive
-- **Threat hunting** techniques
+**Today's learning focus: Container Security**
+```
+Container Security Deep Dive:
+├── 1. Image Scanning & Vulnerability Management
+│   ├── Trivy, Clair, Snyk integration
+│   ├── Registry security policies
+│   └── Base image hardening
+├── 2. Runtime Security
+│   ├── Falco rule development
+│   ├── Admission controllers
+│   └── Network policies
+├── 3. Kubernetes Security
+│   ├── RBAC best practices
+│   ├── Pod Security Standards
+│   └── Service mesh security
+└── 4. Hands-on Lab
+    ├── Deploy security scanning pipeline
+    ├── Configure runtime monitoring
+    └── Test incident response
+```
 
 ### 🔬 Research & Innovation
-- **New Azure features** evaluation
-- **Security tools** PoC testing
-- **Automation opportunities** identification
+- **New security tools** evaluation
+- **Threat landscape** analysis
+- **Security automation** opportunities
 - **Cost optimization** initiatives
 
-## 📱 On-call responsibilities
+## 📱 Evening On-Call Preparation (18:30 - 19:00)
 
-### 🚨 After-hours monitoring
-**Rotation schedule (1 тиждень на місяць):**
-- **Tier 1 escalation** - критичні інциденти безпеки
-- **Emergency response** - data breaches, ransomware
-- **Vendor escalation** - Microsoft Premier Support
-- **Management notification** - executive alerts
-
-**Typical on-call scenarios:**
-```
-🔴 Critical (15 хв response):
-   ├── Active data exfiltration
-   ├── Ransomware detection  
-   ├── Privilege escalation
-   └── External breach notification
-
-🟡 High (1 година response):
-   ├── Suspicious user activity
-   ├── Policy violations
-   ├── Service degradation
-   └── Compliance issues
-
-🟢 Medium (Next business day):
-   ├── Certificate expiration warnings
-   ├── Routine vulnerability scans
-   ├── Backup failures
-   └── Documentation requests
-```
-
-## 🔧 Typical Tools & Technologies
-
-### 💻 Daily toolset
+### 🚨 Handover Protocol
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                 SECURITY ENGINEER TOOLKIT               │
+│                  ON-CALL HANDOVER                       │
 ├─────────────────────────────────────────────────────────┤
-│ Azure Portal          │ Primary management interface     │
-│ Azure CLI/PowerShell  │ Automation and scripting        │
-│ Azure Sentinel        │ SIEM and threat hunting         │
-│ Visual Studio Code    │ IaC development                  │
-│ GitHub/Azure DevOps   │ Version control and CI/CD       │
-│ Confluence/OneNote    │ Documentation                    │
-│ Slack/Teams          │ Communication                    │
-│ Jira/Azure Boards    │ Task and project management      │
-│ KQL Studio           │ Log analysis and queries         │
-│ Wireshark            │ Network analysis                 │
+│ 🔴 Critical Open Issues:                                │
+│ ├── INC-2024-0156: Suspected data exfiltration         │
+│ │   └── Status: Investigation ongoing, containment done │
+│ └── INC-2024-0157: Privilege escalation attempt        │
+│     └── Status: Monitoring, additional logging enabled  │
+│                                                         │
+│ 🟡 Monitoring Focus Areas:                              │
+│ ├── AWS us-east-1: Unusual API activity               │
+│ ├── Azure subscription: Policy violations spike        │
+│ └── GCP project-prod: Network traffic anomalies       │
+│                                                         │
+│ 📋 Planned Maintenance:                                 │
+│ ├── 22:00-23:00: Certificate rotation (AWS ALB)       │
+│ ├── 01:00-02:00: Security group updates (Azure)       │
+│ └── 03:00-04:00: Firewall rule optimization (GCP)     │
+│                                                         │
+│ 📞 Escalation Contacts:                                 │
+│ ├── Security Manager: +1-xxx-xxx-xxxx                  │
+│ ├── Cloud Architect: +1-xxx-xxx-xxxx                   │
+│ └── DevOps Lead: +1-xxx-xxx-xxxx                       │
 └─────────────────────────────────────────────────────────┘
 ```
 
-## 📈 Career Development Activities
+## 📊 Weekly Patterns & Variations
 
-### 🎯 Weekly goals
-- **2-3 hours** hands-on lab work
-- **1 hour** reading security research
-- **30 minutes** community engagement
-- **1 certification module** completion
+### 📅 Monday - Architecture Focus
+- **Weekly planning** meeting
+- **Architecture reviews** for new projects
+- **Threat modeling** sessions
+- **Security requirement** gathering
 
-### 🤝 Networking & Community
-- **Azure User Groups** participation
-- **Security conferences** attendance (virtual/in-person)
-- **Open source contributions**
-- **Mentoring junior engineers**
+### 📅 Tuesday - Operational Excellence
+- **Incident post-mortems**
+- **Process improvement** initiatives
+- **Automation development**
+- **Tool configuration** updates
 
-## ⚖️ Work-Life Balance
+### 📅 Wednesday - Multi-Cloud Deep Dive
+- **Cross-cloud security** alignment
+- **CSPM tool** fine-tuning
+- **Integration testing**
+- **Performance optimization**
 
-### 🕒 Time management
-**Core hours:** 09:00 - 17:00 (з flexibility для різних часових зон)
-**Deep work blocks:** 10:00 - 12:00, 14:00 - 16:00
-**Meeting windows:** 09:00 - 10:00, 16:00 - 17:00
-**Learning time:** 17:00 - 18:00
+### 📅 Thursday - Compliance & Governance
+- **Audit preparation**
+- **Policy updates**
+- **Risk assessments**
+- **Vendor security** reviews
 
-### 🧘 Stress management
-Security engineering може бути стресовим через:
+### 📅 Friday - Innovation & Learning
+- **Research projects**
+- **Lab environments**
+- **Community engagement**
+- **Documentation** catch-up
+
+## 🔧 Essential Tools & Technologies
+
+### 💻 Daily Toolkit
+```
+┌─────────────────────────────────────────────────────────┐
+│              CLOUD SECURITY ENGINEER STACK              │
+├─────────────────────────────────────────────────────────┤
+│ Cloud Platforms:                                        │
+│ ├── AWS Console, CLI, CloudShell                       │
+│ ├── Azure Portal, CLI, Cloud Shell                     │
+│ ├── GCP Console, gcloud, Cloud Shell                   │
+│ └── Multi-cloud: Terraform, Pulumi                     │
+│                                                         │
+│ Security Tools:                                         │
+│ ├── SIEM: Splunk, Sentinel, Chronicle                  │
+│ ├── CSPM: Prisma Cloud, Dome9, Scout Suite             │
+│ ├── Vulnerability: Qualys, Rapid7, Tenable             │
+│ └── Container: Twistlock, Aqua, Sysdig                 │
+│                                                         │
+│ Development:                                            │
+│ ├── IDE: VS Code, PyCharm, IntelliJ                    │
+│ ├── Git: GitHub, GitLab, Bitbucket                     │
+│ ├── CI/CD: Jenkins, GitHub Actions, GitLab CI         │
+│ └── Languages: Python, Go, PowerShell, Bash           │
+│                                                         │
+│ Communication:                                          │
+│ ├── Slack, Microsoft Teams                             │
+│ ├── Jira, ServiceNow                                   │
+│ ├── Confluence, Notion                                 │
+│ └── PagerDuty, Opsgenie                                │
+└─────────────────────────────────────────────────────────┘
+```
+
+## 🎯 Career Development Activities
+
+### 📈 Professional Growth
+**Monthly objectives:**
+- **1 cloud certification** progress
+- **2 security conferences** attendance (virtual/physical)
+- **3 blog posts** or technical articles
+- **4 open source** contributions
+
+### 🤝 Community Engagement
+- **Cloud security meetups**
+- **OWASP chapter** participation
+- **GitHub** contributions
+- **Security research** sharing
+
+## ⚖️ Work-Life Balance & Well-being
+
+### 🧘 Stress Management
+Cloud security can be demanding due to:
+- **24/7 threat landscape**
+- **Rapid technology changes**
 - **High-stakes incidents**
-- **Continuous learning demands** 
-- **Evolving threat landscape**
 - **Compliance pressures**
 
 **Coping strategies:**
-- Regular breaks та physical activity
-- Proper incident response procedures
-- Team support та knowledge sharing
-- Clear escalation paths
+- **Time boxing** for deep work
+- **Regular breaks** and physical activity
+- **Team rotation** for on-call duties
+- **Clear escalation** procedures
+
+### 🏠 Remote Work Considerations
+- **Secure home office** setup
+- **VPN and secure connections**
+- **Ergonomic workspace**
+- **Work-life boundaries**
 
 ---
 
-**Ключові принципи успішного Azure Cloud Security Engineer:**
-1. **Proactive mindset** - prevention over reaction
-2. **Continuous learning** - technology evolves rapidly  
-3. **Automation-first** - reduce manual toil
-4. **Documentation** - knowledge sharing є критичним
-5. **Collaboration** - security є team effort
+## 🎯 Key Success Factors
 
-*Цей день може варіюватися залежно від організації, поточних проектів та інцидентів, але загальна структура залишається подібною в більшості mid-to-large enterprises.*
+### 🔑 Technical Excellence
+- **Multi-cloud expertise** across AWS, Azure, GCP
+- **Automation-first** mindset
+- **Security-by-design** principles
+- **Continuous learning** attitude
 
+### 👥 Collaboration Skills
+- **Cross-functional** communication
+- **Stakeholder management**
+- **Technical mentoring**
+- **Knowledge sharing**
 
+### 🚀 Business Impact
+- **Risk reduction** quantification
+- **Cost optimization** initiatives
+- **Compliance achievement**
+- **Innovation enablement**
+
+*Робочий день Cloud Security Engineer є динамічним і мультидисциплінарним, поєднуючи технічну експертизу, операційну досконалість та стратегічне мислення для захисту сучасних хмарних інфраструктур.*
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------
