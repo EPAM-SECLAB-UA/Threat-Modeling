@@ -1,6 +1,9 @@
 
 https://ua.udemy.com/course/application-security-fundamentals-including-hands-on-demos/learn/lecture/35427620#overview
 
+https://ua.udemy.com/certificate/UC-35e2ec73-364b-4202-863c-0b387df7fc2c/
+
+
 
 # Основи безпеки додатків
 ## Вступна лекція курсу
