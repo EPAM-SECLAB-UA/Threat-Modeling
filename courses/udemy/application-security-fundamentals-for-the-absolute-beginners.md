@@ -11063,6 +11063,8 @@ Unlock Your Full Potential by **learning Gen AI** **with Security** and Elevate 
   
 
 ### **DevSecOps for the Absolute Engineers - Beginner to Advanced (Hands On Demos)**
+ - https://www.udemy.com/course/devsecops-essentials-beginner-to-advanced-hands-on-demos/?referralCode=688C7C958C3B45EC90FD&couponCode=MT130825G1 
+
 
 ### **DevSecOps with Jenkins, Kubernetes, Terraform & AWS**
 
