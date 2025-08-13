@@ -6,6 +6,8 @@
 # Threat Modeling as a Basis for Security Requirements
 - https://www.researchgate.net/publication/228634178_Threat_Modeling_as_a_Basis_for_Security_Requirements
 
+**Моделювання загроз як основа для вимог безпеки**
+
 
 **Анотація**
 
