@@ -279,6 +279,461 @@
 
 
 
+
+
+
+---------------------------------------------------------------------------------
+
+# Що таке Application Security?
+
+---
+
+## Визначення
+
+**Application Security (AppSec)** - це практика використання заходів безпеки на рівні додатків для запобігання крадіжці або викраденню даних або коду всередині додатка.
+
+Це **комплексний підхід** до захисту програмних додатків від зовнішніх загроз через:
+- Виявлення вразливостей
+- Виправлення дефектів безпеки
+- Запобігання атакам на рівні коду
+
+---
+
+## Основні принципи Application Security
+
+### 🛡️ **Security by Design**
+- Інтеграція безпеки з самого початку розробки
+- Проактивний підхід замість реактивного
+- Архітектурні рішення з урахуванням безпеки
+
+### 🔒 **Defense in Depth**
+- Багаторівневий захист додатка
+- Множинні точки контролю
+- Незалежні механізми безпеки
+
+### ⚖️ **Principle of Least Privilege**
+- Мінімальні необхідні дозволи
+- Обмежений доступ до ресурсів
+- Роль-базовий контроль доступу
+
+### ✅ **Input Validation & Output Encoding**
+- Валідація всіх вхідних даних
+- Правильне кодування виводу
+- Санітизація користувацького вводу
+
+---
+
+## Життєвий цикл Application Security
+
+### 📋 **1. Planning & Requirements**
+**Security Requirements:**
+```
+✅ Аутентифікація та авторизація
+✅ Захист конфіденційних даних
+✅ Логування та моніторинг
+✅ Відповідність регуляторним вимогам
+```
+
+**Threat Modeling:**
+- Ідентифікація активів
+- Аналіз загроз
+- Оцінка ризиків
+- Визначення контрзаходів
+
+### 💻 **2. Development & Design**
+**Secure Coding Practices:**
+```python
+# Приклад: Параметризовані запити для SQL Injection prevention
+cursor.execute(
+    "SELECT * FROM users WHERE username = %s AND password = %s",
+    (username, hashed_password)
+)
+
+# Замість небезпечного:
+# query = f"SELECT * FROM users WHERE username = '{username}'"
+```
+
+**Code Review Process:**
+- Мануальна перевірка коду
+- Автоматизований аналіз
+- Security-focused reviews
+- Peer review процеси
+
+### 🧪 **3. Testing**
+**Static Application Security Testing (SAST):**
+- Аналіз вихідного коду
+- Виявлення pattern-based вразливостей
+- Інтеграція в IDE
+- Early detection
+
+**Dynamic Application Security Testing (DAST):**
+- Тестування running додатка
+- Black-box підхід
+- Runtime vulnerability detection
+- Production-like testing
+
+**Interactive Application Security Testing (IAST):**
+- Hybrid підхід (SAST + DAST)
+- Real-time analysis
+- Code correlation
+- Low false positives
+
+### 🚀 **4. Deployment**
+**Production Security:**
+- Secure configuration management
+- Environment hardening
+- Monitoring та alerting
+- Incident response готовність
+
+---
+
+## Типи загроз для додатків
+
+### 🎯 **OWASP Top 10 2021**
+
+#### **A01 - Broken Access Control**
+```
+🚨 Вертикальна ескалація привілеїв
+🚨 Горизонтальна ескалація привілеїв
+🚨 IDOR (Insecure Direct Object References)
+🚨 CORS misconfiguration
+```
+
+#### **A02 - Cryptographic Failures**
+```
+🚨 Weak encryption algorithms
+🚨 Hardcoded credentials
+🚨 Insecure data transmission
+🚨 Poor key management
+```
+
+#### **A03 - Injection**
+```
+🚨 SQL Injection
+🚨 NoSQL Injection
+🚨 OS Command Injection
+🚨 LDAP Injection
+```
+
+### 💼 **Business Logic Vulnerabilities**
+- **Race Conditions** - concurrent access issues
+- **Workflow bypasses** - пропуск етапів процесу
+- **Price manipulation** - зміна цін в e-commerce
+- **Privilege escalation** через business flows
+
+### 📱 **Application-Specific Threats**
+**Web Applications:**
+- Cross-Site Scripting (XSS)
+- Cross-Site Request Forgery (CSRF)
+- Session hijacking
+- Clickjacking
+
+**Mobile Applications:**
+- Insecure data storage
+- Weak cryptography
+- Insecure communication
+- Poor authentication
+
+**API Security:**
+- Broken authentication
+- Excessive data exposure
+- Lack of rate limiting
+- Security misconfiguration
+
+---
+
+## Інструменти Application Security
+
+### 🔍 **Static Analysis Tools (SAST)**
+
+**Open Source:**
+```
+✅ SonarQube - multi-language static analysis
+✅ Semgrep - customizable static analysis
+✅ Bandit - Python security linter
+✅ ESLint Security - JavaScript security rules
+```
+
+**Commercial:**
+```
+✅ Checkmarx - enterprise SAST platform
+✅ Veracode - cloud-based security testing
+✅ Fortify - HP Enterprise security testing
+✅ CodeQL - GitHub advanced security
+```
+
+### 🌐 **Dynamic Analysis Tools (DAST)**
+
+**Popular Tools:**
+```
+✅ Burp Suite - manual + automated testing
+✅ OWASP ZAP - open source web app scanner
+✅ Acunetix - commercial web vulnerability scanner
+✅ Netsparker - automated security scanner
+```
+
+### 📦 **Software Composition Analysis (SCA)**
+
+**Dependency Scanning:**
+```
+✅ OWASP Dependency Check - open source SCA
+✅ Snyk - commercial vulnerability database
+✅ WhiteSource - enterprise SCA platform
+✅ npm audit / pip-audit - package-specific
+```
+
+### 🏃‍♂️ **Runtime Application Self-Protection (RASP)**
+
+**Real-time Protection:**
+```
+✅ Contrast Security - runtime security
+✅ Imperva RASP - application firewall
+✅ Signal Sciences - web application firewall
+```
+
+---
+
+## Методології та стандарти
+
+### 📚 **OWASP Guidelines**
+- **OWASP Top 10** - найпоширеніші вразливості
+- **OWASP Testing Guide** - comprehensive testing methodology
+- **OWASP Code Review Guide** - secure code review practices
+- **OWASP ASVS** - Application Security Verification Standard
+
+### 🏛️ **Industry Standards**
+**NIST Cybersecurity Framework:**
+- Identify
+- Protect  
+- Detect
+- Respond
+- Recover
+
+**ISO 27001/27034:**
+- Information security management
+- Application security controls
+- Risk management processes
+
+### 🔒 **Compliance Requirements**
+**Regulatory Standards:**
+- **PCI DSS** - Payment card industry
+- **GDPR** - European data protection
+- **HIPAA** - Healthcare information
+- **SOX** - Financial reporting
+
+---
+
+## DevSecOps та Application Security
+
+### 🔄 **Shift-Left Security**
+```
+Traditional:    Plan → Code → Build → Test → Release → Deploy → Monitor
+                                              ↑
+                                      Security Testing
+
+Shift-Left:     Plan → Code → Build → Test → Release → Deploy → Monitor
+                 ↑      ↑      ↑       ↑
+            Security Planning  Security Testing throughout
+```
+
+### 🤖 **Automation в Application Security**
+
+**CI/CD Integration:**
+```yaml
+# GitLab CI/CD приклад
+stages:
+  - build
+  - sast
+  - test
+  - dast
+  - deploy
+
+sast_scan:
+  stage: sast
+  script:
+    - semgrep --config=auto src/
+    - sonar-scanner
+  artifacts:
+    reports:
+      sast: sast-report.json
+
+dast_scan:
+  stage: dast
+  script:
+    - zap-baseline.py -t $TARGET_URL
+  artifacts:
+    reports:
+      dast: dast-report.json
+```
+
+### 📊 **Security Metrics в DevOps**
+```
+📈 Mean Time to Remediation (MTTR)
+📈 Security Test Coverage
+📈 Vulnerability Density (per KLOC)
+📈 Security Debt accumulation
+📈 False Positive Rate
+```
+
+---
+
+## Практичні приклади
+
+### 🛠️ **Secure Coding Examples**
+
+**Input Validation (Python):**
+```python
+import re
+from flask import request, abort
+
+def validate_email(email):
+    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    if not re.match(pattern, email):
+        abort(400, "Invalid email format")
+    return email
+
+@app.route('/register', methods=['POST'])
+def register():
+    email = validate_email(request.form.get('email'))
+    # Proceed with registration
+```
+
+**Authentication Security (Node.js):**
+```javascript
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+// Password hashing
+const hashPassword = async (password) => {
+    const saltRounds = 12;
+    return await bcrypt.hash(password, saltRounds);
+};
+
+// JWT token generation
+const generateToken = (userId) => {
+    return jwt.sign(
+        { userId: userId }, 
+        process.env.JWT_SECRET,
+        { expiresIn: '1h' }
+    );
+};
+```
+
+**SQL Injection Prevention (Java):**
+```java
+// Using PreparedStatement
+String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+PreparedStatement pstmt = connection.prepareStatement(query);
+pstmt.setString(1, username);
+pstmt.setString(2, password);
+ResultSet rs = pstmt.executeQuery();
+```
+
+---
+
+## Кар'єрні можливості в Application Security
+
+### 👨‍💻 **Ролі та позиції**
+
+**Entry Level:**
+- **Junior Security Analyst**
+- **Application Security Intern**
+- **DevSecOps Engineer (Junior)**
+
+**Mid Level:**
+- **Application Security Engineer**
+- **Security Software Developer**
+- **DevSecOps Engineer**
+
+**Senior Level:**
+- **Senior Application Security Engineer**
+- **Principal Security Architect**
+- **Security Engineering Manager**
+
+**Leadership:**
+- **Chief Product Security Officer (CPSO)**
+- **VP of Security Engineering**
+
+### 📚 **Необхідні навички**
+
+**Технічні навички:**
+```
+✅ Programming languages (Python, Java, C#, JavaScript)
+✅ Web technologies (HTTP, REST APIs, JSON)
+✅ Security testing tools (Burp Suite, OWASP ZAP)
+✅ Cloud platforms (AWS, Azure, GCP)
+✅ CI/CD pipelines (Jenkins, GitLab, GitHub Actions)
+```
+
+**Security-specific навички:**
+```
+✅ OWASP Top 10 knowledge
+✅ Threat modeling
+✅ Penetration testing
+✅ Cryptography basics
+✅ Incident response
+```
+
+**Soft skills:**
+```
+✅ Risk assessment та communication
+✅ Collaboration з development teams
+✅ Project management
+✅ Documentation та reporting
+```
+
+---
+
+## Майбутнє Application Security
+
+### 🚀 **Emerging Trends**
+
+**AI/ML в Security:**
+- Automated vulnerability discovery
+- Intelligent false positive reduction
+- Behavioral analysis
+- Predictive security analytics
+
+**Cloud-Native Security:**
+- Container security scanning
+- Serverless security
+- Kubernetes security policies
+- Service mesh security
+
+**Supply Chain Security:**
+- Software Bill of Materials (SBOM)
+- Dependency risk assessment
+- Third-party component monitoring
+- Secure software delivery
+
+### 🔮 **Future Challenges**
+- **Quantum computing** impact on cryptography
+- **IoT security** at scale
+- **Edge computing** security models
+- **Privacy-preserving** technologies
+
+---
+
+## Висновок
+
+**Application Security** є критично важливою дисципліною в сучасному світі, де додатки обробляють величезні обсяги чутливих даних та є основною точкою контакту з користувачами.
+
+### 🎯 **Ключові takeaways:**
+- **Proactive approach** - безпека з самого початку
+- **Continuous process** - постійне покращення
+- **Team effort** - співпраця між командами
+- **Tool integration** - автоматизація та tooling
+- **Business enablement** - безпека як competitive advantage
+
+**Application Security** не є окремою функцією, а інтегральною частиною процесу розробки програмного забезпечення, яка забезпечує довіру користувачів та захищає бізнес від кіберзагроз.
+
+
+
+
+
+
+
+
 --------------------------------------------------------------------------------
 
 # Відмінність між Application Security та Infrastructure Security
