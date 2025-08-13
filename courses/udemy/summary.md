@@ -275,3 +275,331 @@
 - IT фахівців, які планують перехід у cybersecurity
 - Студентів комп'ютерних наук
 - Будь-кого, хто цікавиться application security
+
+
+
+
+--------------------------------------------------------------------------------
+
+# Відмінність між Application Security та Infrastructure Security
+
+---
+
+## Основні визначення
+
+### Application Security (AppSec)
+**Безпека додатків** - це практика захисту програмних додатків від загроз шляхом виявлення, виправлення та запобігання дефектів безпеки в коді додатка.
+
+### Infrastructure Security (InfraSec)
+**Безпека інфраструктури** - це захист базових IT-компонентів, які підтримують роботу додатків: серверів, мереж, операційних систем і хмарних ресурсів.
+
+---
+
+## Порівняльна таблиця
+
+| **Аспект** | **Application Security** | **Infrastructure Security** |
+|------------|--------------------------|----------------------------|
+| **Фокус** | Код додатка, бізнес-логіка | Сервери, мережі, ОС, хмара |
+| **Рівень** | Layer 7 (Application) | Layers 1-6 (Physical-Presentation) |
+| **Відповідальність** | Розробники, AppSec команди | Системні адміністратори, NetSec |
+| **Тестування** | SAST, DAST, IAST | Penetration testing, vulnerability scanning |
+| **Інструменти** | Burp Suite, OWASP ZAP | Nessus, Nmap, OpenVAS |
+| **Загрози** | OWASP Top 10, бізнес-логіка | Network attacks, malware, DDoS |
+
+---
+
+## Application Security: Детальний огляд
+
+### 🎯 **Область фокусу**
+- **Код додатка:** Вихідний код, бібліотеки, frameworks
+- **Бізнес-логіка:** Workflow, процеси обробки даних
+- **APIs:** REST, GraphQL, SOAP endpoints
+- **Веб-інтерфейси:** Frontend, user interactions
+- **Mobile apps:** iOS, Android додатки
+
+### 🔍 **Типові вразливості**
+**OWASP Top 10 2021:**
+```
+A01 - Broken Access Control
+A02 - Cryptographic Failures  
+A03 - Injection
+A04 - Insecure Design
+A05 - Security Misconfiguration
+A06 - Vulnerable Components
+A07 - Authentication Failures
+A08 - Software/Data Integrity Failures
+A09 - Logging/Monitoring Failures
+A10 - Server-Side Request Forgery
+```
+
+**Специфічні для додатків:**
+- **Business Logic Flaws** - порушення бізнес-правил
+- **Race Conditions** - concurrent access issues
+- **Input Validation** - неправильна обробка вхідних даних
+- **Session Management** - проблеми з сеансами
+
+### 🛠️ **Інструменти та методи**
+
+**Static Application Security Testing (SAST):**
+```
+✅ SonarQube - статичний аналіз коду
+✅ Checkmarx - commercial SAST platform
+✅ Semgrep - open source code scanner
+✅ CodeQL - GitHub security analysis
+```
+
+**Dynamic Application Security Testing (DAST):**
+```
+✅ Burp Suite - web application testing
+✅ OWASP ZAP - automated security scanner
+✅ Acunetix - commercial web scanner
+✅ AppScan - IBM security testing tool
+```
+
+**Interactive Application Security Testing (IAST):**
+```
+✅ Contrast Security - runtime protection
+✅ Veracode - interactive testing
+✅ Synopsys - hybrid testing approach
+```
+
+### 👥 **Відповідальні команди**
+- **Розробники** - secure coding practices
+- **DevSecOps інженери** - automation і integration
+- **Application Security Engineers** - specialized testing
+- **Product Security Teams** - cross-functional oversight
+
+---
+
+## Infrastructure Security: Детальний огляд
+
+### 🎯 **Область фокусу**
+- **Мережева безпека:** Firewalls, routers, switches
+- **Операційні системи:** Windows, Linux hardening
+- **Хмарна інфраструктура:** AWS, Azure, GCP security
+- **Віртуалізація:** Hypervisors, containers
+- **Фізична безпека:** Data centers, hardware
+
+### 🔍 **Типові загрози**
+**Мережеві атаки:**
+```
+🚨 DDoS attacks - перевантаження сервісів
+🚨 Man-in-the-Middle - перехоплення трафіку
+🚨 Network scanning - reconnaissance
+🚨 Lateral movement - поширення в мережі
+```
+
+**Системні вразливості:**
+```
+🚨 Unpatched systems - незакриті уразливості
+🚨 Privilege escalation - підвищення привілеїв
+🚨 Malware infections - шкідливе ПЗ
+🚨 Configuration errors - помилки налаштувань
+```
+
+**Хмарні ризики:**
+```
+🚨 Misconfigured storage - відкриті S3 buckets
+🚨 Weak IAM policies - неправильні дозволи
+🚨 Insecure APIs - незахищені cloud APIs
+🚨 Shared responsibility confusion - неясність відповідальності
+```
+
+### 🛠️ **Інструменти та методи**
+
+**Vulnerability Scanners:**
+```
+✅ Nessus - comprehensive vulnerability scanning
+✅ OpenVAS - open source vulnerability assessment
+✅ Qualys - cloud-based security platform
+✅ Rapid7 Nexpose - vulnerability management
+```
+
+**Network Security Tools:**
+```
+✅ Nmap - network discovery and port scanning
+✅ Wireshark - network protocol analyzer
+✅ Metasploit - penetration testing framework
+✅ Burp Suite Pro - network application testing
+```
+
+**Cloud Security Platforms:**
+```
+✅ Prowler - AWS security assessment
+✅ ScoutSuite - multi-cloud security auditing
+✅ CloudSploit - cloud configuration scanner
+✅ AWS Security Hub - centralized security findings
+```
+
+### 👥 **Відповідальні команди**
+- **Network Administrators** - мережева архітектура
+- **System Administrators** - операційні системи
+- **Cloud Engineers** - хмарна інфраструктура
+- **Security Operations Center (SOC)** - моніторинг
+
+---
+
+## Практичні відмінності
+
+### 🔧 **Підходи до тестування**
+
+**Application Security Testing:**
+```python
+# Приклад: SQL Injection тестування
+payload = "'; DROP TABLE users; --"
+response = requests.post('/login', data={'username': payload})
+
+# Аналіз відповіді додатка
+if 'error' in response.text:
+    print("Potential SQL injection vulnerability")
+```
+
+**Infrastructure Security Testing:**
+```bash
+# Приклад: Network scanning
+nmap -sS -O target-network.com
+
+# Port enumeration
+nmap -p 1-65535 target-host.com
+
+# Service version detection
+nmap -sV target-host.com
+```
+
+### 📊 **Метрики та KPI**
+
+**Application Security Metrics:**
+```
+📈 Time to fix vulnerabilities (TTFV)
+📈 Vulnerability density (bugs per KLOC)
+📈 Security test coverage
+📈 Mean time between security incidents (MTBSI)
+```
+
+**Infrastructure Security Metrics:**
+```
+📈 Patch compliance rate
+📈 System uptime and availability
+📈 Network intrusion attempts blocked
+📈 Incident response time (MTTR)
+```
+
+---
+
+## Інтеграція та взаємодія
+
+### 🤝 **Перехресні області**
+
+**API Security:**
+- **AppSec аспект:** Валідація параметрів, авторизація
+- **InfraSec аспект:** TLS, rate limiting, network policies
+
+**Container Security:**
+- **AppSec аспект:** Vulnerable dependencies в images
+- **InfraSec аспект:** Runtime protection, orchestration security
+
+**Cloud Security:**
+- **AppSec аспект:** Serverless functions, cloud-native apps
+- **InfraSec аспект:** IAM, network segmentation, encryption
+
+### 🔄 **DevSecOps Integration**
+
+**CI/CD Pipeline Security:**
+```yaml
+# Application Security checks
+stages:
+  - sast_scan:        # Static code analysis
+  - dependency_check: # SCA scanning
+  - dast_scan:        # Dynamic testing
+
+# Infrastructure Security checks
+  - infrastructure_scan: # Terraform security
+  - container_scan:       # Image vulnerabilities
+  - compliance_check:     # Policy validation
+```
+
+---
+
+## Кар'єрні шляхи
+
+### 👨‍💻 **Application Security Career Path**
+```
+Junior Developer with Security Focus
+    ↓
+Application Security Analyst
+    ↓
+Senior Application Security Engineer
+    ↓
+Principal Application Security Architect
+    ↓
+Chief Product Security Officer (CPSO)
+```
+
+**Ключові навички:**
+- Secure coding practices
+- OWASP knowledge
+- SAST/DAST tools
+- Programming languages
+- DevSecOps practices
+
+### 🛡️ **Infrastructure Security Career Path**
+```
+IT Support/System Administrator
+    ↓
+Infrastructure Security Analyst
+    ↓
+Senior Infrastructure Security Engineer
+    ↓
+Security Architect (Infrastructure)
+    ↓
+Chief Information Security Officer (CISO)
+```
+
+**Ключові навички:**
+- Network protocols
+- Operating systems
+- Cloud platforms
+- Security frameworks
+- Incident response
+
+---
+
+## Сучасні тренди
+
+### 🚀 **Application Security Trends**
+- **Shift-Left Security** - раннє тестування в SDLC
+- **API-First Security** - захист microservices
+- **Runtime Application Self-Protection (RASP)**
+- **Software Supply Chain Security**
+
+### ☁️ **Infrastructure Security Trends**
+- **Zero Trust Architecture** - never trust, always verify
+- **Cloud Security Posture Management (CSPM)**
+- **Infrastructure as Code (IaC) Security**
+- **Container and Kubernetes Security**
+
+---
+
+## Висновок
+
+**Application Security** та **Infrastructure Security** є комплементарними дисциплінами, кожна з яких фокусується на різних аспектах загальної безпеки IT-систем:
+
+### 🎯 **Application Security:**
+- **Фокус:** Код, логіка, user experience
+- **Мета:** Запобігти exploitation через додаток
+- **Підхід:** Розробник-орієнтований, code-centric
+
+### 🛡️ **Infrastructure Security:**
+- **Фокус:** Мережі, системи, платформи
+- **Мета:** Захистити базову інфраструктуру
+- **Підхід:** Операційно-орієнтований, system-centric
+
+### 🤝 **Разом вони створюють:**
+- **Defense in Depth** - багаторівневий захист
+- **Comprehensive Security Posture** - повний захист
+- **Shared Responsibility Model** - розподілена відповідальність
+
+**Сучасний підхід:** Інтеграція обох дисциплін через DevSecOps практики для створення безпечних та надійних IT-систем.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
