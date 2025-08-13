@@ -6,6 +6,8 @@ https://arxiv.org/pdf/2407.05710
 
 # Saltzer & Schroeder для 2030: Принципи інженерії безпеки у світі штучного інтелекту
 
+# Saltzer & Schroeder для 2030: Принципи інженерії безпеки у світі штучного інтелекту
+
 ## АНОТАЦІЯ
 
 Написання безпечного коду є складним завданням, тому очікується, що після випуску інструментів генерування коду на основі ШІ, таких як ChatGPT та GitHub Copilot, розробники будуть використовувати ці інструменти для виконання завдань безпеки та використання API безпеки. Однак чи є код, згенерований ChatGPT, безпечним? Як звичайний програмний інженер або інженер з безпеки зможе це визначити?
@@ -163,6 +165,78 @@ ChatGPT показав перспективи, але обмеження бул�
 
 ---
 
+## СПИСОК ЛІТЕРАТУРИ
+
+[1] Yasemin Acar, Michael Backes, Sascha Fahl, Simson Garfinkel, Doowon Kim, Michelle L Mazurek, and Christian Stransky. 2017. Comparing the usability of cryptographic apis. In *2017 IEEE Symposium on Security and Privacy (SP)*. IEEE, IEEE, Herrsching am Ammersee, Germany, 154–171.
+
+[2] Christian Bird, Denae Ford, Thomas Zimmermann, Nicole Forsgren, Eirini Kalliamvakou, Travis Lowdermilk, and Idan Gazit. 2022. Taking Flight with Copilot: Early insights and opportunities of AI-powered pair-programming tools. *Queue* 20, 6 (2022), 35–57.
+
+[3] Joshua Bloch. 2001. *Effective Java*. Pearson Education, Pearson Education.
+
+[4] Mark Chen, Jerry Tworek, Heewoo Jun, Qiming Yuan, Henrique Ponde de Oliveira Pinto, Jared Kaplan, Harri Edwards, Yuri Burda, Nicholas Joseph, Greg Brockman, et al. 2021. Evaluating large language models trained on code. *arXiv preprint arXiv:2107.03374* 1, 1 (2021), 1–35.
+
+[5] Neil A Ernst and Gabriele Bavota. 2022. Ai-driven development is here: Should you worry? *IEEE Software* 39, 2 (2022), 106–110.
+
+[6] Martin Fowler. 2018. *Refactoring: improving the design of existing code*. Addison-Wesley Professional, Addison-Wesley Professional.
+
+[7] Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides. 1993. Design patterns: Abstraction and reuse of object-oriented design. In *European Conference on Object-Oriented Programming*. Springer, Springer, Heidelberg, Berlin, Germany, 406–431.
+
+[8] Martin Georgiev, Subodh Iyengar, Suman Jana, Rishita Anubhai, Dan Boneh, and Vitaly Shmatikov. 2012. The most dangerous code in the world: validating SSL certificates in non-browser software. In *Proceedings of the 2012 ACM conference on Computer and communications security*. ACM, Raleigh, North Carolina, USA, 38–49.
+
+[9] Li Gong and Gary Ellison. 2003. *Inside Java™ 2 Platform Security: Architecture, API Design, and Implementation* (2nd ed.). Pearson Education, Pearson Education.
+
+[10] Matthew Green and Matthew Smith. 2016. Developers are not the enemy!: The need for usable security APIs. *IEEE Security & Privacy* 14, 5 (2016), 40–46.
+
+[11] Peter Gutmann. 1995. Peter Gutmann. cryptlib security toolkit: user's guide and manual. *Peter Gutmann* 1 (1995), 1–372.
+
+[12] Peter Gutmann. 1999. The Design of a Cryptographic Security Architecture. In *USENIX Security Symposium*. USENIX, Washington DC, USA, 1–16.
+
+[13] Peter Gutmann. 2002. Lessons Learned in Implementing and Deploying Crypto Software. In *Usenix Security Symposium*. USENIX, San Francisco, CA, USA, 315–325.
+
+[14] Hossein Hajipour, Thorsten Holz, Lea Schönherr, and Mario Fritz. 2023. Systematically Finding Security Vulnerabilities in Black-Box Code Generation Models. *arXiv preprint arXiv:2302.04012* 1, 1 (2023), 1–14.
+
+[15] Joseph Hallett, Nikhil Patnaik, Benjamin Shreeve, and Awais Rashid. 2021. "Do this! Do that!, And nothing will happen" Do specifications lead to securely stored passwords?. In *2021 IEEE/ACM 43rd International Conference on Software Engineering (ICSE)*. IEEE, 486–498.
+
+[16] Jingxuan He and Martin Vechev. 2023. Large language models for code: Security hardening and adversarial testing. In *Proceedings of the 2023 ACM SIGSAC Conference on Computer and Communications Security*. Association for Computing Machinery, ACM New York, NY, USA, 1865–1879.
+
+[17] Sam Lau and Philip Guo. 2023. From "Ban it till we understand it" to "Resistance is futile": How university programming instructors plan to adapt as more students use AI code generation and explanation tools such as ChatGPT and GitHub Copilot. In *Proceedings of the 2023 ACM Conference on International Computing Education Research-Volume 1*. Association for Computing Machinery, ACM New York, NY, USA, 106–121.
+
+[18] Carnegie Mellon Hall Mark Sherman, Software Engineering Institute. 2024. Using ChatGPT to Analyze Your Code? Not So Fast.
+
+[19] Kai Mindermann, Philipp Keck, and Stefan Wagner. 2018. How Usable Are Rust Cryptography APIs?. In *2018 IEEE International Conference on Software Quality, Reliability and Security, QRS 2018, Lisbon, Portugal, July 16-20, 2018*. IEEE, Lisbon, Portugal, 143–154. https://doi.org/10.1109/QRS.2018.00028
+
+[20] Sarah Nadi, Stefan Krüger, Mira Mezini, and Eric Bodden. 2016. Jumping through hoops: Why do Java developers struggle with cryptography APIs?. In *Proceedings of the 38th International Conference on Software Engineering*. Association for Computing Machinery, ACM New York, NY, USA, 935–946.
+
+[21] Alena Naiakshina, Anastasia Danilova, Christian Tiefenau, Marco Herzog, Sergej Dechand, and Matthew Smith. 2017. Why do developers get password storage wrong? A qualitative usability study. In *Proceedings of the 2017 ACM SIGSAC Conference on Computer and Communications Security*. Association for Computing Machinery, ACM New York, NY, USA, 311–328.
+
+[22] Jakob Nielsen. 1994. Enhancing the explanatory power of usability heuristics. In *Proceedings of the SIGCHI conference on Human Factors in Computing Systems*. ACM, ACM, New York, NY, USA, 152–158.
+
+[23] Daniela Seabra Oliveira, Tian Lin, Muhammad Sajidur Rahman, Rad Akefirad, Donovan Ellis, Eliany Perez, Rahul Bobhate, Lois A DeLong, Justin Cappos, and Yuriy Brun. 2018. {API} Blindspots: Why Experienced Developers Write Vulnerable Code. In *Fourteenth Symposium on Usable Privacy and Security ({SOUPS} 2018)*. USENIX, Baltimore, MD, USA, 315–328.
+
+[24] Nikhil Patnaik, Joseph Hallett, and Awais Rashid. 2019. Usability Smells: An Analysis of Developers' Struggle With Crypto Libraries. In *Fifteenth Symposium on Usable Privacy and Security (SOUPS 2019)*. USENIX, San Francisco, CA, USA, 245–257.
+
+[25] Hammond Pearce, Baleegh Ahmad, Benjamin Tan, Brendan Dolan-Gavitt, and Ramesh Karri. 2022. Asleep at the keyboard? assessing the security of github copilot's code contributions. In *2022 IEEE Symposium on Security and Privacy (SP)*. IEEE, IEEE, Herrsching am Ammersee, Germany, 754–768.
+
+[26] Jerome H Saltzer. 1974. Protection and the control of information sharing in Multics. *Commun. ACM* 17, 7 (1974), 388–402.
+
+[27] Jerome H Saltzer and Michael D Schroeder. 1975. The protection of information in computer systems. *Proc. IEEE* 63, 9 (1975), 1278–1308.
+
+[28] Fred B Schneider. 1999. Enforceable security policies. Technical Report. Cornell University.
+
+[29] Mohammed Latif Siddiq and Joanna CS Santos. 2022. SecurityEval dataset: mining vulnerability examples to evaluate machine learning-based code generation techniques. In *Proceedings of the 1st International Workshop on Mining Software Repositories Applications for Privacy and Security*. Association for Computing Machinery, ACM New York, NY, USA, 29–33.
+
+[30] Mikko T Siponen. 2000. Critical analysis of different approaches to minimizing user-related faults in information systems security: implications for research and practice. *Information Management & Computer Security* 8, 5 (2000), 197–209.
+
+[31] Catherine Tony, Markus Mutas, Nicolás E Díaz Ferreyra, and Riccardo Scandariato. 2023. LLMSecEval: A Dataset of Natural Language Prompts for Security Evaluations. *arXiv preprint arXiv:2303.09384* 1, 1 (2023), 1–5.
+
+[32] Daniel Votipka, Kelsey R Fulton, James Parker, Matthew Hou, Michelle L Mazurek, and Michael Hicks. 2020. Understanding security mistakes developers make: Qualitative analysis from build it, break it, fix it. In *Proceedings of the 29th USENIX Security Symposium (USENIX) Security*, Vol. 20. USENIX, USENIX, 1–18.
+
+[33] Burak Yetiştiren, Işık Özsoy, Miray Ayerdem, and Eray Tüzün. 2023. Evaluating the Code Quality of AI-Assisted Code Generation Tools: An Empirical Study on GitHub Copilot, Amazon CodeWhisperer, and ChatGPT. *arXiv preprint arXiv:2304.10778* 1, 1 (2023), 1–45.
+
+[34] Burak Yetistiren, Isik Ozsoy, and Eray Tuzun. 2022. Assessing the quality of GitHub copilot's code generation. In *Proceedings of the 18th International Conference on Predictive Models and Data Analytics in Software Engineering*. Association for Computing Machinery, ACM New York, NY, USA, 62–71.
+
+---
+
 ## ПОВНИЙ ПЕРЕКЛАД ЗАВЕРШЕНО
 
 **Автори оригіналу**: Nikhil Patnaik, Joseph Hallett, Awais Rashid  
@@ -186,7 +260,7 @@ ChatGPT показав перспективи, але обмеження бул�
 1. **Збереження академічного стилю** - формальна наукова мова
 2. **Технічна точність** - всі терміни перекладені коректно
 3. **Контекстуальність** - адаптовано для української ІТ-спільноти
-4. **Повнота** - перекладено від анотації до висновків
+4. **Повнота** - перекладено від анотації до списку літератури
 5. **Читабельність** - зрозуміло для україномовної аудиторії
 
 ---
@@ -206,5 +280,3 @@ ChatGPT показав перспективи, але обмеження бул�
 5. Прізвища дослідників (Saltzer, Schroeder, Gutmann, Naiakshina) залишено в оригінальній транскрипції
 6. **Code smells** перекладено як "запахи коду" - усталений термін в українській ІТ-спільноті
 7. **CWE (Common Weakness Enumerations)** - залишено з поясненням українською
-
-
