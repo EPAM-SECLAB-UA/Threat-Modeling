@@ -1825,3 +1825,864 @@ log_security_event("SUSPICIOUS_ACTIVITY", user_id, f"Multiple rapid requests fro
 - Документування знайдених проблем
 
 -------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Моделі загроз (Threat Models)
+
+---
+
+## Що таке Threat Modeling?
+
+**Threat Modeling (Моделювання загроз)** - це структурований підхід до ідентифікації, оцінки та мітигації потенційних загроз безпеки в системі або додатку.
+
+### 🎯 **Основні цілі:**
+- **Проактивне виявлення** загроз на ранніх етапах розробки
+- **Структурований аналіз** безпеки системи
+- **Пріоритизація** заходів захисту
+- **Комунікація** ризиків між командами
+
+### 📊 **Ключові переваги:**
+```
+✅ Раннє виявлення вразливостей (shift-left security)
+✅ Економія ресурсів на виправлення
+✅ Покращення архітектури безпеки
+✅ Відповідність стандартам та регуляціям
+✅ Підвищення security awareness команди
+```
+
+---
+
+## Основні компоненти Threat Model
+
+### 🏗️ **1. Assets (Активи)**
+**Що захищаємо:**
+- **Data Assets** - персональні дані, фінансова інформація, IP
+- **System Assets** - сервери, бази даних, APIs
+- **Process Assets** - бізнес-процеси, алгоритми
+
+**Приклад класифікації:**
+```
+🔴 CRITICAL: Платіжні дані, паролі, медичні записи
+🟡 HIGH: Особисті дані, бізнес-логіка, внутрішні API
+🟢 MEDIUM: Публічна інформація, логи, метадані
+```
+
+### 👤 **2. Threat Actors (Актори загроз)**
+**Хто може атакувати:**
+
+**External Attackers:**
+```
+🎯 Script Kiddies - низькокваліфіковані атакувальники
+🎯 Cybercriminals - організовані злочинці
+🎯 Nation-State Actors - державні хакери
+🎯 Hacktivists - ідеологічно мотивовані групи
+```
+
+**Internal Threats:**
+```
+🎯 Malicious Insiders - зловмисні працівники
+🎯 Compromised Accounts - скомпрометовані акаунти
+🎯 Negligent Users - недбалі користувачі
+```
+
+### 🚪 **3. Attack Vectors (Вектори атак)**
+**Як можуть атакувати:**
+- **Network-based** - через мережу
+- **Web-based** - через веб-інтерфейс
+- **Physical** - фізичний доступ
+- **Social Engineering** - соціальна інженерія
+
+### 🛡️ **4. Countermeasures (Контрзаходи)**
+**Як захищаємося:**
+- **Preventive** - запобіжні заходи
+- **Detective** - заходи виявлення
+- **Corrective** - коригувальні заходи
+- **Recovery** - заходи відновлення
+
+---
+
+## Методології Threat Modeling
+
+### 🔷 **STRIDE - Microsoft Model**
+
+**Акронім STRIDE:**
+- **S** - Spoofing (Підробка ідентичності)
+- **T** - Tampering (Несанкціонована зміна)
+- **R** - Repudiation (Відмова від авторства)
+- **I** - Information Disclosure (Розкриття інформації)
+- **D** - Denial of Service (Відмова в обслуговуванні)
+- **E** - Elevation of Privilege (Підвищення привілеїв)
+
+**Застосування STRIDE:**
+```
+🔍 Spoofing Identity:
+   - Weak authentication mechanisms
+   - Missing certificate validation
+   - Session hijacking vulnerabilities
+
+🔍 Tampering with Data:
+   - Input validation failures
+   - Missing integrity checks
+   - Insecure data transmission
+
+🔍 Repudiation:
+   - Insufficient logging
+   - Missing digital signatures
+   - Weak audit trails
+
+🔍 Information Disclosure:
+   - Data leakage through error messages
+   - Insufficient access controls
+   - Unencrypted sensitive data
+
+🔍 Denial of Service:
+   - Resource exhaustion attacks
+   - Application layer DoS
+   - Missing rate limiting
+
+🔍 Elevation of Privilege:
+   - Authorization bypass
+   - Privilege escalation vulnerabilities
+   - Missing security boundaries
+```
+
+**Приклад STRIDE аналізу для веб-додатка:**
+```
+Component: User Authentication System
+
+S - Spoofing:
+   🚨 Weak password policies
+   🚨 Missing multi-factor authentication
+   🛡️ Mitigation: Strong password policy + MFA
+
+T - Tampering:
+   🚨 Session tokens stored in localStorage
+   🚨 Missing CSRF protection
+   🛡️ Mitigation: Secure cookies + CSRF tokens
+
+R - Repudiation:
+   🚨 No audit logs for login attempts
+   🛡️ Mitigation: Comprehensive audit logging
+
+I - Information Disclosure:
+   🚨 Detailed error messages in production
+   🛡️ Mitigation: Generic error responses
+
+D - Denial of Service:
+   🚨 No rate limiting on login endpoint
+   🛡️ Mitigation: Rate limiting + account lockout
+
+E - Elevation of Privilege:
+   🚨 Role-based access control gaps
+   🛡️ Mitigation: Principle of least privilege
+```
+
+### 🍝 **PASTA - Process for Attack Simulation and Threat Analysis**
+
+**7 етапів PASTA:**
+
+#### **Stage 1: Define Objectives**
+```
+📋 Business Objectives:
+   - Compliance requirements (PCI DSS, GDPR)
+   - Risk tolerance levels
+   - Security investment priorities
+
+📋 Technical Objectives:
+   - System performance requirements
+   - Availability targets
+   - Data protection goals
+```
+
+#### **Stage 2: Define Technical Scope**
+```
+🔧 Application Inventory:
+   - Web applications
+   - Mobile applications
+   - APIs and microservices
+   - Third-party integrations
+
+🔧 Infrastructure Components:
+   - Cloud services (AWS, Azure, GCP)
+   - Network architecture
+   - Database systems
+   - Security controls
+```
+
+#### **Stage 3: Application Decomposition**
+```
+🏗️ Architecture Analysis:
+   - Data flow diagrams
+   - Trust boundaries
+   - Entry and exit points
+   - Authentication mechanisms
+
+🏗️ Component Mapping:
+   - Frontend components
+   - Backend services
+   - Data stores
+   - External dependencies
+```
+
+#### **Stage 4: Threat Analysis**
+```
+🔍 Threat Intelligence:
+   - Industry-specific threats
+   - Emerging attack vectors
+   - Threat actor profiles
+   - Historical incidents
+
+🔍 Attack Pattern Analysis:
+   - OWASP Top 10
+   - MITRE ATT&CK framework
+   - CVE databases
+   - Security advisories
+```
+
+#### **Stage 5: Vulnerability Assessment**
+```
+🛠️ Technical Assessment:
+   - Static code analysis (SAST)
+   - Dynamic testing (DAST)
+   - Dependency scanning (SCA)
+   - Infrastructure scanning
+
+🛠️ Design Review:
+   - Architecture security review
+   - Code review processes
+   - Configuration analysis
+   - Policy compliance check
+```
+
+#### **Stage 6: Attack Modeling**
+```
+⚔️ Attack Scenarios:
+   - Attack trees development
+   - Kill chain analysis
+   - Threat scenario simulation
+   - Impact assessment
+
+⚔️ Risk Calculation:
+   Risk = Threat × Vulnerability × Impact
+   - Likelihood estimation
+   - Impact quantification
+   - Risk matrix development
+```
+
+#### **Stage 7: Risk Analysis & Impact**
+```
+📊 Risk Prioritization:
+   - Critical risk identification
+   - Cost-benefit analysis
+   - Mitigation roadmap
+   - Monitoring strategy
+
+📊 Reporting:
+   - Executive summary
+   - Technical findings
+   - Remediation recommendations
+   - Compliance mapping
+```
+
+### 🌊 **VAST - Visual, Agile, and Simple Threat Modeling**
+
+**Два типи моделей VAST:**
+
+#### **Application Threat Models**
+```
+🎯 Operational Focus:
+   - Specific applications or services
+   - Developer and architect audience
+   - Technical implementation details
+   - Code-level security issues
+
+📋 Components:
+   - Process flow diagrams
+   - Threat scenarios
+   - Security requirements
+   - Test cases generation
+```
+
+#### **Architectural Threat Models**
+```
+🏢 Strategic Focus:
+   - Enterprise-wide view
+   - Business stakeholder audience
+   - High-level business risks
+   - Infrastructure security
+
+📋 Components:
+   - Business impact analysis
+   - Compliance requirements
+   - Investment prioritization
+   - Policy development
+```
+
+**VAST Process Flow:**
+```
+1. 📊 Create Process Flow Diagram
+   ↓
+2. 🎯 Identify Threat Scenarios
+   ↓
+3. 🔍 Analyze Security Requirements
+   ↓
+4. 🧪 Generate Test Cases
+   ↓
+5. 📈 Create Business Impact Model
+```
+
+### 🐙 **OCTAVE - Operationally Critical Threat, Asset, and Vulnerability Evaluation**
+
+**Три фази OCTAVE:**
+
+#### **Phase 1: Build Asset-Based Threat Profiles**
+```
+🏗️ Organizational View:
+   - Critical asset identification
+   - Security requirements definition
+   - Current protection strategies
+   - Organizational vulnerabilities
+
+👥 Stakeholder Involvement:
+   - Senior management interviews
+   - Operational area analysis
+   - IT staff consultations
+   - Asset owner discussions
+```
+
+#### **Phase 2: Identify Infrastructure Vulnerabilities**
+```
+🔧 Technical Analysis:
+   - Network architecture review
+   - System configuration analysis
+   - Technology vulnerability assessment
+   - Security tool effectiveness
+
+📊 Gap Analysis:
+   - Current vs. required security
+   - Technology limitations
+   - Process weaknesses
+   - Resource constraints
+```
+
+#### **Phase 3: Develop Security Strategy and Plans**
+```
+📋 Risk Assessment:
+   - Threat scenario development
+   - Impact analysis
+   - Probability estimation
+   - Risk calculation
+
+🎯 Mitigation Strategy:
+   - Control recommendations
+   - Implementation roadmap
+   - Resource requirements
+   - Success metrics
+```
+
+---
+
+## Практичне застосування Threat Modeling
+
+### 🛠️ **Інструменти для Threat Modeling**
+
+#### **Microsoft Threat Modeling Tool**
+```
+✅ Безкоштовний інструмент від Microsoft
+✅ Інтеграція з STRIDE методологією
+✅ Автоматична генерація загроз
+✅ Шаблони для різних архітектур
+
+Особливості:
+- DFD (Data Flow Diagram) редактор
+- Threat generation engine
+- Reporting capabilities
+- Template library
+```
+
+#### **OWASP Threat Dragon**
+```
+✅ Open source рішення
+✅ Web-based та desktop версії
+✅ Підтримка різних методологій
+✅ Collaborative features
+
+Особливості:
+- Cross-platform compatibility
+- Git integration
+- JSON export/import
+- Community-driven development
+```
+
+#### **IriusRisk**
+```
+✅ Commercial enterprise platform
+✅ Automated threat modeling
+✅ Integration з DevOps tools
+✅ Compliance reporting
+
+Особливості:
+- Risk quantification
+- Automated countermeasure mapping
+- API integration
+- Custom rule creation
+```
+
+#### **ThreatSpec**
+```
+✅ Threat modeling as code
+✅ Integration з source control
+✅ Continuous threat modeling
+✅ Documentation generation
+
+Особливості:
+- Code annotations
+- Automated diagram generation
+- CI/CD integration
+- Version control
+```
+
+### 📊 **Data Flow Diagrams (DFD)**
+
+**Основні елементи DFD:**
+
+#### **External Entities (Зовнішні сутності)**
+```
+🔲 Представлення: Квадрат
+🎯 Призначення: Джерела та приймачі даних
+📝 Приклади:
+   - Users (веб-користувачі)
+   - External APIs (треті системи)
+   - Administrators (адміністратори)
+   - Mobile Apps (мобільні додатки)
+```
+
+#### **Processes (Процеси)**
+```
+⭕ Представлення: Коло
+🎯 Призначення: Обробка даних
+📝 Приклади:
+   - Authentication Service
+   - Payment Processing
+   - Data Validation
+   - Report Generation
+```
+
+#### **Data Stores (Сховища даних)**
+```
+📦 Представлення: Відкритий прямокутник
+🎯 Призначення: Зберігання даних
+📝 Приклади:
+   - User Database
+   - Session Store
+   - Log Files
+   - Configuration Files
+```
+
+#### **Data Flows (Потоки даних)**
+```
+➡️ Представлення: Стрілка з підписом
+🎯 Призначення: Рух даних між елементами
+📝 Приклади:
+   - Login Credentials
+   - Session Token
+   - User Profile Data
+   - Error Messages
+```
+
+**Приклад DFD для e-commerce системи:**
+```
+[User] ──login credentials──→ (Authentication) ──user session──→ [Session Store]
+  │                              │
+  │ ←──session token──           │ ←──user data──
+  │                              │
+  │ ──product request──→ (Product Service) ←──product data──→ [Product DB]
+  │                              │
+  │ ←──product list──            │
+  │                              │
+  │ ──order data──→ (Order Processing) ←──order history──→ [Order DB]
+  │                              │
+  │ ←──order confirmation──      │ ──payment request──→ [Payment Gateway]
+```
+
+### 🎯 **Trust Boundaries**
+
+**Визначення Trust Boundaries:**
+```
+🚧 Security Perimeters:
+   - Network boundaries (DMZ, internal network)
+   - Application boundaries (microservices)
+   - Process boundaries (user/kernel space)
+   - Physical boundaries (cloud/on-premise)
+
+🚧 Privilege Boundaries:
+   - User/admin separation
+   - Service account isolation
+   - Data classification levels
+   - API access controls
+```
+
+**Приклад Trust Boundaries:**
+```
+┌─────────────────────────────────────┐
+│           DMZ Network               │
+│  ┌─────────────────────────────┐   │ ← Trust Boundary 1
+│  │      Web Application        │   │
+│  │  ┌─────────────────────┐   │   │
+│  │  │   User Session      │   │   │ ← Trust Boundary 2
+│  │  └─────────────────────┘   │   │
+│  └─────────────────────────────┘   │
+└─────────────────────────────────────┘
+┌─────────────────────────────────────┐
+│         Internal Network            │ ← Trust Boundary 3
+│  ┌─────────────────────────────┐   │
+│  │      Database Server        │   │
+│  └─────────────────────────────┘   │
+└─────────────────────────────────────┘
+```
+
+---
+
+## Процес розробки Threat Model
+
+### 📋 **Step 1: Define Scope and Objectives**
+
+**Questions to Ask:**
+```
+❓ What are we building?
+   - Application type and purpose
+   - Key business functions
+   - Target users and use cases
+
+❓ What are we worried about?
+   - Critical assets to protect
+   - Compliance requirements
+   - Business impact scenarios
+
+❓ What are we going to do about it?
+   - Available resources
+   - Timeline constraints
+   - Risk tolerance
+```
+
+### 🏗️ **Step 2: Create Architecture Overview**
+
+**Documentation Requirements:**
+```
+📊 System Architecture:
+   - High-level components
+   - Technology stack
+   - Deployment model
+   - Integration points
+
+📊 Data Architecture:
+   - Data types and sensitivity
+   - Data flows and transformations
+   - Storage locations
+   - Retention policies
+
+📊 Security Architecture:
+   - Existing controls
+   - Authentication mechanisms
+   - Authorization models
+   - Monitoring capabilities
+```
+
+### 🎯 **Step 3: Decompose Application**
+
+**Decomposition Framework:**
+```
+🔍 Functional Decomposition:
+   - User registration/authentication
+   - Data processing workflows
+   - Reporting and analytics
+   - Administrative functions
+
+🔍 Technical Decomposition:
+   - Frontend components
+   - API layers
+   - Business logic services
+   - Data access layers
+   - External integrations
+
+🔍 Trust Decomposition:
+   - Internet-facing components
+   - Internal network services
+   - Administrative interfaces
+   - Third-party services
+```
+
+### 🚨 **Step 4: Identify Threats**
+
+**Threat Identification Methods:**
+
+#### **Structured Brainstorming:**
+```
+👥 Team Approach:
+   - Multi-disciplinary team (dev, security, ops)
+   - Facilitated sessions
+   - Time-boxed discussions
+   - Documented outcomes
+
+🧠 Thinking Techniques:
+   - "What if" scenarios
+   - Attack path analysis
+   - Misuse case development
+   - Red team perspective
+```
+
+#### **Framework-Based Analysis:**
+```
+📚 STRIDE per Element:
+   - Apply STRIDE to each DFD element
+   - Document applicable threats
+   - Rate likelihood and impact
+   - Identify existing controls
+
+📚 Attack Trees:
+   - Goal-oriented analysis
+   - Logical decomposition
+   - AND/OR relationships
+   - Quantitative analysis
+```
+
+### 📊 **Step 5: Assess and Prioritize Risks**
+
+**Risk Assessment Matrix:**
+```
+                 Low Impact    Medium Impact    High Impact
+High Likelihood     MEDIUM         HIGH          CRITICAL
+Med Likelihood      LOW           MEDIUM          HIGH
+Low Likelihood      LOW            LOW           MEDIUM
+```
+
+**Risk Factors:**
+```
+🎯 Likelihood Factors:
+   - Threat actor capability
+   - Attack surface exposure
+   - Existing controls effectiveness
+   - Historical incident data
+
+🎯 Impact Factors:
+   - Financial loss potential
+   - Regulatory consequences
+   - Reputation damage
+   - Operational disruption
+```
+
+### 🛡️ **Step 6: Define Countermeasures**
+
+**Control Categories:**
+
+#### **Preventive Controls:**
+```
+✅ Access Controls:
+   - Authentication mechanisms
+   - Authorization frameworks
+   - Network segmentation
+   - Input validation
+
+✅ Protective Measures:
+   - Encryption (at rest/in transit)
+   - Secure coding practices
+   - Security headers
+   - Rate limiting
+```
+
+#### **Detective Controls:**
+```
+✅ Monitoring and Logging:
+   - Security event logging
+   - Anomaly detection
+   - SIEM integration
+   - Audit trails
+
+✅ Testing and Scanning:
+   - Vulnerability assessments
+   - Penetration testing
+   - Code reviews
+   - Configuration audits
+```
+
+#### **Corrective Controls:**
+```
+✅ Incident Response:
+   - Response procedures
+   - Communication plans
+   - Recovery processes
+   - Lessons learned integration
+
+✅ Remediation:
+   - Patch management
+   - Configuration fixes
+   - Process improvements
+   - Training programs
+```
+
+---
+
+## DevSecOps Integration
+
+### 🔄 **Continuous Threat Modeling**
+
+**Integration Points:**
+```
+📋 Requirements Phase:
+   - Security requirements definition
+   - Threat model initiation
+   - Risk acceptance criteria
+   - Compliance mapping
+
+💻 Design Phase:
+   - Architecture threat modeling
+   - Security control selection
+   - Trust boundary definition
+   - Attack surface analysis
+
+🧪 Development Phase:
+   - Code-level threat analysis
+   - Security test case generation
+   - Automated threat detection
+   - Developer security training
+
+🚀 Deployment Phase:
+   - Infrastructure threat modeling
+   - Configuration validation
+   - Runtime protection setup
+   - Monitoring implementation
+```
+
+### 🤖 **Automation in Threat Modeling**
+
+**Automated Threat Generation:**
+```python
+# Приклад автоматизованого threat modeling
+class ThreatModel:
+    def __init__(self, application):
+        self.application = application
+        self.threats = []
+        
+    def analyze_components(self):
+        for component in self.application.components:
+            threats = self.generate_stride_threats(component)
+            self.threats.extend(threats)
+    
+    def generate_stride_threats(self, component):
+        threats = []
+        
+        # Spoofing threats
+        if component.has_authentication():
+            threats.append({
+                'type': 'Spoofing',
+                'description': f'Authentication bypass in {component.name}',
+                'severity': 'High',
+                'mitigation': 'Implement strong authentication'
+            })
+        
+        # Tampering threats
+        if component.handles_user_input():
+            threats.append({
+                'type': 'Tampering',
+                'description': f'Input validation failure in {component.name}',
+                'severity': 'Medium',
+                'mitigation': 'Implement input validation'
+            })
+        
+        return threats
+```
+
+**Threat Model as Code:**
+```yaml
+# threats.yml
+threat_model:
+  application: "E-commerce Platform"
+  version: "1.0"
+  
+  components:
+    - name: "User Authentication"
+      type: "process"
+      trust_level: "medium"
+      
+      threats:
+        - id: "AUTH-001"
+          category: "Spoofing"
+          description: "Credential stuffing attack"
+          severity: "High"
+          likelihood: "Medium"
+          impact: "High"
+          
+          mitigations:
+            - "Multi-factor authentication"
+            - "Account lockout policies"
+            - "Rate limiting"
+            
+        - id: "AUTH-002"
+          category: "Elevation of Privilege"
+          description: "Session hijacking"
+          severity: "High"
+          likelihood: "Low"
+          impact: "High"
+          
+          mitigations:
+            - "Secure session management"
+            - "HTTPS enforcement"
+            - "Session timeout"
+```
+
+### 📊 **Metrics and KPIs**
+
+**Threat Modeling Metrics:**
+```
+📈 Coverage Metrics:
+   - % of components threat modeled
+   - % of threats with mitigations
+   - % of high-risk threats addressed
+   - Threat model freshness (last update)
+
+📈 Effectiveness Metrics:
+   - Security issues found pre-production
+   - Reduction in security incidents
+   - Time to threat resolution
+   - Cost of security issues prevented
+
+📈 Process Metrics:
+   - Threat modeling cycle time
+   - Team participation rate
+   - Training completion rate
+   - Tool adoption metrics
+```
+
+---
+
+## Висновок
+
+Threat Modeling є критично важливою практикою для проактивного підходу до безпеки, яка дозволяє:
+
+### 🎯 **Ключові переваги:**
+- **Раннє виявлення** загроз та вразливостей
+- **Структурований підхід** до аналізу безпеки
+- **Ефективний розподіл** ресурсів безпеки
+- **Покращення комунікації** між командами
+- **Підвищення security awareness**
+
+### 🚀 **Сучасні тренди:**
+- **Automated threat modeling** - автоматизація процесів
+- **Threat modeling as code** - інтеграція з DevOps
+- **AI-assisted analysis** - використання штучного інтелекту
+- **Continuous threat modeling** - безперервний процес
+
+### 💡 **Best Practices:**
+- Починайте threat modeling на ранніх етапах
+- Залучайте мультидисциплінарні команди
+- Використовуйте структуровані методології
+- Автоматизуйте де це можливо
+- Регулярно оновлюйте threat models
+- Інтегруйте з процесами розробки
+
+**Пам'ятайте:** Threat modeling - це не одноразова активність, а безперервний процес, який має еволюціонувати разом з вашою системою та ландшафтом загроз.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
