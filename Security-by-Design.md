@@ -1,20 +1,5 @@
 
 
-
-- Django Security Best Practices: Essential Strategies for Protecting Your Web App - Joseph Adediji, https://www.youtube.com/watch?v=6KDyCW-B_f4
-- Secure Coding in Python Django, https://www.udemy.com/course/secpy-django/?utm_source=adwords&utm_medium=udemyads&utm_campaign=Search_DSA_Beta_Prof_la.EN_cc.ROW-English&campaigntype=Search&portfolio=ROW-English&language=EN&product=Course&test=&audience=DSA&topic=&priority=Beta&utm_content=deal4584&utm_term=_._ag_162511579404_._ad_696197165418_._kw__._de_c_._dm__._pl__._ti_dsa-1677053911088_._li_9061017_._pd__._&matchtype=&gad_source=1&gad_campaignid=21168154305&gbraid=0AAAAADROdO3jbv6dOu8GksfwkVYErrEvR&gclid=CjwKCAjw7_DEBhAeEiwAWKiCC1X-GjWJwC_3AZdVk6vs9FfISSV_mDvaih8UehyOw4lvqv0IdbdWkxoCFBYQAvD_BwE&couponCode=PMNVD2525
-- Django Security Cheat Sheet, https://cheatsheetseries.owasp.org/cheatsheets/Django_Security_Cheat_Sheet.html
-- DJA201 – Defending Django, https://www.securitycompass.com/training_courses/dja201-defending-django/
-- Best Django security practices, https://escape.tech/blog/best-django-security-practices/
-- Django web application security, https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django/web_application_security
-- 
-
-
-
-
-
-
-
 # Security by Design принципи
 
 ---
