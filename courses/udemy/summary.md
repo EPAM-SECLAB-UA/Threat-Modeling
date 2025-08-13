@@ -1613,4 +1613,215 @@ log_security_event("SUSPICIOUS_ACTIVITY", user_id, f"Multiple rapid requests fro
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+# 🌐 Типи загроз для веб-додатків
 
+```
+                                    🌐 ТИПИ ЗАГРОЗ ДЛЯ ВЕБ-ДОДАТКІВ
+                                                    |
+                    ┌───────────────────────────────┼───────────────────────────────┐
+                    |                               |                               |
+            🎯 OWASP TOP 10                 🕷️ CLIENT-SIDE              💼 BUSINESS LOGIC
+                    |                               |                               |
+        ┌───────────┼───────────┐                  |                               |
+        |           |           |                  |                               |
+   🔓 ACCESS    💉 INJECTION  🔐 CRYPTO         ┌───┼───┐                      ┌───┼───┐
+    CONTROL         |         FAILURES          |   |   |                      |   |   |
+        |           |             |             |   |   |                      |   |   |
+    ┌───┼───┐   ┌───┼───┐     ┌───┼───┐        |   |   |                      |   |   |
+    |   |   |   |   |   |     |   |   |        |   |   |                      |   |   |
+   IDOR |  Path SQL| NoSQL   Weak| Hard-      XSS | CSRF|                    Race| Price|
+   Priv | Trav  Inj| Inject  Enc | coded       |  |    |                    Cond| Manip|
+   Esc  | ersal ion| ection  ryp | Creds      ┌┼──┼────┼┐                      | ulat |
+        |          |         tion|            ||  |    ||                      | ion  |
+        |          |             |            ||  |    ||                      |      |
+    Vertical   Command       Missing      Refl-||Stored||DOM                 Workflow Bypass
+    Horizontal Injection     Encryption   ected||  XSS |||                  Logic Flaws
+    CORS Issues OS Commands  Poor Keys    XSS  ||     |||                  
+                LDAP Inject  Weak Algos        ||     |||                  
+                XML Inject   Insecure Trans    ||     |||                  
+                             Data at Rest      ||     |||                  
+                                              ||     |||                  
+                                         Clickjacking||                   
+                                         Session    ||                    
+                                         Hijacking  ||                    
+                                                   ||                     
+                                                   ||                     
+                             ┌─────────────────────┘│                     
+                             |                      │                     
+                        📱 MOBILE WEB          🌐 API THREATS              
+                             |                      │                     
+                    ┌────────┼────────┐            │                     
+                    |        |        |            │                     
+                Insecure  Insufficient  Weak    ┌──┼──┐                   
+                Data      Transport    Crypto   |  |  |                   
+                Storage   Protection   Mobile   |  |  |                   
+                    |        |           |      |  |  |                   
+                localStorage HTTP      Weak   API1| API2|                 
+                sessionStorage       Random   Brkn| Brkn|                 
+                Cookies             Number    Auth| User|                 
+                                   Generation    | Auth|                 
+                                                 |     |                 
+                                              ┌──┼─────┼──┐              
+                                              |  |     |  |              
+                                           API3 |   API4 |  API5         
+                                          Excess|   Rate |  Broken       
+                                          Data  |   Limit|  Function     
+                                          Expose|   ing  |  Level        
+                                                |        |  Authorization
+                                                |        |              
+                                                |        |              
+                            ┌───────────────────┼────────┼──────────────┐
+                            |                   |        |              |
+                    ☁️ CLOUD THREATS      🔧 ADVANCED       📊 ATTACK      🛡️ MITIGATION
+                            |              TECHNIQUES         METHODS         STRATEGIES
+                    ┌───────┼───────┐          |               |               |
+                    |       |       |          |               |               |
+                 SSTI    XXE    Deserialization |               |               |
+            Template External   Insecure       |               |               |
+            Injection Entity    Pickle/JSON    |               |               |
+                |       |       Serialization  |               |               |
+            Jinja2   XML       Python/Java     |               |               |
+            Twig     Bomb      .NET Objects    |               |               |
+            Smarty   XXE       PHP Serialize   |               |               |
+                     DTD                       |               |               |
+                     Billion                   |               |               |
+                     Laughs                    |               |               |
+                                              |               |               |
+                                        ┌─────┼─────┐    ┌────┼────┐    ┌─────┼─────┐
+                                        |     |     |    |    |    |    |     |     |
+                                    Reconnaissance  |  Manual |Auto |  Defense|Security|
+                                    Information     |  Testing|Scan |  in     |Headers |
+                                    Gathering       |       | ning |  Depth  |       |
+                                        |           |       |     |         |       |
+                                    ┌───┼───┐      |  ┌────┼────┐|    ┌────┼────┐  |
+                                    |   |   |      |  |    |    ||    |    |    |  |
+                                   OSINT|Foot     |  Burp|OWASP||   WAF |Input|  |
+                                   Google|print   |  Suite| ZAP ||      |Valid|  |
+                                   Shodan|ing     |      |     ||      |ation|  |
+                                   Wayback|       |  Manual|Auto||   Perimeter| |
+                                   Machine|       |  Review|Scan||   Application||
+                                          |       |       |    ||   Data      ||
+                                      Port|       |  Code |Tool||   Security  ||
+                                      Scanning    |  Review|s  ||            ||
+                                      Directory   |       |   ||       ┌────┼┼─────┐
+                                      Brute Force |  Static|Dyn||       |    ||     |
+                                                 |  Analysis|am||    Monitoring| Incident|
+                                                 |        |ic ||    Logging   | Response|
+                                                 |  SAST  |DAST||    SIEM      | IR Plans|
+                                                 |        |   ||    Alerting  | Forensics|
+                                                 |        |   ||              |         |
+                                           ┌─────┼────────┼───┼┼──────────────┼─────────┼─┐
+                                           |     |        |   ||              |         | |
+                                      🎯 RISK ASSESSMENT           📈 METRICS & KPI    💡 BEST PRACTICES
+                                           |                                   |                 |
+                                    ┌──────┼──────┐                     ┌─────┼─────┐      ┌────┼────┐
+                                    |      |      |                     |     |     |      |    |    |
+                                 CVSS   Impact  Likelihood            MTTD  MTTR  False    Secure| Security|
+                                Scoring Business Technical            Mean  Mean  Positive  Coding| by      |
+                                 Base   Critical Financial           Time  Time  Rate      Practices| Design |
+                                Temporal High     Reputation         To    To    Coverage  Input    | Threat |
+                                Environ Medium   Operational         Detect Respond       Validation| Model  |
+                                mental  Low      Compliance          Incidents           Output    | Reviews|
+                                        |                                                Encoding  |        |
+                                    ┌───┼───┐                                          Authentication|   |
+                                    |   |   |                                          Session Mgmt  |   |
+                                Data Regulatory Downtime                              Error Handling |   |
+                                Loss  Fines     Service                               Logging       |   |
+                                PII   GDPR      Disruption                          Crypto        |   |
+                                PHI   PCI-DSS   SLA                                Implementation |   |
+                                Card  SOX       Breach                                           |   |
+                                Data  HIPAA                                                      |   |
+                                                                                                |   |
+                                                                                            Security|
+                                                                                            Testing |
+                                                                                            SAST/DAST|
+                                                                                            Pen Test |
+                                                                                            Code Review
+```
+
+## 📋 Легенда Mind Map
+
+### 🎯 **OWASP Top 10 Категорії**
+- **🔓 Access Control** - порушення контролю доступу
+- **💉 Injection** - ін'єкційні атаки
+- **🔐 Crypto Failures** - криптографічні помилки
+- **🏗️ Insecure Design** - небезпечний дизайн
+- **⚙️ Misconfiguration** - неправильні налаштування
+- **📦 Vulnerable Components** - вразливі компоненти
+- **🔑 Auth Failures** - проблеми аутентифікації
+- **🔧 Integrity Failures** - порушення цілісності
+- **📊 Logging Failures** - проблеми логування
+- **🌐 SSRF** - підробка серверних запитів
+
+### 🕷️ **Client-Side загрози**
+- **XSS** - Cross-Site Scripting (Reflected, Stored, DOM)
+- **CSRF** - Cross-Site Request Forgery
+- **Clickjacking** - обман кліків
+
+### 💼 **Business Logic атаки**
+- **Race Conditions** - стан гонки
+- **Price Manipulation** - маніпуляція цінами
+- **Workflow Bypass** - обхід бізнес-процесів
+
+### 📱 **Mobile Web загрози**
+- **Insecure Data Storage** - небезпечне зберігання
+- **Insufficient Transport Protection** - слабкий захист передачі
+- **Weak Mobile Crypto** - слабка мобільна криптографія
+
+### 🌐 **API загрози**
+- **API1** - Broken Object Level Authorization
+- **API2** - Broken User Authentication
+- **API3** - Excessive Data Exposure
+- **API4** - Lack of Rate Limiting
+- **API5** - Broken Function Level Authorization
+
+### ☁️ **Cloud загрози**
+- **SSTI** - Server-Side Template Injection
+- **XXE** - XML External Entity
+- **Deserialization** - небезпечна десеріалізація
+
+### 🔧 **Advanced Techniques**
+- **Reconnaissance** - розвідка
+- **Manual Testing** - ручне тестування
+- **Automated Scanning** - автоматизоване сканування
+
+### 🛡️ **Mitigation Strategies**
+- **Defense in Depth** - багаторівневий захист
+- **Security Headers** - захисні заголовки
+- **Monitoring & Incident Response** - моніторинг та реагування
+
+### 🎯 **Risk Assessment**
+- **CVSS Scoring** - оцінка вразливостей
+- **Impact Assessment** - оцінка впливу
+- **Likelihood Analysis** - аналіз ймовірності
+
+### 📈 **Metrics & KPI**
+- **MTTD** - Mean Time To Detection
+- **MTTR** - Mean Time To Response
+- **False Positive Rate** - рівень хибних спрацьовувань
+
+### 💡 **Best Practices**
+- **Secure Coding** - безпечне програмування
+- **Security by Design** - безпека в дизайні
+- **Security Testing** - тестування безпеки
+
+---
+
+## 🎨 Використання Mind Map
+
+**Для навчання:**
+- Структуроване розуміння всіх типів загроз
+- Візуальні зв'язки між категоріями
+- Швидкий пошук конкретних загроз
+
+**Для планування безпеки:**
+- Покриття всіх областей ризику
+- Визначення пріоритетів захисту
+- Розробка комплексної стратегії
+
+**Для аудиту:**
+- Перевірка всіх категорій загроз
+- Систематичний підхід до тестування
+- Документування знайдених проблем
+
+-------------------------------------------------------------------------------------------------------------------------------------------
