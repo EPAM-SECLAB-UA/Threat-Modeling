@@ -2,6 +2,7 @@
 
 
 # Application Security Fundamentals for Absolute Beginners
+https://ua.udemy.com/course/application-security-fundamentals-including-hands-on-demos/learn/lecture/35427620#overview
 
 ## Ключові теми курсу
 
