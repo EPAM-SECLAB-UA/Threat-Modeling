@@ -2684,8 +2684,9 @@ Threat Modeling є критично важливою практикою для �
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 
+# The Art of Threat Modeling - Курс Udemy
+https://ua.udemy.com/course/the-art-of-threat-modeling-a-step-by-step-approach/
 
-# Summary: The Art of Threat Modeling - Курс Udemy
 
 ## Загальний огляд курсу
 
