@@ -2,6 +2,8 @@
 # The Art of Threat Modeling - A Step-by-Step Approach
 
 https://ua.udemy.com/course/the-art-of-threat-modeling-a-step-by-step-approach/
+https://ua.udemy.com/certificate/UC-db171e9c-13ac-49f3-8cc6-5f6b0293029e/
+
 
 # Мистецтво моделювання загроз - Покроковий підхід
 
