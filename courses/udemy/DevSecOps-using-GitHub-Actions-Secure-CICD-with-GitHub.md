@@ -571,4 +571,303 @@ DevSecOps представляє унікальну можливість для 
 
 ----------------------------------------------------
 
+# 3 Лекція: Основні терміни безпеки в DevSecOps
 
+## Привітання
+
+Вітаємо, експерти з безпеки! Ласкаво просимо на нову лекцію нашого курсу. У цій лекції ми вивчимо різні терміни безпеки, які будемо використовувати протягом всього курсу. Розуміння цих концепцій є критично важливим для успішного опанування DevSecOps.
+
+## 🔍 SAST - Static Application Security Testing
+
+### Визначення
+**SAST** (Статичне тестування безпеки додатків) - це тип **white box тестування**, що аналізує вихідний код для виявлення проблем безпеки в нашому коді.
+
+### Характеристики SAST
+- 🔬 **Аналіз вихідного коду** без виконання програми
+- 📝 **White box підхід** - повний доступ до коду
+- ⚡ **Раннє виявлення** вразливостей на етапі розробки
+- 🔄 **Інтеграція в CI/CD** pipeline
+
+### Методи виконання SAST
+
+#### 🔧 Ручне тестування
+**Підхід:**
+- Використання **source code checklist**
+- Ручний аналіз коду на наявність вразливостей
+- Code review з фокусом на безпеку
+
+**Переваги:**
+- ✅ Глибокий аналіз специфічних кейсів
+- ✅ Розуміння бізнес-логіки
+- ✅ Низький рівень false positives
+
+**Недоліки:**
+- ❌ Часозатратний процес
+- ❌ Залежність від експертизи аналітика
+- ❌ Складно масштабувати
+
+#### 🤖 Автоматизоване тестування
+**Популярні інструменти:**
+
+| Інструмент | Тип | Особливості |
+|------------|-----|-------------|
+| **SonarQube** | Open Source/Commercial | Підтримка 25+ мов, інтеграція з CI/CD |
+| **Fortify** | Commercial | Enterprise рішення від Micro Focus |
+| **Veracode** | Cloud-based | SaaS платформа з швидким скануванням |
+| **Checkmarx** | Commercial | Advanced pattern recognition |
+
+### Приклад використання SAST
+
+```yaml
+# GitHub Actions workflow для SAST
+name: SAST Security Scan
+on: [push, pull_request]
+
+jobs:
+  sast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run SonarQube Scan
+        uses: sonarqube-quality-gate-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+```
+
+## 📦 SCA - Software Composition Analysis
+
+### Визначення
+**SCA** (Аналіз складу програмного забезпечення) - процес сканування, який допомагає ідентифікувати третьосторонні бібліотеки та їх безпеку.
+
+### Що аналізує SCA?
+
+#### 📚 Третьосторонні бібліотеки
+- **Dependencies** в package.json, pom.xml, requirements.txt
+- **Transitive dependencies** (залежності залежностей)
+- **Version conflicts** та outdated бібліотеки
+
+#### ⚖️ Ліцензійні питання
+- **License compatibility** між різними бібліотеками
+- **Commercial vs Open Source** ліцензії
+- **Compliance** з корпоративними політиками
+
+#### 🔓 Безпекові проблеми
+- **Known vulnerabilities** (CVE база даних)
+- **Security advisories** від maintainers
+- **CVSS scores** для оцінки критичності
+
+### Інструменти SCA
+
+**Snyk - лідер ринку:**
+```bash
+# Встановлення Snyk CLI
+npm install -g snyk
+
+# Аутентифікація
+snyk auth
+
+# Сканування проєкту
+snyk test
+
+# Моніторинг проєкту
+snyk monitor
+```
+
+**Альтернативні інструменти:**
+- **OWASP Dependency-Check** (безкоштовний)
+- **WhiteSource (Mend)** (enterprise)
+- **Black Duck** (comprehensive)
+
+## 🌐 DAST - Dynamic Application Security Testing
+
+### Визначення
+**DAST** (Динамічне тестування безпеки додатків) - це **black box тестування** веб та мобільних додатків з використанням автоматизованих інструментів.
+
+### Характеристики DAST
+- 🕳️ **Black box підхід** - тестування без доступу до коду
+- 🌐 **Runtime аналіз** працюючого додатку
+- 🔄 **HTTP traffic inspection** та аналіз responses
+- 📱 **Web та mobile** додатки
+
+### Популярні DAST інструменти
+
+#### 🆓 Open Source
+**OWASP ZAP:**
+```bash
+# Запуск ZAP в baseline режимі
+docker run -t owasp/zap2docker-stable zap-baseline.py \
+  -t https://example.com
+
+# Full scan режим
+docker run -t owasp/zap2docker-stable zap-full-scan.py \
+  -t https://example.com
+```
+
+#### 💼 Commercial
+| Інструмент | Особливості |
+|------------|-------------|
+| **Burp Suite Enterprise** | Advanced crawling, custom checks |
+| **Veracode DAST** | Cloud-based scanning |
+| **WebInspect** | Micro Focus enterprise solution |
+| **Rapid7 AppSpider** | Comprehensive web app testing |
+
+### DAST vs SAST порівняння
+
+| Аспект | SAST | DAST |
+|--------|------|------|
+| **Тип тестування** | White box | Black box |
+| **Етап тестування** | Development | QA/Production |
+| **Доступ до коду** | Повний | Відсутній |
+| **False positives** | Високі | Середні |
+| **Coverage** | Високий | Обмежений |
+
+## 🔄 IAST - Interactive Application Security Testing
+
+### Визначення
+**IAST** (Інтерактивне тестування безпеки додатків) - відносно новий підхід, що **поєднує SAST та DAST** для подолання їх обмежень.
+
+### Як працює IAST?
+- 🔗 **Інструментація коду** під час виконання
+- 📊 **Real-time аналіз** data flow
+- 🎯 **Specific workflows** сканування
+- 🔍 **Inside-out підхід** до безпеки
+
+### Переваги IAST
+- ✅ **Низький рівень false positives**
+- ✅ **Accurate vulnerability detection**
+- ✅ **Real-time feedback** розробникам
+- ✅ **Better coverage** критичних шляхів
+
+### Інструменти IAST
+- **Contrast Security** - лідер ринку IAST
+- **Hdiv Security** - enterprise рішення
+- **Seeker by Synopsys** - comprehensive platform
+
+## 🏗️ IaC - Infrastructure as Code
+
+### Визначення
+**IaC** (Інфраструктура як код) - процес створення інфраструктури за допомогою файлів коду замість ручного налаштування.
+
+### Популярні IaC інструменти
+
+#### ☁️ Cloud-специфічні
+**AWS CloudFormation:**
+```yaml
+# CloudFormation template приклад
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: my-secure-bucket
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+```
+
+#### 🌐 Multi-cloud
+**Terraform:**
+```hcl
+# Terraform приклад
+resource "aws_s3_bucket" "example" {
+  bucket = "my-secure-bucket"
+  
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+}
+```
+
+### IaC Security Testing
+**Інструменти для безпеки IaC:**
+- **Checkov** - static analysis для Terraform
+- **TFSec** - security scanner для Terraform
+- **AWS Config** - compliance моніторинг
+- **Azure Policy** - governance для Azure
+
+## 🔌 API Security
+
+### Визначення
+**API Security** - процес виявлення проблем безпеки в API (Application Programming Interfaces).
+
+### API vs Microservices
+
+#### 🔗 Розуміння різниці
+**API (Application Programming Interface):**
+- Інтерфейс для взаємодії між системами
+- Може включати множину endpoints
+- Broader scope функціональності
+
+**Microservice:**
+- **Підмножина API**
+- Specific business функція
+- Single responsibility принцип
+
+#### 🛒 Практичний приклад: E-commerce
+```
+E-commerce API
+├── User Registration API
+│   ├── Create User (microservice)
+│   ├── Delete User (microservice)
+│   └── Update User (microservice)
+├── Product Management API
+│   ├── Add Product (microservice)
+│   ├── Update Product (microservice)
+│   └── Delete Product (microservice)
+└── Order Processing API
+    ├── Create Order (microservice)
+    ├── Update Order (microservice)
+    └── Cancel Order (microservice)
+```
+
+### API Security Testing
+**Ключові аспекти:**
+- 🔐 **Authentication** механізми
+- 🛡️ **Authorization** controls
+- 📊 **Input validation**
+- 🔒 **Data encryption**
+- 📈 **Rate limiting**
+- 🎯 **OWASP API Top 10** compliance
+
+### Інструменти API Security
+- **OWASP ZAP** - API endpoint testing
+- **Postman** - manual API testing
+- **Burp Suite** - comprehensive API security
+- **42Crunch** - specialized API security platform
+
+## 📊 Порівняльна таблиця всіх методів
+
+| Метод | Етап | Тип тестування | Переваги | Недоліки |
+|-------|------|----------------|----------|----------|
+| **SAST** | Development | White box | Раннє виявлення, повний coverage | Високі false positives |
+| **SCA** | Build | Dependency analysis | License та CVE checking | Залежить від баз даних |
+| **DAST** | QA/Production | Black box | Реальні вразливості | Обмежений coverage |
+| **IAST** | Runtime | Hybrid | Низькі false positives | Потребує інструментацію |
+| **IaC Security** | Infrastructure | Static analysis | Prevention підхід | Cloud-специфічний |
+| **API Security** | Runtime | Black/Gray box | Business logic focus | Complex setup |
+
+## 🎯 Висновки
+
+Розуміння цих безпекових термінів критично важливе для:
+
+### ✅ Успішної імплементації DevSecOps
+- Правильний вибір інструментів для кожного етапу
+- Розуміння strengths та limitations кожного підходу
+- Створення comprehensive security strategy
+
+### 🚀 Професійного розвитку
+- Communication з security командами
+- Technical interviews preparation
+- Industry best practices adoption
+
+**У наступних лекціях ми практично імплементуємо кожен з цих підходів у GitHub Actions pipeline!**
+
+---
+
+*Дякуємо за увагу! Сподіваємось, ця лекція була корисною. До зустрічі на наступній лекції, де ми розпочнемо вивчення основ GitHub Actions.*
+
+
+--------------------------------------------------
