@@ -5625,4 +5625,1531 @@ TACTIC: Credential Access
 
 ----------------------------------------------------------------------------------------------------------------
 
+# 26 Підсумок: Тактики, Техніки та Sub-techniques в MITRE ATT&CK Framework
 
+## Загальний підсумок
+
+Гаразд, давайте **підсумуємо тактики, техніки та sub-techniques** в ATT&CK framework.
+
+## Три рівні питань та відповідей
+
+### Рівень 1: Тактики - "ЧОМУ"
+
+**Знову ж таки, починаючи з лівого боку**, **питання про те, чому противники роблять певні речі** та **яка їх мотивація**.
+
+**Це те, на що відповідає тактика** в MITRE.
+
+#### Приклад тактики
+**І приклад тактики** був би, наприклад, **тактика execution** (виконання).
+
+### Рівень 2: Техніки - "ЯК"
+
+**"Як" противник досягає своєї мети** може бути відповіджено **техніками** в MITRE.
+
+#### Приклад техніки
+**І приклад цього** був би **command and scripting interpreter** (інтерпретатор команд та скриптів).
+
+### Рівень 3: Sub-techniques - "ЯК детально"
+
+**"Як", але більш детально** може бути відповіджено **sub-techniques** в MITRE.
+
+#### Приклад sub-technique
+**Отже, в цьому випадку** це був би **Python**.
+
+## Практичний приклад: Повна ієрархія
+
+### Конкретний case study
+
+**Якщо ми просто візьмемо**:
+- **Тактику execution**
+- **Техніку command and scripting interpreter** 
+- **Sub-technique Python**
+
+### Відповіді на ключові питання
+
+**Ми змогли б відповісти на питання**:
+
+#### 1. Чому противники це роблять
+**Перш за все, чому противники роблять певні речі**:
+- **Execution тактика** відповідає: противники хочуть **виконати код** на цільових системах
+- **Мета**: запустити malware, виконати команди, активувати payload
+
+#### 2. Як вони досягають цих цілей
+**По-друге, на дуже детальному рівні, як вони досягають своїх цілей**:
+- **Command and Scripting Interpreter** - використання інтерпретаторів для виконання
+- **Python sub-technique** - конкретно через Python scripting
+
+## Структурна візуалізація
+
+### Ієрархічна схема
+
+```
+ПИТАННЯ: ЧОМУ?
+├── ВІДПОВІДЬ: TACTIC - Execution
+│   │
+│   ПИТАННЯ: ЯК?
+│   ├── ВІДПОВІДЬ: TECHNIQUE - Command and Scripting Interpreter
+│   │   │
+│   │   ПИТАННЯ: ЯК ДЕТАЛЬНО?
+│   │   └── ВІДПОВІДЬ: SUB-TECHNIQUE - Python
+```
+
+### Практичний приклад атаки
+
+**Сценарій**:
+1. **ЧОМУ** (Tactic): Противник хоче **виконати malware** на системі жертви
+2. **ЯК** (Technique): Використовує **command and scripting interpreter**
+3. **ЯК ДЕТАЛЬНО** (Sub-technique): Конкретно через **Python script**
+
+**Результат**: Повне розуміння мотивації, методу та конкретної імплементації атаки.
+
+## Універсальна структура питань
+
+### Три фундаментальні питання
+
+#### Питання 1: ЧОМУ? (Why)
+- **Відповідає**: TACTIC
+- **Рівень**: Стратегічний
+- **Фокус**: Мотивації та високорівневі цілі
+- **Приклад**: "Чому противник хоче execution?"
+
+#### Питання 2: ЯК? (How)
+- **Відповідає**: TECHNIQUE  
+- **Рівень**: Операційний
+- **Фокус**: Методи досягнення цілей
+- **Приклад**: "Як досягти execution?"
+
+#### Питання 3: ЯК ДЕТАЛЬНО? (How specifically)
+- **Відповідає**: SUB-TECHNIQUE
+- **Рівень**: Тактичний
+- **Фокус**: Конкретні імплементації
+- **Приклад**: "Як саме використати scripting interpreter?"
+
+## Практичні застосування структури
+
+### Для Threat Analysis
+
+**Повний аналіз загрози**:
+1. **Ідентифікувати мотивацію** (tactic level)
+2. **Зрозуміти метод** (technique level)  
+3. **Деталізувати імплементацію** (sub-technique level)
+
+### Для Detection Development
+
+**Розробка правил виявлення**:
+- **Strategic detection** на tactic level
+- **Operational detection** на technique level
+- **Tactical detection** на sub-technique level
+
+### Для Incident Response
+
+**Класифікація інцидентів**:
+- **Стратегічний контекст** через tactic
+- **Операційне розуміння** через technique
+- **Технічні деталі** через sub-technique
+
+## Переваги тристрівневої структури
+
+### 1. Повнота аналізу
+
+**Комплексне розуміння**:
+- **Стратегічний рівень** - розуміння цілей
+- **Операційний рівень** - методи досягнення
+- **Тактичний рівень** - конкретна реалізація
+
+### 2. Гнучкість застосування
+
+**Різні рівні деталізації** для різних потреб:
+- **Executive briefings** - tactic level
+- **SOC operations** - technique level
+- **Technical analysis** - sub-technique level
+
+### 3. Скалабельність
+
+**Розширюваність framework**:
+- **Нові тактики** для emerging threats
+- **Додаткові техніки** для нових методів
+- **Розширені sub-techniques** для specific tools
+
+## Практичний workflow
+
+### Аналітичний процес
+
+**Крок 1: Ідентифікація тактики**
+- Визначити **стратегічну мету** противника
+- Відповісти на питання **"ЧОМУ?"**
+
+**Крок 2: Мапінг техніки**  
+- Ідентифікувати **метод досягнення** мети
+- Відповісти на питання **"ЯК?"**
+
+**Крок 3: Деталізація sub-technique**
+- Конкретизувати **спосіб імплементації**
+- Відповісти на питання **"ЯК ДЕТАЛЬНО?"**
+
+### Приклад workflow: Email Attack
+
+```
+АНАЛІЗ АТАКИ:
+
+1. ЧОМУ? → TACTIC: Initial Access
+   Мета: Отримати початковий доступ до організації
+
+2. ЯК? → TECHNIQUE: Phishing  
+   Метод: Використання фішингових emails
+
+3. ЯК ДЕТАЛЬНО? → SUB-TECHNIQUE: Spearphishing Attachment
+   Імплементація: Цільовий фішинг з malicious attachment
+```
+
+## Цінність для різних ролей
+
+### Security Analysts
+
+**Використання структури**:
+- **Tactic awareness** для розуміння campaigns
+- **Technique detection** для rule development
+- **Sub-technique investigation** для forensics
+
+### Threat Hunters
+
+**Hunting strategy**:
+- **Tactic-based hypotheses** для strategic hunting
+- **Technique-based queries** для operational hunting  
+- **Sub-technique artifacts** для tactical hunting
+
+### Security Architects
+
+**Defense planning**:
+- **Tactic-level controls** для strategic defense
+- **Technique-specific mitigations** для operational security
+- **Sub-technique monitoring** для tactical detection
+
+## Майбутнє застосування
+
+### Continuous Learning
+
+**Еволюція розуміння**:
+- **Нові тактики** з розвитком threat landscape
+- **Додаткові техніки** для emerging attack methods
+- **Розширені sub-techniques** для tool evolution
+
+### Integration Opportunities
+
+**Поєднання з іншими frameworks**:
+- **NIST Cybersecurity Framework** на strategic level
+- **MITRE D3FEND** на defensive level
+- **Cyber Kill Chain** на operational level
+
+## Підсумок: Цілісне розуміння
+
+### Ключові принципи
+
+**Це дуже короткий огляд** тактик, технік та sub-techniques та **які питання вони повинні відповідати** і **як їх можна використовувати**.
+
+### Три рівні питань
+
+1. **ЧОМУ** → **TACTICS** → Стратегічні мотивації
+2. **ЯК** → **TECHNIQUES** → Операційні методи
+3. **ЯК ДЕТАЛЬНО** → **SUB-TECHNIQUES** → Тактичні імплементації
+
+### Практична цінність
+
+**Повна структура дозволяє**:
+- **Комплексний аналіз** загроз
+- **Структуровану відповідь** на атаки
+- **Ефективне планування** захисту
+- **Точне вимірювання** coverage
+
+**Пам'ятайте**: Тристрівнева структура MITRE ATT&CK (тактики, техніки, sub-techniques) надає повне розуміння противників - від стратегічних мотивацій до конкретних технічних імплементацій, створюючи основу для ефективного threat-informed defense.
+
+---
+
+**Це завершує наш огляд структури MITRE ATT&CK. Готуйтеся до практичного застосування цих знань у реальних сценаріях!**
+
+
+--------------------------------------------------------------------------------------
+
+# 27 Data Sources в MITRE ATT&CK Framework
+
+## Визначення Data Sources
+
+**Наступним важливим терміном в ATT&CK** є **data sources** (джерела даних).
+
+### Призначення Data Sources
+
+**Те, що роблять data sources** - вони **надають фактичне джерело**, яке вам потрібно **з точки зору збирання телеметрії**.
+
+**Мета data sources**:
+- **Допомогти вам ідентифікувати правильне джерело даних**
+- **Фактично боротися з TTP**, які використовують противники
+
+## Практичний приклад: Від TTP до Data Source
+
+### Повторення прикладу TTP
+
+**Якщо ми подивимося на комбінацію тактики, техніки та sub-technique**, яку ми обговорювали раніше:
+
+- **Tactic**: **Reconnaissance** (Розвідка)
+- **Technique**: **Active Scanning** (Активне сканування)  
+- **Sub-technique**: **Vulnerability Scanning** (Сканування вразливостей)
+
+### Рекомендація Data Source
+
+**ATT&CK framework скаже вам**, що **data source, яке ви могли б додати** до вашої системи безпеки, **такої як ваша SIEM система**, було б **network traffic** (мережевий трафік).
+
+### Характеристика рекомендації
+
+**І звичайно, це досить узагальнено** та **дуже високорівнево**, але **це все ще вказує вам у правильному напрямку**.
+
+## Деталізація Data Sources
+
+### Поглиблення в деталі
+
+**І якщо ми розглянемо це трохи детальніше** та **пійдемо далі в деталі**, **що це може означати?**
+
+### Конкретні приклади для Vulnerability Scanning
+
+**Якщо ми говоримо про vulnerability scanning**, це могли б бути речі як:
+
+#### 1. Web Application Firewall Logs
+- **Логи вашого web application firewall**
+- Виявлення scan patterns у HTTP requests
+- Аномальна кількість requests до різних endpoints
+- Signature-based detection сканувальних інструментів
+
+#### 2. On-premises Network Logs  
+- **Логи вашої on-premises мережі**
+- Network flow data (NetFlow, sFlow)
+- IDS/IPS alerts про scanning activity
+- Router та switch логи з аномальним трафіком
+
+#### 3. Загальний принцип
+**По суті, все, що дозволяє вам виявити vulnerability scanning** на мережевому рівні.
+
+## Суть Data Sources в MITRE ATT&CK
+
+### Основна мета
+
+**Це вся мета data source** в MITRE ATT&CK framework:
+- **Направити вас** до правильних джерел телеметрії
+- **Забезпечити detection capability** для конкретних TTP
+- **Оптимізувати** збір даних для threat hunting
+
+## Структурний зв'язок TTP ↔ Data Sources
+
+### Мапінг структури
+
+```
+RECONNAISSANCE (Tactic)
+├── Active Scanning (Technique)
+│   ├── Vulnerability Scanning (Sub-technique)
+│   │   └── DATA SOURCE: Network Traffic
+│   │       ├── WAF Logs
+│   │       ├── Network Flow Data
+│   │       ├── IDS/IPS Alerts
+│   │       └── Firewall Logs
+│   └── Port Scanning (Sub-technique)
+│       └── DATA SOURCE: Network Traffic
+│           ├── Connection Logs
+│           └── Port Activity Monitoring
+└── Passive Information Gathering (Technique)
+    └── DATA SOURCES: DNS Traffic, Web Logs
+```
+
+## Практичні аспекти Data Sources
+
+### Рівні деталізації
+
+#### Високий рівень (Generic)
+**MITRE рекомендація**: "Network Traffic"
+- **Узагальнена категорія** джерел
+- **Стратегічне направлення** для планування
+- **Початкова точка** для architecture
+
+#### Середній рівень (Specific)
+**Конкретні типи**:
+- **Firewall logs** для network perimeter
+- **IDS/IPS alerts** для signature detection
+- **Flow data** для traffic analysis
+
+#### Низький рівень (Tactical)
+**Технічні деталі**:
+- **Specific log formats** (CEF, JSON, Syslog)
+- **Field mappings** для correlation
+- **Parse rules** для SIEM integration
+
+## Розширений приклад: Multiple Data Sources
+
+### Case Study: Lateral Movement Detection
+
+**Tactic**: Lateral Movement
+**Technique**: Remote Services  
+**Sub-technique**: SMB/Windows Admin Shares
+
+#### Рекомендовані Data Sources:
+
+**1. Network Traffic**:
+- SMB traffic monitoring
+- Abnormal file share access
+- Inter-host communication patterns
+
+**2. Authentication Logs**:
+- Windows Security Event logs
+- Failed/successful logon events  
+- Account usage patterns
+
+**3. Process Monitoring**:
+- Process creation events
+- Command line arguments
+- Parent-child relationships
+
+**4. File System Activity**:
+- File access events
+- Share enumeration
+- Unusual file operations
+
+## Практичне застосування Data Sources
+
+### Для SIEM Implementation
+
+**Planning phase**:
+1. **Ідентифікувати priority TTP** для організації
+2. **Мапити TTP** на рекомендовані data sources
+3. **Оцінити availability** джерел в infrastructure
+4. **Планувати onboarding** critical data sources
+
+### Для Detection Engineering
+
+**Rule development process**:
+1. **Вибрати target TTP** для detection
+2. **Ідентифікувати data sources** через MITRE
+3. **Аналізувати available fields** в logs
+4. **Розробити detection logic** на основі patterns
+
+### Для Threat Hunting
+
+**Hunting methodology**:
+1. **Hypothesis generation** на основі TTP
+2. **Data source identification** через MITRE
+3. **Query development** для specific sources
+4. **Pattern analysis** в collected data
+
+## Виклики та рекомендації
+
+### Типові проблеми
+
+#### 1. Data Source Availability
+**Проблема**: Рекомендовані джерела не available
+**Рішення**: 
+- Alternative data sources mapping
+- Compensating controls identification
+- Incremental implementation plan
+
+#### 2. Data Quality Issues
+**Проблема**: Poor log quality або incomplete data
+**Рішення**:
+- Log source configuration tuning
+- Data enrichment strategies  
+- Multiple source correlation
+
+#### 3. Volume Management
+**Проблема**: Overwhelming data volumes
+**Рішення**:
+- Selective logging strategies
+- Pre-filtering mechanisms
+- Tiered storage approaches
+
+### Best Practices
+
+#### 1. Comprehensive Coverage
+- **Map all priority TTP** до data sources
+- **Identify coverage gaps** in current logging
+- **Plan systematic improvement** roadmap
+
+#### 2. Quality over Quantity
+- **Focus on high-value** data sources
+- **Ensure consistent** log formatting
+- **Implement proper** time synchronization
+
+#### 3. Operational Efficiency
+- **Automate data collection** where possible
+- **Standardize parsing** and normalization
+- **Implement efficient** storage and retrieval
+
+## Integration з Security Architecture
+
+### Strategic Planning
+
+**Data source strategy**:
+1. **Business risk assessment** - priority TTP identification
+2. **Current state analysis** - existing data source audit
+3. **Gap analysis** - missing critical sources
+4. **Implementation roadmap** - phased approach
+
+### Operational Implementation
+
+**Technical execution**:
+1. **Infrastructure preparation** - storage, bandwidth, processing
+2. **Source configuration** - optimal logging settings
+3. **Integration development** - parsers, connectors, APIs
+4. **Testing and validation** - detection effectiveness
+
+## Майбутні тренди
+
+### Evolution of Data Sources
+
+**Emerging sources**:
+- **Cloud-native telemetry** - container logs, API calls
+- **EDR/XDR data** - behavioral analytics
+- **Identity providers** - authentication patterns
+- **SaaS applications** - user activity data
+
+### Advanced Analytics
+
+**Enhanced detection**:
+- **Machine learning** on multiple data sources
+- **Behavioral baselines** from historical data
+- **Cross-source correlation** for complex attacks
+- **Real-time streaming** analytics
+
+## Підсумок
+
+### Ключові принципи Data Sources
+
+**Data Sources в MITRE ATT&CK**:
+1. **Направляють** до правильних джерел телеметрії
+2. **Забезпечують основу** для detection capabilities
+3. **Оптимізують** збір даних для threat hunting
+4. **Створюють зв'язок** між TTP та operational security
+
+### Практична цінність
+
+**Data Sources дозволяють**:
+- **Планувати SIEM** data onboarding strategies
+- **Розробляти detection rules** з proper data foundation
+- **Проводити gap analysis** logging capabilities
+- **Оптимізувати resource allocation** для data collection
+
+### Стратегічне значення
+
+**Правильне використання Data Sources**:
+- **Підвищує ефективність** detection programs
+- **Знижує false positive rates** через targeted monitoring
+- **Покращує threat hunting** capabilities
+- **Забезпечує ROI** на security investments
+
+**Пам'ятайте**: Data Sources - це міст між теоретичними знаннями про TTP та практичною здатністю їх виявляти в реальному середовищі через правильний збір та аналіз телеметрії.
+
+---
+
+**У наступних розділах ми розглянемо практичні приклади implementation data sources для конкретних detection use cases.**
+
+
+------------------------------------------------------------------------------------------------------------------
+
+# 28 Detections в MITRE ATT&CK Framework
+
+## Визначення Detections
+
+**На відміну від data sources**, ми також маємо **detections** в MITRE.
+
+### Основне призначення Detections
+
+**Головна мета detections** - **дати вам високорівневу стратегію виявлення** для TTP, які використовують противники.
+
+### Фокус на Techniques та Sub-techniques
+
+**Особливо зосереджено на техніках та sub-techniques**, оскільки:
+- **Знову ж таки, техніки та sub-techniques** є **"як" противник досягає своєї мети**
+- **І звичайно, частина "як" може бути виявлена**
+
+### Практичне керівництво
+
+**Також повинно дати вам керівництво** щодо того, **що фактично робити з зібраною телеметрією**.
+
+## Практичний приклад: Від Data Sources до Detections
+
+### Повторення TTP прикладу
+
+**У цьому випадку, якщо ми говоримо про тактику, техніку та sub-technique знову**, які ми використовували раніше:
+
+- **Tactic**: **Reconnaissance** 
+- **Technique**: **Active Scanning**
+- **Sub-technique**: **Vulnerability Scanning**
+
+### Detection стратегія
+
+**З точки зору виявлення речей**, ми повинні були б **подивитися на network traffic детальніше** - **на фактичний контент та потік**.
+
+## Зв'язок Data Sources та Detections
+
+### Від джерела до виявлення
+
+**Я навів приклад логів web application firewall раніше**:
+
+#### Data Source perspective
+- **Це саме те, що ви використовували б як data source**
+- Джерело телеметрії для збору інформації
+
+#### Detection perspective  
+- **Але це також те, що ви використовували б з точки зору detection**
+- Основа для створення правил виявлення
+
+## Конкретний приклад Detection Implementation
+
+### Сценарій: Виявлення Vulnerability Scans
+
+**Якщо ви шукали виявлення vulnerability scans**:
+
+#### Крок 1: Аналіз data source
+- **Використання логів web application firewall**
+- Аналіз patterns у HTTP requests
+- Ідентифікація scan signatures
+
+#### Крок 2: Розробка detection rule
+**Ви повинні були б написати правило у вашій SIEM системі**, яке говорить:
+
+**"Гей, щоразу, коли ми виявляємо scan на основі логів, які ми отримуємо від web application firewall, просто відправте нам alert"**
+
+### Технічна реалізація
+
+```
+DETECTION RULE EXAMPLE:
+═══════════════════════════════════════════
+
+IF (source = "WAF_logs") AND
+   (request_count > threshold) AND  
+   (unique_endpoints > baseline) AND
+   (time_window < scan_timeframe) AND
+   (user_agent CONTAINS scan_signatures)
+THEN 
+   ALERT "Potential Vulnerability Scan Detected"
+```
+
+## Структурний зв'язок: Data Sources ↔ Detections
+
+### Workflow від TTP до Alert
+
+```
+TTP IDENTIFICATION
+        ↓
+DATA SOURCES (Що збирати?)
+        ↓  
+DETECTIONS (Як аналізувати?)
+        ↓
+ALERTS (Що робити?)
+```
+
+### Детальний breakdown
+
+#### 1. TTP Layer
+- **Reconnaissance → Active Scanning → Vulnerability Scanning**
+
+#### 2. Data Sources Layer  
+- **Network Traffic → WAF Logs → HTTP Request Data**
+
+#### 3. Detection Layer
+- **Pattern Analysis → Rule Development → Alert Generation**
+
+#### 4. Response Layer
+- **Alert Triage → Investigation → Mitigation**
+
+## Типи Detection стратегій
+
+### 1. Signature-based Detection
+
+**Characteristics**:
+- **Known patterns** та IOCs
+- **Static rules** для specific behaviors
+- **Fast detection** з low false positives
+
+**Приклад для Vulnerability Scanning**:
+```
+Rule: Detect Nmap User-Agent
+Pattern: User-Agent contains "Nmap"
+Action: Generate HIGH priority alert
+```
+
+### 2. Behavioral Detection
+
+**Characteristics**:
+- **Anomaly detection** based on baselines
+- **Statistical analysis** of patterns
+- **Adaptive thresholds** для environments
+
+**Приклад для Vulnerability Scanning**:
+```
+Rule: Unusual HTTP Request Volume
+Pattern: Requests > 5x normal baseline
+Timeframe: Within 10 minutes
+Action: Generate MEDIUM priority alert
+```
+
+### 3. Correlation-based Detection
+
+**Characteristics**:
+- **Multiple data sources** combination
+- **Complex event processing**
+- **Context-aware** alerting
+
+**Приклад для Vulnerability Scanning**:
+```
+Rule: Correlated Scanning Activity
+Sources: WAF logs + Network flow + DNS queries
+Pattern: Scanning + Reconnaissance + Information gathering
+Action: Generate HIGH priority alert with context
+```
+
+## Практичне застосування Detections
+
+### Для Detection Engineers
+
+#### Rule Development Process:
+1. **TTP identification** - target technique selection
+2. **Data source mapping** - available telemetry review
+3. **Detection logic design** - pattern identification
+4. **Rule implementation** - SIEM rule creation
+5. **Testing and tuning** - false positive reduction
+
+#### Detection Rule Components:
+- **Data source specification**
+- **Filter criteria** - relevant events only
+- **Pattern matching logic**
+- **Threshold definitions**
+- **Alert severity assignment**
+- **Response recommendations**
+
+### Для SOC Analysts
+
+#### Alert Investigation Process:
+1. **Alert triage** - severity and context review
+2. **Data correlation** - related events analysis
+3. **Pattern confirmation** - TTP validation
+4. **Impact assessment** - potential damage evaluation
+5. **Response execution** - mitigation actions
+
+#### Investigative Questions:
+- **What TTP** is potentially occurring?
+- **Which data sources** provide evidence?
+- **How confident** are we in the detection?
+- **What additional** data is needed?
+- **What response** actions are appropriate?
+
+## Advanced Detection Concepts
+
+### 1. Multi-stage Detection
+
+**Concept**: Detect complete attack chains
+**Example**: Reconnaissance → Initial Access → Execution
+
+```
+ATTACK CHAIN DETECTION:
+Stage 1: Vulnerability Scanning (Reconnaissance)
+Stage 2: Exploit Delivery (Initial Access)  
+Stage 3: Payload Execution (Execution)
+
+Correlation Rule: All stages within timeframe
+```
+
+### 2. Threat Hunting Integration
+
+**Proactive detection**:
+- **Hypothesis-driven** searches
+- **TTP-based** hunting queries
+- **Behavioral analysis** for unknowns
+
+### 3. Machine Learning Enhancement
+
+**AI-powered detection**:
+- **Anomaly detection** algorithms
+- **Behavioral modeling** 
+- **Pattern recognition** improvements
+
+## Виклики Detection Implementation
+
+### 1. False Positive Management
+
+**Проблеми**:
+- High alert volumes
+- Analyst fatigue
+- Missed true positives
+
+**Рішення**:
+- **Tuned thresholds** based on environment
+- **Context enrichment** for better decisions
+- **Continuous rule optimization**
+
+### 2. Data Quality Issues
+
+**Проблеми**:
+- Incomplete logging
+- Inconsistent formats
+- Missing timestamps
+
+**Рішення**:
+- **Data source validation**
+- **Normalization processes**
+- **Quality monitoring**
+
+### 3. Coverage Gaps
+
+**Проблеми**:
+- Unmonitored TTP
+- Blind spots in detection
+- Limited visibility
+
+**Рішення**:
+- **TTP coverage mapping**
+- **Gap analysis** regular review
+- **Detection portfolio** management
+
+## Best Practices для Detections
+
+### 1. TTP-Driven Approach
+- **Start with priority TTP** for organization
+- **Map TTP** to available data sources
+- **Develop detection strategies** per technique
+
+### 2. Layered Detection
+- **Multiple
+
+------------------------------------------------
+
+# 29 Mitigations в MITRE ATT&CK Framework
+
+## Визначення Mitigations
+
+**Наступний термін у контексті ATT&CK** - це так звані **mitigations** (заходи пом'якшення).
+
+### Фокус на превенції, а не детекції
+
+**Цей не стосується виявлення речей**. Замість цього, **це про превентивні конфігурації**, які ви можете зробити для **зменшення поверхні атаки**.
+
+### Основне призначення Mitigations
+
+**Мета цього** - **дати можливість вашій організації модифікувати конфігурацію** так, щоб **TTP могли бути попереджені повністю**.
+
+**Результат**:
+- **Вам не потрібно турбуватися** про їх виявлення
+- **Або можливо ви менше турбуєтеся** про їх виявлення, оскільки ви попередили їх з самого початку
+
+## Філософія превентивного підходу
+
+### Ідеальна стратегія безпеки
+
+**І це, звичайно, те, що ми хочемо в безпеці, правда?**
+
+**Наскільки можемо**, ми хочемо **використовувати превентивні контролі**.
+
+### Обмеження реальності
+
+**Але іноді це неможливо імплементувати**.
+
+## Практичні приклади Mitigations
+
+### Приклад 1: Обмежені можливості мітигації
+
+**Те, що ви зараз бачите на слайді** - це випадок саме цього.
+
+#### TTP Context
+**Ми знову беремо наші тактику, техніку та sub-technique**, які ми використовували раніше:
+- **Tactic**: **Reconnaissance**
+- **Technique**: **Active Scanning**  
+- **Sub-technique**: **Vulnerability Scanning**
+
+#### MITRE рекомендація: Pre-Compromise
+
+**Якщо ви переглядаєте ATT&CK framework**, він скаже вам, що **це мітигація, яка називається pre-compromise**.
+
+**Що це означає**:
+- **Техніка не може бути легко пом'якшена** превентивними контролями
+- **Оскільки це базується на поведінці**, яка виконується **поза вашою областю дії**
+
+#### Альтернативні підходи
+
+**Замість цього ви повинні зосередити свої зусилля на**:
+- **Мінімізації кількості та чутливості даних**, які доступні зовнішнім сторонам
+
+**Звичайно, так, ви можете працювати з речами як**:
+- **Web application firewall**
+- **Інші firewall'и**
+
+**Але все ж**, ваша **область дій чітко обмежена**.
+
+### Приклад 2: Ефективна мітигація
+
+**Це інакше, однак**, коли ми говоримо про **другий приклад на цьому слайді**.
+
+#### TTP Context для Privilege Escalation
+**Техніка та sub-technique**, які зосереджені на:
+- **Tactic**: **Privilege Escalation**
+- **Technique**: **Scheduled Task/Job**
+- **Sub-technique**: **Scheduled Task** в Active Directory
+
+#### Чітка мітигація: Privileged Account Management
+
+**Чітка мітигація для цього** - **встановити privileged account management**.
+
+**Що це означає**:
+- **Всі привілейовані облікові записи** сконфігуровані **в захищеному вигляді**
+
+#### Доступні ресурси
+**Також є інструменти доступні**, які це роблять.
+
+**І також є процеси**, які існують та можуть бути використані.
+
+#### Висновок
+**Це чітко щось**, що ви можете зробити **в превентивному стилі**.
+
+## Типи Mitigations
+
+### 1. Технічні мітигації
+
+#### Configuration-based
+- **System hardening** configurations
+- **Access control** implementations  
+- **Network segmentation** policies
+- **Encryption** implementations
+
+#### Tool-based
+- **Security software** deployment
+- **Monitoring tools** configuration
+- **Automated controls** implementation
+- **Identity management** systems
+
+### 2. Процесні мітигації
+
+#### Policy Development
+- **Security policies** creation
+- **Procedural controls** establishment
+- **Compliance frameworks** adoption
+- **Governance structures** implementation
+
+#### Training and Awareness
+- **User education** programs
+- **Security awareness** initiatives
+- **Incident response** training
+- **Regular updates** and refreshers
+
+### 3. Архітектурні мітигації
+
+#### Design Principles
+- **Zero Trust** architecture
+- **Defense in Depth** strategies
+- **Least Privilege** access
+- **Separation of Duties**
+
+#### Infrastructure Changes
+- **Network redesign** for security
+- **System architecture** improvements
+- **Data protection** mechanisms
+- **Redundancy** and resilience
+
+## Категорії Mitigations за ефективністю
+
+### Високоефективні мітигації
+
+#### Complete Prevention
+**TTP можуть бути повністю попереджені**:
+- **Strong authentication** (MFA) проти credential attacks
+- **Application whitelisting** проти malware execution
+- **Network segmentation** проти lateral movement
+
+### Частково ефективні мітигації
+
+#### Risk Reduction
+**TTP складніше виконати, але можливо**:
+- **User training** проти phishing (reduces success rate)
+- **Endpoint protection** проти some malware variants
+- **Logging** and monitoring (detection improvement)
+
+### Обмежено ефективні мітигації
+
+#### Limited Scope
+**Мітигації з обмеженими можливостями**:
+- **External reconnaissance** - limited organizational control
+- **Supply chain attacks** - dependency on third parties
+- **Zero-day exploits** - unknown vulnerabilities
+
+## Практичне застосування Mitigations
+
+### Для Security Architects
+
+#### Planning Process:
+1. **TTP risk assessment** - identify priority threats
+2. **Mitigation mapping** - available controls review
+3. **Cost-benefit analysis** - resource allocation decisions
+4. **Implementation roadmap** - phased deployment plan
+5. **Effectiveness measurement** - success metrics definition
+
+#### Architecture Decisions:
+- **Prevention vs Detection** balance
+- **Control layering** strategies
+- **Single points of failure** elimination
+- **Scalability** and maintainability
+
+### Для Security Engineers
+
+#### Implementation Tasks:
+1. **Technical solution design** - specific control mechanisms
+2. **Configuration management** - secure settings deployment
+3. **Integration planning** - existing systems compatibility
+4. **Testing and validation** - effectiveness verification
+5. **Monitoring setup** - control health tracking
+
+#### Engineering Considerations:
+- **Performance impact** assessment
+- **User experience** optimization
+- **Maintenance requirements** planning
+- **Upgrade paths** consideration
+
+### Для Compliance Teams
+
+#### Regulatory Alignment:
+- **Framework mapping** - NIST, ISO, etc.
+- **Audit trail** maintenance
+- **Documentation standards** compliance
+- **Regular assessments** scheduling
+
+## Приклади конкретних мітигацій
+
+### Case Study 1: Credential Access Prevention
+
+#### Problem: Password attacks
+**TTP**: Credential Access → Brute Force → Password Spraying
+
+#### Mitigation Strategy:
+- **Multi-Factor Authentication** - primary prevention
+- **Account lockout policies** - attempt limitation
+- **Strong password policies** - complexity requirements
+- **Privileged account management** - administrative control
+
+#### Implementation:
+```
+Technical Controls:
+- Azure AD Conditional Access policies
+- Password complexity enforcement
+- Account lockout after failed attempts
+- MFA requirement for all accounts
+
+Process Controls:  
+- Regular password rotation policies
+- Privileged access request workflows
+- Security awareness training
+- Incident response procedures
+```
+
+### Case Study 2: Lateral Movement Prevention
+
+#### Problem: Network propagation
+**TTP**: Lateral Movement → Remote Services → SMB/Windows Admin Shares
+
+#### Mitigation Strategy:
+- **Network segmentation** - movement limitation
+- **Least privilege access** - permission minimization
+- **Service account management** - credential protection
+- **Administrative workstations** - isolated environments
+
+#### Implementation:
+```
+Network Controls:
+- VLAN segmentation by function
+- Firewall rules between segments  
+- VPN access for remote administration
+- Network access control (NAC)
+
+Identity Controls:
+- Just-in-time administration
+- Privileged identity management
+- Service account rotation
+- Administrative tier model
+```
+
+## Виклики Mitigation Implementation
+
+### 1. Business Impact
+
+**Considerations**:
+- **User productivity** effects
+- **System performance** impact
+- **Operational complexity** increase
+- **Cost implications**
+
+**Balancing approaches**:
+- **Risk-based** decision making
+- **Phased implementation** strategies
+- **User training** and support
+- **Change management** processes
+
+### 2. Technical Limitations
+
+**Common issues**:
+- **Legacy system** constraints
+- **Integration challenges** 
+- **Scalability concerns**
+- **Maintenance overhead**
+
+**Solutions**:
+- **Compensating controls** development
+- **Hybrid approaches** implementation
+- **Gradual migration** planning
+- **Alternative technologies** evaluation
+
+### 3. Organizational Resistance
+
+**Sources of resistance**:
+- **Cultural inertia**
+- **Resource constraints**
+- **Competing priorities**
+- **Change fatigue**
+
+**Mitigation strategies**:
+- **Executive sponsorship**
+- **Clear communication** of benefits
+- **Gradual implementation**
+- **Success stories** sharing
+
+## Best Practices для Mitigations
+
+### 1. Prioritization Framework
+
+**Risk-based approach**:
+- **Threat likelihood** assessment
+- **Business impact** evaluation
+- **Mitigation effectiveness** analysis
+- **Resource requirements** consideration
+
+### 2. Layered Defense
+
+**Defense in Depth**:
+- **Multiple control types** - preventive, detective, corrective
+- **Redundant protections** - backup controls
+- **Diverse technologies** - varied attack vectors coverage
+- **Overlapping coverage** - gap minimization
+
+### 3. Continuous Improvement
+
+**Ongoing processes**:
+- **Effectiveness monitoring** - control performance tracking
+- **Threat landscape updates** - new TTP consideration
+- **Technology evolution** - improved solutions adoption
+- **Lessons learned** integration
+
+## Стратегічні принципи
+
+### Prevention First Philosophy
+
+**Ієрархія контролів**:
+1. **Eliminate** - remove the risk entirely
+2. **Prevent** - stop the attack before it starts
+3. **Detect** - identify ongoing attacks
+4. **Respond** - contain and remediate
+5. **Recover** - restore normal operations
+
+### Cost-Effectiveness Analysis
+
+**Investment prioritization**:
+- **High-impact, low-cost** mitigations first
+- **ROI calculation** for security investments
+- **Total cost of ownership** consideration
+- **Opportunity cost** evaluation
+
+## Підсумок про Mitigations
+
+### Ключові принципи
+
+**Отже, це про мітигації в MITRE**.
+
+**Просто тримайте в пам'яті**: **щоразу, коли ви можете мітигувати, робіть це**.
+
+**Завжди краще мітигувати речі заздалегідь**, замість зосередження лише на детекціях.
+
+### Стратегічна цінність
+
+**Mitigations забезпечують**:
+- **Превентивний захист** проти TTP
+- **Зменшення attack surface**
+- **Cost-effective security** через prevention
+- **Reduced detection burden**
+
+### Практичні рекомендації
+
+**Ефективна mitigation program**:
+1. **Assess TTP relevance** для вашої організації
+2. **Identify preventable techniques**
+3. **Prioritize based on risk** та feasibility
+4. **Implement layered controls**
+5. **Monitor effectiveness** та adjust
+6. **Balance prevention** з detection capabilities
+
+**Пам'ятайте**: Prevention is better than cure - превентивні контролі зменшують необхідність у складних detection та response capabilities, створюючи more resilient security posture.
+
+---
+
+**Mitigations представляють proactive approach до кібербезпеки, дозволяючи організаціям зупиняти атаки до їх початку, rather than reactive response після компрометації.**
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+# 30 Groups в MITRE ATT&CK Framework
+
+## Визначення Groups
+
+**Інший надзвичайно важливий термін** у контексті MITRE ATT&CK - це так звані **groups** (групи).
+
+### Суть Groups у ATT&CK
+
+**Groups в ATT&CK** - це фактично **групи, які мають пов'язану поведінку**.
+
+**І ця поведінка та група відстежується** з **загальним ідентифікованим ім'ям**.
+
+## Проблема різних naming conventions
+
+### Різноманітність назв
+
+**Це відрізняється між вендорами**. **Деякі групи противників мають кілька імен**, пов'язаних з ними, **оскільки вендори відстежують групи** зі **своїми власними конвенціями найменування**.
+
+### Галузева реальність
+
+**І це надзвичайно добре відоме** в галузі безпеки.
+
+**Отже, те, що ви матимете** - **дивлячись на трьох різних вендорів**, ви матимете **три різні назви для точно тієї самої групи**.
+
+## Приклад: APT41
+
+### Вибір для case study
+
+**Давайте подивимося на групу**, на якій ми фактично зосередимося пізніше - **це був би, наприклад, APT41**.
+
+### Причини вибору APT41
+
+**І причина цього**:
+
+#### 1. Популярність
+**Перш за все**, це **дуже популярна група**.
+
+#### 2. Медійна увага
+**По-друге**, вони були **добре відомі багатьма експлойтами**, які **привернули багато уваги з боку медіа**.
+
+#### 3. Типові TTP
+**А також їх техніки та sub-techniques**, а також **тактики були досить типовими** для threat actors такого масштабу.
+
+### Naming convention APT41
+
+**Як ви можете бачити**, **APT41 - це конвенція найменування**, яка **встановлена Mandiant**.
+
+## Різні підходи вендорів до найменування
+
+### CrowdStrike: Тварини + Походження
+
+**Але якщо ми подивимося на те, як інші групи** - **як інші вендори відстежують групи** (і це **не ті самі групи**, до речі), але **як інші вендори відстежують групи**.
+
+**CrowdStrike, наприклад, використовує тварин плюс походження**.
+
+#### Логіка CrowdStrike
+**Отже, під походженням** вони **пов'язують тварин**, які **в більшості випадків асоціюються з країною**, звідки **походять противники**.
+
+#### Приклад: Fancy Bear
+**Наприклад, Fancy Bear** - це щось, що вони **вважають походить з Росії**, оскільки вони кажуть, що **ведмідь - це щось**, що **може бути асоційоване з Росією**.
+
+**І тому вони відстежують APT** - **advanced persistent threat** - **з назвою Fancy Bear**.
+
+### Microsoft: Погода + Походження
+
+**Microsoft робить це зовсім інакше**.
+
+#### Подвійний фокус Microsoft
+**Вони також зосереджуються на походженні**.
+
+**І в цьому випадку, Blizzard також асоціюється з Росією**, але **вони також зосереджуються на погоді**.
+
+#### Приклад: Midnight Blizzard
+**Наприклад, threat actor**, якого вони відстежують - **Midnight Blizzard**.
+
+## Практичні наслідки різних naming conventions
+
+### Важливість розуміння
+
+**Просто тримайте в пам'яті**, що **це щось, що вам потрібно знати**, коли ви **переглядаєте MITRE**.
+
+**Оскільки ви матимете кілька імен для тієї самої групи**.
+
+### Провідні вендори
+
+**Але особливо ці три** - **Microsoft, CrowdStrike, Mandiant** - **вони дуже видатні** в просторі кібербезпеки.
+
+**І шанси досить високі**, що **принаймні один з них надав intelligence** та **відстежував групи**, які ви бачите в ATT&CK.
+
+## Детальний розбір naming schemes
+
+### 1. Mandiant Approach
+
+#### Структура найменування
+**APT (Advanced Persistent Threat) + Number**
+
+**Приклади**:
+- **APT1** - Comment Crew (China)
+- **APT28** - Fancy Bear (Russia)  
+- **APT29** - Cozy Bear (Russia)
+- **APT41** - Double Dragon (China)
+
+#### Характеристики
+- **Numeric progression** - sequential numbering
+- **Industry standard** - widely recognized
+- **Persistence focus** - emphasis on APT nature
+- **Geographic neutral** - no country indicators in name
+
+### 2. CrowdStrike Taxonomy
+
+#### Структура найменування
+**Animal + Geographic/Cultural Association**
+
+**Приклади за країнами**:
+
+**Russia (Bears)**:
+- **Fancy Bear** (APT28)
+- **Cozy Bear** (APT29)
+- **Venomous Bear**
+
+**China (Pandas)**:
+- **Mustang Panda**
+- **Stone Panda**
+- **Emissary Panda**
+
+**North Korea (Chollima/Tigers)**:
+- **Stardust Chollima**
+- **Silent Chollima**
+
+**Iran (Kittens/Cats)**:
+- **Charming Kitten**
+- **Static Kitten**
+
+#### Логіка вибору тварин
+- **Cultural associations** з країнами
+- **Memorable naming** для communication
+- **Scalable system** для нових груп
+- **Brand consistency** в продуктах CrowdStrike
+
+### 3. Microsoft Weather System
+
+#### Структура найменування
+**Weather Phenomenon + Geographic Association**
+
+**Приклади за країнами**:
+
+**Russia (Blizzards)**:
+- **Midnight Blizzard** (APT29)
+- **Forest Blizzard** (APT28)
+- **Star Blizzard**
+
+**China (Typhoons)**:
+- **Volt Typhoon**
+- **Flax Typhoon**
+
+**Iran (Sandstorms)**:
+- **Mint Sandstorm**
+- **Peach Sandstorm**
+
+**North Korea (Sleet)**:
+- **Diamond Sleet**
+- **Ruby Sleet**
+
+#### Переваги weather theme
+- **Intuitive geographic** associations
+- **Scalable naming** system
+- **Professional branding** alignment
+- **Clear categorization** by origin
+
+## Практичні виклики multiple naming
+
+### 1. Attribution Confusion
+
+**Проблеми**:
+- **Same group, different names** між вендорами
+- **Cross-reference difficulties** в reports
+- **Communication challenges** між організаціями
+- **Intelligence sharing** complications
+
+**Приклади плутанини**:
+```
+SAME GROUP, DIFFERENT NAMES:
+═══════════════════════════════════════
+Mandiant:    APT28
+CrowdStrike: Fancy Bear  
+Microsoft:   Forest Blizzard
+Other names: Sofacy, Sednit, Strontium
+```
+
+### 2. Intelligence Correlation
+
+**Challenges**:
+- **Mapping campaigns** across vendor reports
+- **TTP correlation** between different names
+- **Timeline alignment** of activities
+- **Confidence assessment** in attribution
+
+### 3. Communication Standards
+
+**Industry needs**:
+- **Common reference points**
+- **Translation matrices** between naming schemes
+- **Standardized reporting** formats
+- **Cross-vendor collaboration** protocols
+
+## MITRE ATT&CK Groups Integration
+
+### Approach to multiple names
+
+**MITRE's solution**:
+- **Primary group name** (often Mandiant-based)
+- **Associated names** section
+- **Cross-reference** all known aliases
+- **Vendor attribution** information
+
+### Group profile structure
+
+**Each group entry contains**:
+- **Primary identifier** (e.g., G0096 for APT41)
+- **Common names** and aliases
+- **Associated campaigns**
+- **TTP mapping** to framework
+- **Attribution confidence** levels
+
+### Example: APT41 in MITRE
+
+```
+GROUP PROFILE STRUCTURE:
+═══════════════════════════════════════
+Primary ID: G0096
+Name: APT41
+Aliases: 
+- Double Dragon (Mandiant)
+- BARIUM (Microsoft)  
+- Winnti Umbrella
+- Blackfly
+
+Associated TTPs:
+- Reconnaissance techniques
+- Resource development methods
+- Initial access vectors
+- [Complete TTP mapping]
+```
+
+## Практичне використання Groups
+
+### Для Threat Intelligence Analysts
+
+#### Research workflow:
+1. **Identify target group** by any known name
+2. **Cross-reference** all aliases
+3. **Map historical** campaigns and TTPs
+4. **Correlate indicators** across vendors
+5. **Assess attribution** confidence levels
+
+#### Analysis considerations:
+- **Multiple source validation**
+- **Vendor bias** awareness
+- **Timeline correlation** accuracy
+- **TTP evolution** tracking
+
+### Для SOC Teams
+
+#### Operational use:
+- **Alert correlation** to known groups
+- **Incident attribution** processes
+- **Threat briefing** preparations
+- **Response planning** based on group TTPs
+
+#### Practical applications:
+- **Signature development** for group-specific TTPs
+- **Hunting campaigns** targeting known behaviors  
+- **Intelligence reporting** with proper attribution
+- **Executive briefings** with group context
+
+### Для Threat Hunters
+
+#### Hunting strategies:
+- **Group-specific** TTP searches
+- **Historical pattern** analysis
+- **Cross-campaign** correlation
+- **Emerging technique** identification
+
+## Best Practices для Groups
+
+### 1. Multi-source Verification
+
+**Validation approach**:
+- **Compare attributions** across vendors
+- **Verify TTP consistency** between sources
+- **Assess confidence levels** of each vendor
+- **Document uncertainty** where it exists
+
+### 2. Standardized Communication
+
+**Internal practices**:
+- **Establish primary naming** conventions
+- **Maintain alias mapping** documentation
+- **Use MITRE IDs** for consistency
+- **Train teams** on multiple naming schemes
+
+### 3. Continuous Monitoring
+
+**Tracking evolution**:
+- **Monitor group** TTP changes
+- **Track new campaigns** and activities
+- **Update attribution** assessments
+- **Share intelligence** with community
+
+## Майбутні тренди
+
+### Industry Standardization
+
+**Movement towards**:
+- **Common identifiers** adoption
+- **Shared attribution** frameworks
+- **Collaborative intelligence** platforms
+- **Standardized reporting** formats
+
+### Enhanced Attribution
+
+**Improved techniques**:
+- **Technical fingerprinting** methods
+- **Behavioral analysis** algorithms
+- **Cross-correlation** automation
+- **Confidence scoring** systems
+
+## Підсумок про Groups
+
+### Ключові принципи
+
+**Groups в MITRE ATT&CK**:
+1. **Represent threat actors** з documented behavior
+2. **Multiple names** від різних vendors
+3. **Common TTP patterns** для attribution
+4. **Cross-reference capability** для research
+
+### Практичні рекомендації
+
+**Ефективна робота з Groups**:
+- **Learn major naming schemes** (Mandiant, CrowdStrike, Microsoft)
+- **Use MITRE as reference** для cross-correlation
+- **Maintain alias awareness** для accurate attribution
+- **Validate across sources** для higher confidence
+
+### Стратегічна цінність
+
+**Groups забезпечують**:
+- **Historical context** для current threats
+- **TTP prediction** based on past behavior
+- **Attribution framework** для incidents
+- **Intelligence sharing** foundation
+
+**Пам'ятайте**: Understanding threat actor groups та їх various names є critical для effective threat intelligence та incident attribution - одна група може мати множину names залежно від vendor, але їх TTP patterns залишаються consistent indicators для identification.
+
+---
+
+**У наступних розділах ми детально розглянемо конкретні groups та їх TTP patterns у практичних сценаріях attribution та threat hunting.**
+
+
+-----------------------------------------------------------------------------------------------
