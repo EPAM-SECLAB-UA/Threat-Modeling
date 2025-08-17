@@ -13916,6 +13916,7 @@ Unlock Your Full Potential by **learning Gen AI** **with Security** and Elevate 
 
 ### **DevSecOps with GitHub Actions**
 - https://www.udemy.com/course/devsecops-crash-course-integrate-security-in-pipelines-2022/?referralCode=CFCD5C83BF3B2308D45C&couponCode=LETSLEARNNOW
+- https://ua.udemy.com/course/devsecops-crash-course-integrate-security-in-pipelines-2022/?referralCode=CFCD5C83BF3B2308D45C&couponCode=LETSLEARNNOW
 
 ### **DevSecOps with GCP**
 
