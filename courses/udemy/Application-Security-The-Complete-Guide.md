@@ -3,6 +3,7 @@
 
 # Application Security - The Complete Guide
 https://www.udemy.com/course/application-security-the-complete-guide/?couponCode=PMNVD2525
+https://ua.udemy.com/course/application-security-the-complete-guide/?couponCode=PMNVD2525
 
 
 # Безпека додатків: Всебічний курс
